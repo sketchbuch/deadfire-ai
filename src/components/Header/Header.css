@@ -1,0 +1,37 @@
+.Header {
+  position: fixed;
+  width: 100%;
+  height: var(--header-height);
+  z-index: var(--z-header);
+  font-size: var(--font-size-large);
+  line-height: var(--lh-std);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: flex-start;
+  padding: 10px 20px;
+  background: var(--col-header-bg);
+  border-bottom: 1px solid var(--col-darken-1);
+  color: var(--col-white);
+}
+
+.Header__title {
+  font-size: inherit;
+  color: inherit;
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  justify-content: center;
+  letter-spacing: var(--ls-std);
+}
+
+.Header__logo {
+  display: block;
+  width: auto;
+  height: 5.0rem;
+  margin-top: -4px;
+  margin-left: -4px;
+  margin-right: 10px;
+}

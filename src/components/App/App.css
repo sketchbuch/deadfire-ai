@@ -1,0 +1,9 @@
+.App {
+  text-align: center;
+}
+
+.App__content {
+  text-align: left;
+  padding: 10px 20px;
+  padding-top: 8.0rem;
+}

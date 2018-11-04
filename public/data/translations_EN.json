@@ -1,0 +1,13 @@
+{
+  "EN": {
+    "App": {
+      "Name": "Deadfire AI Editor"
+    },
+    "AppError": {
+      "ErrorTxt": "Error Loading"
+    },
+    "Toastr": {
+      "PersistenceError": "Error Saving"
+    }
+  }
+}
