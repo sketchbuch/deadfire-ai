@@ -1,6 +1,8 @@
 // @flow
 
-//import { CHANGE_LANGUAGE, SETTINGS_LOADED } from '../constants/actionTypes';
+import { 
+  SETTINGS_LOAD_SUCCESS,
+} from '../constants/actionTypes';
 import type { LangType } from '../types/lang';
 import type { ActionObj } from '../types/action';
 

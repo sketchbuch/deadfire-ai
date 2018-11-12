@@ -1,6 +1,7 @@
 // @flow
 
 import * as io from '../constants/io';
+import type { FsObject } from '../types/fsObject';
 
 let electron = null;
 let fs = require('fs');
@@ -19,7 +20,7 @@ const FOLDER = (window.location.hostname === 'localhost') ? 'public' : 'build';
 /**
 * Loads a file async. from the filesystem. callback receives a results object: {
 *   success: boolean ,
-*   errorObj: object | null,
+*   errorObj: error,
 *   data: object,
 * }
 * 
@@ -27,11 +28,11 @@ const FOLDER = (window.location.hostname === 'localhost') ? 'public' : 'build';
 *
 * @param string fileName The name of the file that should be loaded (without file type).
 */
-export function readFile(fileName: string): Promise<Object> {
+export function readFile(fileName: string): Promise<FsObject> {
   return new Promise((resolve, reject) => {
       const FILE_PATH = getDataPath(fileName);
 
-      fs.readFile(FILE_PATH, 'UTF-8', (err?: any, data?: string = '') => {
+      fs.readFile(FILE_PATH, 'UTF-8', (err: ?Error, data: string | Buffer = '') => {
         if (err) {
           if (err.code === 'ENOENT') {
             createDataFolder(FILE_PATH);
@@ -54,7 +55,7 @@ export function readFile(fileName: string): Promise<Object> {
               );
           } else {
             reject({
-              success: !err,
+              success: false,
               errorObj: err,
               data: {},
             });
@@ -62,7 +63,7 @@ export function readFile(fileName: string): Promise<Object> {
 
         } else {
           resolve({
-            success: !err,
+            success: true,
             errorObj: err,
             data: (data) ? JSON.parse(data) : {},
           });
@@ -77,20 +78,20 @@ export function readFile(fileName: string): Promise<Object> {
 * @param string fileName The name of the file that should be loaded (without file type).
 * @param mixed jsonContent The content to write.
 */
-export function writeFile(fileName: string, jsonContent: Object | string): Promise<Object> {
+export function writeFile(fileName: string, jsonContent: Object | string): Promise<FsObject> {
   return new Promise((resolve, reject) => {
       const FILE_PATH = getDataPath(fileName);
       const content = { [fileName.toLowerCase()]: jsonContent };
 
-      fs.writeFile(FILE_PATH, JSON.stringify(content), 'UTF-8', (err?: any) => {
+      fs.writeFile(FILE_PATH, JSON.stringify(content), 'UTF-8', (err: ?Error) => {
         if (err) {
           reject({
-            success: !err,
+            success: false,
             errorObj: err,
           });
         } else {
           resolve({
-            success: !err,
+            success: true,
             errorObj: err,
           });
         }

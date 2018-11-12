@@ -23,6 +23,8 @@ function* settingsWorker() {
 
   try {
     const result = yield readFile(FILE_SETTINGS);
+
+    console.log(result);
     
     if (result.success) {
       yield put({ type: SETTINGS_LOAD_SUCCESS, payload: result.data });
@@ -39,6 +41,6 @@ function* settingsWorker() {
 /**
 * Watches for APP_LOADED.
 */
-export function* appWatcher() {
+export function* appWatcher(): Generator<void, void, void> {
   yield takeLatest(APP_LOADING, settingsWorker);
 }
