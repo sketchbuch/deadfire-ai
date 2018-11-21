@@ -2,6 +2,7 @@
 
 import * as io from '../constants/io';
 import type { FsObject } from '../types/fsObject';
+import type { LanguagesType } from '../types/lang';
 
 let electron = null;
 let fs = require('fs');
@@ -28,47 +29,82 @@ const FOLDER = (window.location.hostname === 'localhost') ? 'public' : 'build';
 *
 * @param string fileName The name of the file that should be loaded (without file type).
 */
-export function readFile(fileName: string): Promise<FsObject> {
+export function readDataFile(fileName: string): Promise<FsObject> {
   return new Promise((resolve, reject) => {
-      const FILE_PATH = getDataPath(fileName);
+    const FILE_PATH = getDataPath(fileName)
 
-      fs.readFile(FILE_PATH, 'UTF-8', (err: ?Error, data: string | Buffer = '') => {
-        if (err) {
-          if (err.code === 'ENOENT') {
-            createDataFolder(FILE_PATH);
-            writeFile(fileName, {})
-              .then(
-                response => {
-                  if (response.err) {
-                    reject({
-                      ...response,
-                      data: {},
-                    });
+    fs.readFile(FILE_PATH, 'UTF-8', (err: ?Error, data: string | Buffer = '') => {
+      if (err) {
+        if (err.code === 'ENOENT') {
+          createDataFolder(FILE_PATH);
+          writeFile(fileName, {})
+            .then(
+              response => {
+                if (response.err) {
+                  reject({
+                    ...response,
+                    data: {},
+                  });
 
-                  } else {
-                    resolve({
-                      ...response,
-                      data: {},
-                    });
-                  }
+                } else {
+                  resolve({
+                    ...response,
+                    data: {},
+                  });
                 }
-              );
-          } else {
-            reject({
-              success: false,
-              errorObj: err,
-              data: {},
-            });
-          }
-
+              }
+            );
         } else {
-          resolve({
-            success: true,
+          reject({
+            success: false,
             errorObj: err,
-            data: (data) ? JSON.parse(data) : {},
+            data: {},
           });
         }
-      });
+
+      } else {
+        resolve({
+          success: true,
+          errorObj: err,
+          data: (data) ? JSON.parse(data) : {},
+        });
+      }
+    });
+  });
+}
+
+/**
+* Loads a language file
+*
+* @param string fileName The name of the file that should be loaded (without file type).
+*/
+export function readLangFile(lang: LanguagesType): Promise<FsObject> {
+  return new Promise((resolve, reject) => {
+    const FILE_PATH = getLanguagePath(lang)
+
+    fs.readFile(FILE_PATH, 'UTF-8', (err: ?Error, data: string | Buffer = '') => {
+      if (err) {
+        reject({
+          success: false,
+          errorObj: err,
+          data: {},
+        });
+
+      } else {
+        let langData = {};
+
+        if (data) {
+          langData = JSON.parse(data);
+          window.app.translations[lang] = langData[lang];
+        }
+        
+        resolve({
+          success: true,
+          errorObj: err,
+          data: langData,
+        });
+      }
+    });
   });
 }
 
@@ -104,7 +140,7 @@ export function writeFile(fileName: string, jsonContent: Object | string): Promi
 *
 * @param string lang The key of the language to load.
 */
-function getLanguagePath(lang: string): string {
+function getLanguagePath(lang: LanguagesType): string {
   return `${APP_PATH}/${FOLDER}/data/translations_${lang}.${io.FILE_TYPE}`;
 }
 
