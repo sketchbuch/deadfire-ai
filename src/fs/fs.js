@@ -61,12 +61,11 @@ export function readDataFile(fileName: string): Promise<FsObject> {
             data: {},
           });
         }
-
       } else {
         resolve({
           success: true,
           errorObj: err,
-          data: (data) ? JSON.parse(data) : {},
+          data: (data) ? JSON.parse(data.trim()) : {},
         });
       }
     });
@@ -89,12 +88,11 @@ export function readLangFile(lang: LanguagesType): Promise<FsObject> {
           errorObj: err,
           data: {},
         });
-
       } else {
         let langData = {};
 
         if (data) {
-          langData = JSON.parse(data);
+          langData = JSON.parse(data.trim());
           window.app.translations[lang] = langData[lang];
         }
         
@@ -102,6 +100,31 @@ export function readLangFile(lang: LanguagesType): Promise<FsObject> {
           success: true,
           errorObj: err,
           data: langData,
+        });
+      }
+    });
+  });
+}
+
+/**
+* Loads a PoE zip file
+*/
+export function readEternityFile(): Promise<FsObject> {
+  return new Promise((resolve, reject) => {
+    const FILE_PATH = '/home/stephen/.steam/steam/steamapps/common/Pillars of Eternity II/PillarsOfEternityII_Data/exported/design/ai/aibehaviors/aibehaviors.aibehaviorbundle';
+
+    fs.readFile(FILE_PATH, 'UTF-8', (err: ?Error, data: string | Buffer = '') => {
+      if (err) {
+        reject({
+          success: false,
+          errorObj: err,
+          data: {},
+        });
+      } else {
+        resolve({
+          success: true,
+          errorObj: err,
+          data: (data) ? JSON.parse(data.trim()) : {},
         });
       }
     });
