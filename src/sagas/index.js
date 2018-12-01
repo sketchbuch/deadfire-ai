@@ -1,8 +1,6 @@
 // @flow
 
-import { all, call, put, takeLatest, select } from "redux-saga/effects";
-import { readDataFile, readEternityFile, readLangFile } from '../fs/fs';
-import { FILE_SETTINGS } from '../constants/io';
+import { all, takeLatest } from "redux-saga/effects";
 import {
   APP_LOADING,
   LANGUAGE_LOAD_SUCCESS,
@@ -11,6 +9,7 @@ import {
 import settingsWorker from './settings'
 import languageWorker from './language'
 import dataWorker from './data'
+
 
 /**
 * Sagas

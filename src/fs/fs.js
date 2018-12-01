@@ -111,9 +111,9 @@ export function readLangFile(lang: LanguagesType): Promise<FsObject> {
 */
 export function readEternityFile(): Promise<FsObject> {
   return new Promise((resolve, reject) => {
-    const FILE_PATH = '/home/stephen/.steam/steam/steamapps/common/Pillars of Eternity II/PillarsOfEternityII_Data/exported/design/ai/aibehaviors/aibehaviors.aibehaviorbundle';
+    const FILE_PATH = "/home/stephen/.local/share/PillarsOfEternityII/SavedGames/CustomAIBehaviors/Stephen's AI Test (Barbarian) (2acc5deb-1078-4bd0-9a34-55d798705d9d).customai";
 
-    fs.readFile(FILE_PATH, 'UTF-8', (err: ?Error, data: string | Buffer = '') => {
+    fs.readFile(FILE_PATH, (err: ?Error, data: string | Buffer = '') => {
       if (err) {
         reject({
           success: false,
@@ -121,10 +121,11 @@ export function readEternityFile(): Promise<FsObject> {
           data: {},
         });
       } else {
+        console.log(data.toString('hex'))
         resolve({
           success: true,
           errorObj: err,
-          data: (data) ? JSON.parse(data.trim()) : {},
+          data: {},
         });
       }
     });
