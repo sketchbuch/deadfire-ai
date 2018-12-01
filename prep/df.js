@@ -1,10 +1,11 @@
 const Parser = require("binary-parser").Parser;
 const fs = require('fs');
-const uuidParse = require('uuid-parse');
+const UUID = require('uuid-js');
 const FILE_PATH = "./fighter2.customai";
 const ENCODING = 'hex';
 const TYPE_GUID = 16;
 const TYPE_VER = 4;
+let as = '';
 
 /**
 * Reads and parses a PoE2 user AI binary file.
@@ -14,6 +15,7 @@ function readEternityAiFile(fileName) {
 
   fs.readFile(fileName, function (err, data) {
     console.log(fileName);
+    
     const aiHeader = new Parser()
       .int32le('HeaderVersion')
       .int32le('TypesLen');
@@ -27,18 +29,21 @@ function readEternityAiFile(fileName) {
     for (var i = 0; i < TYPE_COUNT; i ++) {
       const typeParser = new Parser()
         .skip(curPos)
-        .string('TypeID', { length: 16, encoding: ENCODING })
+        .buffer('TypeID', { length: 16 })
         .int32le('Version');
 
-      aiData.Types.push(typeParser.parse(data));
+      const result = typeParser.parse(data);
+      result.TypeID = UUID.fromBytes(result.TypeID).hex;
+      
+      aiData.Types.push(result);
       curPos += (TYPE_GUID + TYPE_VER);
 
       if (i === TYPE_COUNT - 1) {
         const selTypeParser = new Parser()
           .skip(curPos)
-          .string('TypeID', { length: 16, encoding: ENCODING });
+          .buffer('TypeID', { length: 16 });
 
-        aiData.TypeID = selTypeParser.parse(data).TypeID;
+        aiData.TypeID = UUID.fromBytes(selTypeParser.parse(data).TypeID).hex;
         curPos += TYPE_GUID;
       } 
     }
@@ -71,9 +76,12 @@ function readEternityAiFile(fileName) {
       for (var i = 0; i < SUP_COUNT; i ++) {
         const supItemParser = new Parser()
           .skip(curPos)
-          .string('CharacterClassGameData', { length: 16, encoding: ENCODING })
+          .buffer('CharacterClassGameData', { length: 16 });
   
-        aiData.SupportedClasses.push(supItemParser.parse(data));
+        const result = supItemParser.parse(data);
+        result.CharacterClassGameData = UUID.fromBytes(result.CharacterClassGameData).hex;
+
+        aiData.SupportedClasses.push(result);
         curPos += TYPE_GUID;
       }
     }
@@ -93,34 +101,62 @@ function readEternityAiFile(fileName) {
         const casParser = new Parser()
           .skip(curPos)
           .int32le('Version')
-          .string('TypeID', { length: 16, encoding: ENCODING })
+          .buffer('TypeID', { length: 16 })
           .int8('NameLen')
           .string('Name', { length: 'NameLen' })
           .int32le('ConditionsLen');
+  
+        const result = casParser.parse(data);
+        result.TypeID = UUID.fromBytes(result.TypeID).hex;
 
-        const actionSet = {...casParser.parse(data), Conditions: []};
+        let actionSet = {...result, Conditions: []};
         aiData.ConditionalActionSet.push(actionSet);
 
-        curPos += (TYPE_GUID + TYPE_VER) + (4 + aiData.ConditionalActionSet[i].NameLen + 1) + 4;
+        curPos += (TYPE_GUID + TYPE_VER) + (4 + aiData.ConditionalActionSet[i].NameLen) + 4;
         
         if (actionSet.ConditionsLen > 0) {
           const CON_COUNT = actionSet.ConditionsLen;
 
           for (var i = 0; i < CON_COUNT; i ++) {
             const conParser = new Parser()
+            .skip(curPos)
             .int32le('Version')
-            .string('TypeID', { length: 16, encoding: ENCODING })
-            .string('ConditionalSet', { length: 16, encoding: ENCODING })
-            .bit1('Not')
+            .buffer('TypeID', { length: 16 })
+            .buffer('ConditionalSet', { length: 16 })
+            .bit1('Not');
+  
+            const result = conParser.parse(data);
+            result.TypeID = UUID.fromBytes(result.TypeID).hex;
+            result.ConditionalSet = UUID.fromBytes(result.ConditionalSet).hex;
 
-            actionSet.Conditions.push(conParser.parse(data));
+            actionSet.Conditions.push(result);
 
-            curPos += (TYPE_GUID + TYPE_VER) + TYPE_GUID + 8;
+            curPos += (TYPE_GUID + TYPE_VER) + TYPE_GUID + 1;
           }
         }
+        /* const actParser = new Parser()
+          .skip(curPos)
+          .int32le('ActionLen')
 
-        console.log('actionSet', actionSet)
-        console.log('')
+        actionSet = {...actionSet, ...actParser.parse(data), Actions: []};
+        curPos += 4;
+
+        if (actionSet.ActionLen > 0) {
+          const ACT_COUNT = actionSet.ActionLen;
+
+          for (var i = 0; i < ACT_COUNT; i ++) {
+            const aActParser = new Parser()
+            .skip(curPos)
+            .int32le('Version')
+            .string('TypeID', { length: 16, encoding: ENCODING });
+
+            actionSet.Actions.push(aActParser.parse(data));
+
+            curPos += (TYPE_GUID + TYPE_VER);
+          }
+        } */
+
+        as = actionSet;
       }
     }
 
@@ -134,10 +170,13 @@ function readEternityAiFile(fileName) {
     aiData = {...aiData, ...endParser.parse(data)}
     curPos += TYPE_GUID; */
 
-    //console.log(aiData);
+    console.log(aiData);
+    console.log('')
+    console.log('actionSet', as)
+    console.log('')
   });
 }
 
 
-readEternityAiFile("./fighter2.customai")
-readEternityAiFile("./fighter3.customai")
+readEternityAiFile("./fighter3-a.customai")
+//readEternityAiFile("./fighter3.customai")

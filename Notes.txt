@@ -1,3 +1,15 @@
+Health less than 50%
+mine 09b32a4d-b89a-1bb4-1f4f-940800010000
+real 5a793fd2-b309-4d2a-b89a-1bb41f4f9408
+
+
+Fighter ID
+mine b650676e-d761-614b-9713-55957e0f0591
+real 6e6750b6-61d7-4b61-9713-55957e0f0591
+
+
+
+
 HeaderVersion (integer [4])
 Types count (integer [4])
 [count] Type
