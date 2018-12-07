@@ -1,10 +1,13 @@
-Health less than 50%
-mine 09b32a4d-b89a-1bb4-1f4f-940800010000
+Self_HealthPct_Below50
+mine d23f795a-09b3-2a4d-b89a-1bb41f4f9408
 real 5a793fd2-b309-4d2a-b89a-1bb41f4f9408
 
+Self_Discipline_Atleast3
+mine 2b12b72f-6719-1448-9cec-7bd533be9b47
+real 2fb7122b-1967-4814-9cec-7bd533be9b47
 
 Fighter ID
-mine b650676e-d761-614b-9713-55957e0f0591
+mine 6e6750b6-61d7-4b61-9713-55957e0f0591
 real 6e6750b6-61d7-4b61-9713-55957e0f0591
 
 

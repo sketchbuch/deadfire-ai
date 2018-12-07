@@ -17,8 +17,8 @@ function readEternityAiFile(fileName) {
     console.log(fileName);
     
     const aiHeader = new Parser()
-      .int32le('HeaderVersion')
-      .int32le('TypesLen');
+      .uint32le('HeaderVersion')
+      .uint32le('TypesLen');
     
     let aiData = aiHeader.parse(data);
     let curPos = 8;
@@ -26,14 +26,14 @@ function readEternityAiFile(fileName) {
     const TYPE_COUNT = aiData.TypesLen;
 
     // Get types
-    for (var i = 0; i < TYPE_COUNT; i ++) {
+    for (let i = 0; i < TYPE_COUNT; i ++) {
       const typeParser = new Parser()
         .skip(curPos)
         .buffer('TypeID', { length: 16 })
-        .int32le('Version');
+        .uint32le('Version');
 
       const result = typeParser.parse(data);
-      result.TypeID = UUID.fromBytes(result.TypeID).hex;
+      result.TypeID = bytesToUuid(result.TypeID);
       
       aiData.Types.push(result);
       curPos += (TYPE_GUID + TYPE_VER);
@@ -43,7 +43,7 @@ function readEternityAiFile(fileName) {
           .skip(curPos)
           .buffer('TypeID', { length: 16 });
 
-        aiData.TypeID = UUID.fromBytes(selTypeParser.parse(data).TypeID).hex;
+        aiData.TypeID = bytesToUuid(selTypeParser.parse(data).TypeID);
         curPos += TYPE_GUID;
       } 
     }
@@ -51,11 +51,13 @@ function readEternityAiFile(fileName) {
     // Name
     const nameParser = new Parser()
       .skip(curPos)
-      .int8('NameLen')
+      .uint8('NameLen')
       .string('Name', { length: 'NameLen' })
-      .int32le('OldSupportedClassesLen');
+      .uint32le('OldSupportedClassesLen');
+
 
     aiData = {...aiData, ...nameParser.parse(data), OldSupportedClasses: []}
+
     curPos += (4 + aiData.NameLen + 1);
 
     if (aiData.OldSupportedClassesLen > 0) { // To do...
@@ -64,7 +66,7 @@ function readEternityAiFile(fileName) {
       // Supported classes
     const supParser = new Parser()
       .skip(curPos)
-      .int32le('SupportedClassesLen');
+      .uint32le('SupportedClassesLen');
 
     aiData = {...aiData, ...supParser.parse(data), SupportedClasses: []}
     curPos += 4;
@@ -73,13 +75,13 @@ function readEternityAiFile(fileName) {
       const SUP_COUNT = aiData.SupportedClassesLen;
   
       // Get types
-      for (var i = 0; i < SUP_COUNT; i ++) {
+      for (let i = 0; i < SUP_COUNT; i ++) {
         const supItemParser = new Parser()
           .skip(curPos)
           .buffer('CharacterClassGameData', { length: 16 });
   
         const result = supItemParser.parse(data);
-        result.CharacterClassGameData = UUID.fromBytes(result.CharacterClassGameData).hex;
+        result.CharacterClassGameData = bytesToUuid(result.CharacterClassGameData);
 
         aiData.SupportedClasses.push(result);
         curPos += TYPE_GUID;
@@ -89,7 +91,7 @@ function readEternityAiFile(fileName) {
       // Actonsets classes
     const asParser = new Parser()
       .skip(curPos)
-      .int32le('ConditionalActionSetsLen');
+      .uint32le('ConditionalActionSetsLen');
     aiData = {...aiData, ...asParser.parse(data), ConditionalActionSet: []}
     curPos += 4;
 
@@ -97,54 +99,56 @@ function readEternityAiFile(fileName) {
       const CAS_COUNT = aiData.ConditionalActionSetsLen;
   
       // Get types
-      for (var i = 0; i < CAS_COUNT; i ++) {
+      for (let i = 0; i < CAS_COUNT; i ++) {
         const casParser = new Parser()
           .skip(curPos)
-          .int32le('Version')
-          .buffer('TypeID', { length: 16 })
-          .int8('NameLen')
+          .uint32le('Version')
+          .buffer('TypeID', { length: 16 }) 
+          .uint8('NameLen')
           .string('Name', { length: 'NameLen' })
-          .int32le('ConditionsLen');
+          .uint32le('ConditionsLen');
   
         const result = casParser.parse(data);
-        result.TypeID = UUID.fromBytes(result.TypeID).hex;
+        result.TypeID = bytesToUuid(result.TypeID);
 
         let actionSet = {...result, Conditions: []};
         aiData.ConditionalActionSet.push(actionSet);
 
-        curPos += (TYPE_GUID + TYPE_VER) + (4 + aiData.ConditionalActionSet[i].NameLen) + 4;
+        curPos += ((TYPE_GUID + TYPE_VER) + (1 + actionSet.NameLen)) + 4;
         
         if (actionSet.ConditionsLen > 0) {
           const CON_COUNT = actionSet.ConditionsLen;
 
-          for (var i = 0; i < CON_COUNT; i ++) {
+          for (let i = 0; i < CON_COUNT; i ++) {
             const conParser = new Parser()
-            .skip(curPos)
-            .int32le('Version')
-            .buffer('TypeID', { length: 16 })
-            .buffer('ConditionalSet', { length: 16 })
-            .bit1('Not');
+              .skip(curPos)
+              .uint32le('Version')
+              .buffer('TypeID', { length: 16 })
+              .buffer('ConditionalSet', { length: 16 })
+              .uint8('Not')
   
             const result = conParser.parse(data);
-            result.TypeID = UUID.fromBytes(result.TypeID).hex;
-            result.ConditionalSet = UUID.fromBytes(result.ConditionalSet).hex;
+            result.TypeID = bytesToUuid(result.TypeID);
+            result.ConditionalSet = bytesToUuid(result.ConditionalSet);
+
 
             actionSet.Conditions.push(result);
 
-            curPos += (TYPE_GUID + TYPE_VER) + TYPE_GUID + 1;
+            curPos += TYPE_GUID + TYPE_VER + TYPE_GUID + 1;
           }
         }
-        /* const actParser = new Parser()
+
+        const actParser = new Parser()
           .skip(curPos)
-          .int32le('ActionLen')
+          .uint32le('ActionLen')
 
         actionSet = {...actionSet, ...actParser.parse(data), Actions: []};
         curPos += 4;
 
-        if (actionSet.ActionLen > 0) {
+       /* if (actionSet.ActionLen > 0) {
           const ACT_COUNT = actionSet.ActionLen;
 
-          for (var i = 0; i < ACT_COUNT; i ++) {
+          for (let i = 0; i < ACT_COUNT; i ++) {
             const aActParser = new Parser()
             .skip(curPos)
             .int32le('Version')
@@ -170,13 +174,16 @@ function readEternityAiFile(fileName) {
     aiData = {...aiData, ...endParser.parse(data)}
     curPos += TYPE_GUID; */
 
-    console.log(aiData);
-    console.log('')
+/*     console.log(aiData);
+    console.log('') */
     console.log('actionSet', as)
     console.log('')
   });
 }
 
+function bytesToUuid(bytesToConvert) {
+  return UUID.fromBytes(bytesToConvert).hex;
+}
 
-readEternityAiFile("./fighter3-a.customai")
+readEternityAiFile("./fighter6.customai")
 //readEternityAiFile("./fighter3.customai")
