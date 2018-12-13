@@ -23,6 +23,7 @@
     "electron-is-dev": "^0.3.0",
     "md5": "^2.2.1",
     "node-uuid": "^1.4.8",
+    "pure-uuid": "^1.5.5",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
     "react-redux": "^5.0.7",
@@ -34,6 +35,7 @@
     "redux": "^3.7.2",
     "redux-saga": "^0.16.2",
     "uuid-js": "^0.7.5",
+    "uuid-parse": "^1.0.0",
     "uuid-with-v6": "^1.1.2"
   },
   "devDependencies": {
