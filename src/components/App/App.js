@@ -1,75 +1,69 @@
+// @flow
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import ErrorLayout from '../../layouts/Error/ErrorLayout';
-import HomeLayout from '../../layouts/Home/HomeLayout';
-import NotFoundLayout from '../../layouts/NotFound/NotFoundLayout';
-import Header from '../../components/Header/Header';
-import { getCustomNumProp } from '../../utils/dom';
+import { Redirect } from 'react-router-dom';
 import * as appActions from '../../actions/appActions';
-import type { AppType } from '../../types/app';
 import type { DispatchType } from '../../types/functions';
+import AppPresenter from './AppPresenter';
 import {
-  ROUTE_ERROR,
   ROUTE_HOME,
+  ROUTE_ERROR,
+  ROUTE_NEW,
 } from '../../constants/routes';
-import './App.css';
 
 type Props = {
-  app: AppType,
-  appErrored: (hideLoader: ()=>{}) => {},
-  appLoading: (hideLoader: ()=>{}) => {},
+  appLoading: () => void,
+  error: boolean,
+  errorMsg: string,
+  loaded: boolean,
+  storageCreated: boolean,
 };
-
-function hideLoader() {
-  const alDuration = getCustomNumProp('--apploader-ms');
-  document.getElementsByTagName('html')[0].classList.add('app-initialised');
-
-  setTimeout(
-    () => {
-      let appLoaderEle = document && document.getElementById('apploader');
-      if (appLoaderEle && appLoaderEle.parentNode) appLoaderEle.parentNode.removeChild(appLoaderEle);
-    },
-    alDuration,
-  );
-}
 
 export class App extends Component<Props> {
   props: Props;
+  
+  static defaultProps = {
+    error: false,
+    errorMsg: '',
+    loaded: false,
+    storageCreated: false,
+ };
 
   componentDidMount() {
-    this.props.appLoading(hideLoader);
+    this.props.appLoading();
   }
 
   render() {
-    return (
-      <BrowserRouter>
-        <div className="App">
-          <Header />
-          <div className="App__content">
-            <Switch>
-              <Route exact={true} path={ROUTE_HOME} component={HomeLayout} />
-              <Route path={ROUTE_ERROR} component={ErrorLayout} />
-              <Route component={NotFoundLayout} />
-            </Switch>
-          </div>
-        </div>
-      </BrowserRouter>
-    )
+    const { pathname } = window.location;
+    const { error,  errorMsg, loaded, storageCreated } = this.props;
+    let content = null;
+
+    if (error && pathname !== ROUTE_ERROR) {
+      content = <Redirect to={ROUTE_ERROR} />
+    } else if (storageCreated && pathname !== ROUTE_NEW) {
+      content = <Redirect to={ROUTE_NEW} />
+    } else if (loaded) {
+      content = <AppPresenter errorMsg={errorMsg} />;
+    }
+
+    return content
   }
 }
 
 const mapStateToProps = (state: Object) => (
-  { app: state.app }
+  {
+    error: state.app.error,
+    errorMsg: state.app.errorMsg,
+    loaded: state.app.loaded,
+    storageCreated: state.app.storageCreated,
+  }
 );
 
 const mapDispatchToProps = (dispatch: DispatchType) => {
   return {
-    appErrored: (hideLoader: ()=>{}) => {
-      dispatch(appActions.errored(hideLoader))
-    },
-    appLoading: (hideLoader: ()=>{}) => {
-      dispatch(appActions.loading(hideLoader))
+    appLoading: () => {
+      dispatch(appActions.loading())
     }
   }
 }

@@ -35,7 +35,7 @@ export default function reducer(state: initialState = defaultState, action: Acti
 
       const langFound = Object.keys(state.available).find((lang) => lang === reqLang);
       if (langFound) return {...state, available: {...state.available}, current: langFound };
-    break;;
+      break;
 
     default:
       return state;

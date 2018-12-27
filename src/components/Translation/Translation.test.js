@@ -66,11 +66,11 @@ describe('<Translation />', () => {
 
   describe('shouldComponentUpdate', () => {
     const initialProps = { name: 'Name', ns: 'App'};
-    const wrapper = shallow(<Translation {...initialProps} />);
+    const wrapper = shallow(<Translation {...initialProps} placeholders={{}} />);
     const wrapperInstance = wrapper.instance();
 
     test('should not update if the props are the same', () => {
-      const shouldUpdate = wrapperInstance.shouldComponentUpdate({ name: 'Name', ns: 'App' });
+      const shouldUpdate = wrapperInstance.shouldComponentUpdate({ name: 'Name', ns: 'App', placeholders: {} });
       expect(shouldUpdate).toBe(false);
     });
 

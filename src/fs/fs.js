@@ -36,36 +36,52 @@ export function readDataFile(fileName: string): Promise<FsObject> {
     fs.readFile(FILE_PATH, 'UTF-8', (err: ?Error, data: string | Buffer = '') => {
       if (err) {
         if (err.code === 'ENOENT') {
-          createDataFolder(FILE_PATH);
-          writeFile(fileName, {})
-            .then(
-              response => {
-                if (response.err) {
-                  reject({
-                    ...response,
-                    data: {},
-                  });
-
-                } else {
-                  resolve({
-                    ...response,
-                    data: {},
-                  });
+          let folders = FILE_PATH.replace(DATA_PATH, '').split('/').filter(f => f !== '');
+          if (folders[folders.length - 1].indexOf('.') > -1) folders.pop();
+          let finalPath = DATA_PATH + '/' + ((folders.length > 1) ? folders.join('/') : folders[0]);
+        
+          try {
+            fs.mkdirSync(finalPath);
+            writeFile(fileName, {})
+              .then(
+                response => {
+                  if (response.err) {
+                    reject({
+                      ...response,
+                      data: {},
+                      wasCreated: false,
+                    });
+                  } else {
+                    resolve({
+                      ...response,
+                      data: {},
+                      wasCreated: true,
+                    });
+                  }
                 }
-              }
-            );
+              );
+          } catch (createErr) {
+            reject({
+              data: {},
+              errorObj: createErr,
+              success: false,
+              wasCreated: false,
+            });
+          }
         } else {
           reject({
-            success: false,
-            errorObj: err,
             data: {},
+            errorObj: err,
+            success: false,
+            wasCreated: false,
           });
         }
       } else {
         resolve({
-          success: true,
-          errorObj: err,
           data: (data) ? JSON.parse(data.trim()) : {},
+          errorObj: err,
+          success: true,
+          wasCreated: false,
         });
       }
     });
@@ -84,9 +100,10 @@ export function readLangFile(lang: LanguagesType): Promise<FsObject> {
     fs.readFile(FILE_PATH, 'UTF-8', (err: ?Error, data: string | Buffer = '') => {
       if (err) {
         reject({
-          success: false,
-          errorObj: err,
           data: {},
+          errorObj: err,
+          success: false,
+          wasCreated: false,
         });
       } else {
         let langData = {};
@@ -97,9 +114,10 @@ export function readLangFile(lang: LanguagesType): Promise<FsObject> {
         }
         
         resolve({
-          success: true,
-          errorObj: err,
           data: langData,
+          errorObj: err,
+          success: true,
+          wasCreated: false,
         });
       }
     });
@@ -116,16 +134,17 @@ export function readEternityFile(): Promise<FsObject> {
     fs.readFile(FILE_PATH, (err: ?Error, data: string | Buffer = '') => {
       if (err) {
         reject({
-          success: false,
-          errorObj: err,
           data: {},
+          errorObj: err,
+          success: false,
+          wasCreated: false,
         });
       } else {
-        console.log(data.toString('hex'))
         resolve({
-          success: true,
-          errorObj: err,
           data: {},
+          errorObj: err,
+          success: true,
+          wasCreated: false,
         });
       }
     });
@@ -175,22 +194,4 @@ function getLanguagePath(lang: LanguagesType): string {
 */
 function getDataPath(filePath: string): string {
   return `${DATA_PATH}${io.DATA_FOLDER}${filePath.trim()}.${io.FILE_TYPE}`;
-}
-
-/**
-* Creates the data storage folder and all intermediate folders.
-*
-* @param string filePath The full path to a file.
-*/
-export function createDataFolder(filePath: string) {
-  if (!fs.existsSync(filePath)) {
-    let folders = filePath.replace(DATA_PATH, '').split('/').filter(f => f !== '');
-    if (folders[folders.length - 1].indexOf('.') > -1) folders.pop();
-    let finalPath = DATA_PATH + '/' + ((folders.length > 1) ? folders.join('/') : folders[0]);
-
-    try {
-      fs.mkdirSync(finalPath);
-    } catch (err) {
-    }
-  }
 }

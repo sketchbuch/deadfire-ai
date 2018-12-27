@@ -5,23 +5,19 @@
 */
 
 export type AppType = {
-  dataCreated: boolean,
-  dataLoaded: boolean,
   error: boolean,
-  languageLoaded: boolean,
+  errorMsg: string,
   loaded: boolean,
   loading: boolean,
-  settingsLoaded: boolean,
+  storageCreated: boolean,
 };
 
 const appDefault: AppType = {
-  dataCreated: false,
-  dataLoaded: false,
   error: false,
-  languageLoaded: false,
+  errorMsg: '',
   loaded: false,
   loading: true,
-  settingsLoaded: false,
+  storageCreated: false,
 };
 
 export default appDefault;

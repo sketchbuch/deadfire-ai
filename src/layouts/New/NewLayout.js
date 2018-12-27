@@ -6,15 +6,15 @@ type Props = {
 };
 
 
-class HomeLayout extends Component<Props> {
+class NewLayout extends Component<Props> {
   props: Props;
 
   render() {
     return (
-      <p>Home</p>
+      <p>New</p>
     )
   }
 }
 
 
-export default HomeLayout;
+export default NewLayout;

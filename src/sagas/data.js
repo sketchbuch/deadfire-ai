@@ -10,15 +10,13 @@ import {
 import type { FsObject } from '../types/fsObject';
 
 /**
-* Called when APP_LOADED intercepted.
+* Called when LANGUAGE_LOAD_SUCCESS intercepted.
 */
 function* dataWorker(): Generator<*, *, *> {
   yield put({ type: DATA_LOAD });
 
   try {
     const result: FsObject = yield readEternityFile();
-
-    console.log(result);
     
     if (result.success) {
       yield put({ type: DATA_LOAD_SUCCESS, payload: result.data });

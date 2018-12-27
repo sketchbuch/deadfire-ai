@@ -5,7 +5,8 @@
 */
 
 export type FsObject = {
+  data?: {},
   errorObj: ?Error,
   success: boolean,
-  data?: {},
+  wasCreated: boolean,
 };

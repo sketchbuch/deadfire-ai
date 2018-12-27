@@ -10,20 +10,20 @@
     "build": "react-scripts build",
     "eject": "react-scripts eject",
     "electron": "concurrently \"BROWSER=none npm start\" \"wait-on http://localhost:3000 && electron .\"",
-    "electron-build": "build --em.main=build/electron.js",
+    "electron:build": "build --em.main=build/electron.js",
     "flow": "flow",
     "start": "react-scripts start",
     "test": "react-scripts test --env=jsdom",
-    "testc": "react-scripts test --env=jsdom --coverage",
-    "testcw": "react-scripts test --env=jsdom --coverage --watch",
-    "testv": "react-scripts test --env=jsdom --verbose"
+    "test:c": "react-scripts test --env=jsdom --coverage",
+    "test:cw": "react-scripts test --env=jsdom --coverage --watch",
+    "test:v": "react-scripts test --env=jsdom --verbose",
+    "test:w": "react-scripts test --env=jsdom --watch",
+    "test:wv": "react-scripts test --env=jsdom --watch --verbose"
   },
   "dependencies": {
     "binary-parser": "^1.3.2",
     "electron-is-dev": "^0.3.0",
     "md5": "^2.2.1",
-    "node-uuid": "^1.4.8",
-    "pure-uuid": "^1.5.5",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
     "react-redux": "^5.0.7",
@@ -35,8 +35,7 @@
     "redux": "^3.7.2",
     "redux-saga": "^0.16.2",
     "uuid-js": "^0.7.5",
-    "uuid-parse": "^1.0.0",
-    "uuid-with-v6": "^1.1.2"
+    "yup": "^0.26.6"
   },
   "devDependencies": {
     "concurrently": "^3.6.1",

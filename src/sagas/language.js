@@ -3,6 +3,7 @@
 import { put, select } from "redux-saga/effects";
 import { readLangFile } from '../fs/fs';
 import {
+  APP_LOADED,
   LANGUAGE_LOAD,
   LANGUAGE_LOAD_ERROR,
   LANGUAGE_LOAD_SUCCESS,
@@ -11,7 +12,7 @@ import type { FsObject } from '../types/fsObject';
 import type { LanguagesType } from '../types/lang';
 
 /**
-* Called when APP_LOADED intercepted.
+* Called when SETTINGS_LOAD_SUCCESS intercepted.
 */
 function* languageWorker(): Generator<*, *, *> {
   yield put({ type: LANGUAGE_LOAD });
@@ -22,6 +23,7 @@ function* languageWorker(): Generator<*, *, *> {
     
     if (result.success) {
       yield put({ type: LANGUAGE_LOAD_SUCCESS, payload: result.data });
+      yield put({ type: APP_LOADED });
     } else {
       yield put({ type: LANGUAGE_LOAD_ERROR, payload: { error: result.errorObj } });
     }

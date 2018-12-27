@@ -3,9 +3,11 @@
 */
 
 // App
-export const APP_ERRORED = 'APP_ERRORED';
+export const APP_ERROR = 'APP_ERROR';
 export const APP_LOADED = 'APP_LOADED';
+export const APP_LOADER_REMOVED = 'APP_LOADER_REMOVED';
 export const APP_LOADING = 'APP_LOADING';
+export const APP_STORAGE_CREATED = 'APP_STORAGE_CREATED';
 
 // Data
 export const DATA_LOAD = 'DATA_LOAD';
