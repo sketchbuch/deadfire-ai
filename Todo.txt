@@ -1,0 +1,1 @@
+* Fix icon tests to not use mount

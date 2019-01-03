@@ -1,7 +1,6 @@
 // @flow
 
 import setTitle, { titleSep } from '../title';
-import '../../components/Translation/testData';
 
 
 /**
@@ -11,13 +10,13 @@ import '../../components/Translation/testData';
 describe('Util: Titles', () => {
   test('setTitle() should set the default title if no prefix provided', () => {
     setTitle();
-    expect(window.document.title).toBe(window.reportr.translations.EN.App.Name);
+    expect(window.document.title).toBe(window.app.translations.EN.App.Name);
   });
 
   test('setTitle() handles suffix correctly', () => {
     setTitle('Test');
-    expect(window.document.title).toBe(window.reportr.translations.EN.App.Name + titleSep + 'Test');
+    expect(window.document.title).toBe(window.app.translations.EN.App.Name + titleSep + 'Test');
     setTitle(' ');
-    expect(window.document.title).toBe(window.reportr.translations.EN.App.Name);
+    expect(window.document.title).toBe(window.app.translations.EN.App.Name);
   });
 });

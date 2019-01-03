@@ -2,14 +2,10 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { mount, shallow, configure } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import { mount, shallow } from 'enzyme';
 import Translation from './Translation';
-import './testData';
 
-configure({ adapter: new Adapter() });
-
-const windowApp = {...window.reportr};
+const windowApp = {...window.app};
 
 describe('<Translation />', () => {
   test('Renders without crashing', () => {
@@ -19,36 +15,36 @@ describe('<Translation />', () => {
 
   test('Renders the correct translation', () => {
     const wrapper = shallow(<Translation name="Name" ns="App" />);
-    expect(wrapper.text()).toBe(window.reportr.translations.EN.App.Name);
+    expect(wrapper.text()).toBe(window.app.translations.EN.App.Name);
   });
 
   test('Handles Language change', () => {
     const wrapper = mount(<Translation name="Name" ns="App" />);
-    expect(wrapper.text()).toBe(window.reportr.translations.EN.App.Name);
-    window.reportr.curLang = 'DE';
+    expect(wrapper.text()).toBe(window.app.translations.EN.App.Name);
+    window.app.curLang = 'DE';
     wrapper.instance().forceUpdate();
-    expect(wrapper.text()).toBe(window.reportr.translations.DE.App.Name);
-    window.reportr.curLang = 'EN';
+    expect(wrapper.text()).toBe(window.app.translations.DE.App.Name);
+    window.app.curLang = 'EN';
   });
 
   test('Replaces placeholders', () => {
     const wrapper = shallow(<Translation name='Placeholder' ns= 'App' placeholders={{ PH: 'Find me' }} />);
-    expect(wrapper.text()).toBe(window.reportr.translations.EN.App.Placeholder.replace('%PH%', 'Find me'));
+    expect(wrapper.text()).toBe(window.app.translations.EN.App.Placeholder.replace('%PH%', 'Find me'));
   });
 
-  describe('Handles window.reportr correctly', () => {
+  describe('Handles window.app correctly', () => {
     beforeEach(() => {
-      window.reportr = {...windowApp};
+      window.app = {...windowApp};
     });
 
     test('Returns ?name:ns if translations undefined', () => {
-      delete window.reportr.translations;
+      delete window.app.translations;
       const wrapper = shallow(<Translation name="Name" ns="App" />);
       expect(wrapper.text()).toBe('?Name:App');
     });
     
     test('Returns ?name:ns if the language is undefined in translations', () => {
-      window.reportr.curLang = 'IT';
+      window.app.curLang = 'IT';
       const wrapper = shallow(<Translation name="Name" ns="App" />);
       expect(wrapper.text()).toBe('?Name:App');
     });
@@ -77,9 +73,9 @@ describe('<Translation />', () => {
     test('should update if the props are different', () => {
       const shouldUpdate1 = wrapperInstance.shouldComponentUpdate({ name: 'Placeholder', ns: 'App' });
       const shouldUpdate2 = wrapperInstance.shouldComponentUpdate({ name: 'Placeholder', ns: 'NotFound' });
-      window.reportr.curLang = 'DE';
+      window.app.curLang = 'DE';
       const shouldUpdate3 = wrapperInstance.shouldComponentUpdate({ name: 'Placeholder', ns: 'NotFound' });
-      window.reportr.curLang = 'EN';
+      window.app.curLang = 'EN';
       expect(shouldUpdate1).toBe(true);
       expect(shouldUpdate2).toBe(true);
       expect(shouldUpdate3).toBe(true);
@@ -90,9 +86,9 @@ describe('<Translation />', () => {
     const wrapper = mount(<Translation name="Name" ns="App" />);
     const wrapperInstance = wrapper.instance();
     expect(wrapperInstance.prevLang).toBe('EN');
-    window.reportr.curLang = 'DE';
+    window.app.curLang = 'DE';
     wrapper.setProps({ name: 'Placeholder' });
     expect(wrapperInstance.prevLang).toBe('DE');
-    window.reportr.curLang = 'EN';
+    window.app.curLang = 'EN';
   });
 });

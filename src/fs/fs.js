@@ -19,12 +19,7 @@ const FOLDER = (window.location.hostname === 'localhost') ? 'public' : 'build';
 
 
 /**
-* Loads a file async. from the filesystem. callback receives a results object: {
-*   success: boolean ,
-*   errorObj: error,
-*   data: object,
-* }
-* 
+* Loads a file async. from the filesystem. callback receives an FsObject.
 * IF the file doesn't exist this function will try and create it.
 *
 * @param string fileName The name of the file that should be loaded (without file type).

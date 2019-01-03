@@ -1,6 +1,7 @@
 // @flow
 
 import React, { Component, Fragment } from 'react';
+import Panel from '../../components/Panel/Panel';
 
 type Props = {
   errorMsg: string
@@ -16,10 +17,10 @@ class ErrorLayout extends Component<Props> {
 
   render() {
     return (
-      <Fragment>
+      <Panel>
         <h2>Error</h2>
         <p>{this.props.errorMsg}</p>
-      </Fragment>
+      </Panel>
     )
   }
 }

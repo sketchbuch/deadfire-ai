@@ -5,10 +5,12 @@
 */
 
 export type Settings = {
+  installPath: string,
   lang: string,
 };
 
 const settingsDefault: Settings = {
+  installPath: '',
   lang: '',
 };
 

@@ -30,14 +30,17 @@ export class AppPresenter extends Component<Props> {
       <div className="App">
         <Header />
         <div className="App__content">
-          <Switch>
+          {/* <Switch>
             <Route exact={true} path={ROUTE_ERROR} render={
               (props) => <ErrorLayout {...props} errorMsg={this.props.errorMsg} />
             }/>
             <Route exact={true} path={ROUTE_NEW} component={NewLayout} />
             <Route exact={true} path={ROUTE_HOME} component={HomeLayout} />
             <Route component={NotFoundLayout} />
-          </Switch>
+          </Switch> */}
+          <Route render={
+              (props) => <NewLayout {...props} />
+            }/>
         </div>
       </div>
     )

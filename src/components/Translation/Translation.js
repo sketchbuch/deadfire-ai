@@ -17,8 +17,8 @@ type Props = {
 * @param mixed placeholders An optional object of replacement texts: {search: replace}
 * @return string The translation or the name if no translation is found.
 */
-export function text(name: string, ns: string, placeholders: {} = {}) {
-  const { translations, curLang } = window.reportr;
+export function trans(name: string, ns: string, placeholders: {} = {}) {
+  const { translations, curLang } = window.app;
 
   if (translations !== undefined) {
     if (translations[curLang] !== undefined) {
@@ -51,11 +51,11 @@ export default class Translation extends Component<Props> {
   prevLang: string = '';
 
   componentWillMount() {
-    if (window.reportr && window.reportr.curLang) this.prevLang = window.reportr.curLang;
+    if (window.app && window.app.curLang) this.prevLang = window.app.curLang;
   }
 
   shouldComponentUpdate(nextProps: Props): boolean {
-    if (this.prevLang !== window.reportr.curLang) return true;
+    if (this.prevLang !== window.app.curLang) return true;
     if (this.props.name !== nextProps.name) return true;
     if (this.props.ns !== nextProps.ns) return true;
     if (JSON.stringify(this.props.placeholders) !== JSON.stringify(nextProps.placeholders)) return true;
@@ -64,11 +64,10 @@ export default class Translation extends Component<Props> {
   }
 
   componentWillUpdate() {
-    if (window.reportr && window.reportr.curLang) this.prevLang = window.reportr.curLang;
+    if (window.app && window.app.curLang) this.prevLang = window.app.curLang;
   }
 
-
   render() {
-    return text(this.props.name, this.props.ns, this.props.placeholders);
+    return trans(this.props.name, this.props.ns, this.props.placeholders);
   }
 }

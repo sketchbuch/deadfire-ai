@@ -1,6 +1,7 @@
 // @flow
 
 import React, { Component } from 'react';
+import Panel from '../../components/Panel/Panel';
 
 type Props = {
 };
@@ -11,7 +12,9 @@ class HomeLayout extends Component<Props> {
 
   render() {
     return (
-      <p>Home</p>
+      <Panel>
+        <p>Home</p>
+      </Panel>
     )
   }
 }

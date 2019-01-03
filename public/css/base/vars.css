@@ -28,11 +28,13 @@
   --col-darken-9: rgba(0, 0, 0, 0.9);
   --col-darken-10: rgba(0, 0, 0, 1.0);
 
-  --col-placeholder: var(--col-darken-4);
-  --col-field-bg: rgba(0, 0, 0, 0.05);
+  --col-placeholder: var(--col-lighten-3);
+  --col-field-bg: rgba(255, 255, 255, 0.05);
 
   --col-brand: #5196a0;
+  --col-brand-light: #63aeb9;
   --col-primary: #e5e197;
+  --col-primary-light: #f5f1ab;
 
   --col-bg: #0f2125;
   --col-header-bg: #152938;
@@ -44,6 +46,7 @@
   --col-neg: #e84918;
   --col-neg-light: #f25626;
   --col-neg-dark: #db4011;
+  --col-neg-field-bg: rgba(232, 73, 24, 0.33);
 
 
     /* Fileds / Forms */

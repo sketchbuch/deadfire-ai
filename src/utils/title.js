@@ -1,6 +1,6 @@
 // @flow
 
-import { text } from '../components/Translation/Translation';
+import { trans } from '../components/Translation/Translation';
 
 
 /**
@@ -12,9 +12,9 @@ export default function setTitle(titleTxt: string = '') {
   const trimmedTxt = titleTxt.trim();
 
   if (trimmedTxt === '') {
-    document.title = text('Name', 'App');
+    document.title = trans('Name', 'App');
   } else {
-    document.title = text('Name', 'App') + titleSep + trimmedTxt;
+    document.title = trans('Name', 'App') + titleSep + trimmedTxt;
   }
 }
 

@@ -7,7 +7,6 @@ import * as appActions from '../../actions/appActions';
 import type { DispatchType } from '../../types/functions';
 import AppPresenter from './AppPresenter';
 import {
-  ROUTE_HOME,
   ROUTE_ERROR,
   ROUTE_NEW,
 } from '../../constants/routes';

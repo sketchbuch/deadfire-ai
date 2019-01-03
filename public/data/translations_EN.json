@@ -6,6 +6,12 @@
     "AppError": {
       "ErrorTxt": "Error Loading"
     },
+    "NewLayout": {
+      "Button": "Submit Path",
+      "Description": "Please provide the full path to your install of Deadfire.",
+      "Headline": "Welcome to the Deadfire AI Editor",
+      "Placeholder": "Where is Deadfire installed?"
+    },
     "Toastr": {
       "PersistenceError": "Error Saving"
     }
