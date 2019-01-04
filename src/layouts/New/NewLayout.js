@@ -3,24 +3,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Panel from '../../components/Panel/Panel';
+import Form from './Form/Form';
 import installPathSchema from '../../validation/schemas/installPath';
-import Translation, { trans } from '../../components/Translation/Translation';
+import { update } from '../../actions/settingsActions';
 import type { DispatchType } from '../../types/functions';
-import {
-  Button,
-  FieldError,
-  FieldWrap,
-  Form,
-  FormDescription,
-  FormHeader,
-  TextInput,
-} from '../../components/Ui';
+import type { SettingsUpdate } from '../../types/settings';
 
 type Props = {
   submitPath: (installPath: string) => void,
 };
 
 type State = {
+  busy: boolean,
   errors: string[],
   installPath: string,
   touched: boolean,
@@ -30,6 +24,7 @@ type State = {
 export class NewLayout extends Component<Props, State> {
   props: Props;
   state: State = {
+    busy: false,
     errors: [],
     installPath: '',
     touched: false,
@@ -41,10 +36,15 @@ export class NewLayout extends Component<Props, State> {
 
   onSubmit = async (event: SyntheticInputEvent) => {
     event.preventDefault();
-    const hadErrors = await this.update(this.state.installPath);
     
+    const installPath = this.state.installPath;
+    const hadErrors = await this.update(installPath);
+
     if (!hadErrors) {
-      this.props.dispatch({ type: 'TEST', payload: { installPath: this.state.installPath }});
+      this.setState(
+        { busy: true },
+        () => this.props.submitPath({ installPath })
+      );
     }
   }
 
@@ -68,42 +68,29 @@ export class NewLayout extends Component<Props, State> {
   }
 
   render() {
-    const isError = this.state.errors.length > 0;
-
     return (
-      <Panel>
-        <Form onSubmit={this.onSubmit}>
-          <FormHeader text={trans('Headline', 'NewLayout')} />
-          <FormDescription text={trans('Description', 'NewLayout')} />
-
-          <FieldWrap>
-            <TextInput 
-              name="installPath"
-              onChange={this.onChange}
-              placeholder={trans('Placeholder', 'NewLayout')}
-              value={this.state.installPath}
-              isValid={!isError}
-            />
-            {isError && <FieldError errors={this.state.errors} />}
-          </FieldWrap>
-
-          <Button type="submit" disabled={isError || !this.state.touched} busy={false}>
-            <Translation name="Button" ns="NewLayout" />
-          </Button>
-        </Form>
+      <Panel classes="NewLayout">
+        <Form
+          busy={this.state.busy}
+          disabled={this.state.errors.length > 0 || !this.state.touched}
+          errors={this.state.errors}
+          onChange={this.onChange}
+          onSubmit={this.onSubmit}
+          value={this.state.installPath}
+        />
       </Panel>
     )
   }
 }
 
 const mapStateToProps = (state: Object) => (
-  {
-  }
+  {}
 );
 
 const mapDispatchToProps = (dispatch: DispatchType) => {
   return {
-    submitPath: (installPath: string) => {
+    submitPath: (settings: SettingsUpdate) => {
+      dispatch(update(settings));
     }
   }
 }

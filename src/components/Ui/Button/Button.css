@@ -3,6 +3,26 @@
 
 .Button {
   position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.Button__busy .Icon {
+  position: absolute;
+  display: inline-block;
+  top: 50%;
+  left: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 30px;
+  color: var(--col-white);
+  margin-left: -15px;
+  margin-top: -13px;
+  animation: spinner 1s linear infinite;
+}
+
+.Button__btn {
+  position: relative;
   text-align: center;
   border: 1px solid var(--col-darken-3);
   box-shadow: var(--but-highlight);
@@ -21,66 +41,61 @@
   transition: all 250ms ease;
 }
 
-.Button:focus {
+.Button__btn:focus {
   box-shadow: var(--focus), var(--but-highlight);
 }
 
-.Button:hover {
+.Button__btn:hover {
   background: var(--col-brand-light);
 }
 
-.Button:active {
+.Button__btn:active {
   background: var(--col-brand);
 }
 
-.Button__busy .Icon {
-  position: absolute;
-  display: inline-block;
-  top: 50%;
-  left: 50%;
-  width: 30px;
-  height: 30px;
-  font-size: 30px;
-  color: var(--col-black);
-  margin-left: -15px;
-  margin-top: -13px;
-  animation: spinner 1s linear infinite;
-}
-
-
-/* Disabled */
-.Button[disabled],
-.Button[disabled]:focus,
-.Button[disabled]:hover,
-.Button[disabled]:active {
+/* Disabled / Busy */
+.Button--busy .Button__btn,
+.Button--busy .Button__btn:focus,
+.Button--busy .Button__btn:hover,
+.Button--busy .Button__btn:active,
+.Button__btn[disabled],
+.Button__btn[disabled]:focus,
+.Button__btn[disabled]:hover,
+.Button__btn[disabled]:active {
   opacity: 0.33;
   box-shadow: none;
-  background: var(--col-brand);
   user-select: none;
   pointer-events: none;
 }
 
+.Button--busy .Button__btn,
+.Button--busy .Button__btn:focus,
+.Button--busy .Button__btn:hover,
+.Button--busy .Button__btn:active {
+  opacity: 0.66;
+}
+
 
 /* Warning */
-.Button[data-buttontype="warning"] {
+.Button__btn[data-buttontype="warning"] {
   background: var(--col-neg);
 }
 
-.Button[data-buttontype="warning"]:focus {
+.Button__btn[data-buttontype="warning"]:focus {
   box-shadow: var(--focus-error), var(--but-highlight);
 }
 
-.Button[data-buttontype="warning"]:hover {
+.Button__btn[data-buttontype="warning"]:hover {
   background: var(--col-neg-light);
 }
 
-.Button[data-buttontype="warning"]:active {
+.Button__btn[data-buttontype="warning"]:active {
   background: var(--col-neg);
 }
 
-.Button[disabled][data-buttontype="warning"],
-.Button[disabled][data-buttontype="warning"]:focus,
-.Button[disabled][data-buttontype="warning"]:hover,
-.Button[disabled][data-buttontype="warning"]:active {
+.Button__btn[disabled][data-buttontype="warning"],
+.Button__btn[disabled][data-buttontype="warning"]:focus,
+.Button__btn[disabled][data-buttontype="warning"]:hover,
+.Button__btn[disabled][data-buttontype="warning"]:active {
   background: var(--col-neg);
 }

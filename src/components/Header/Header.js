@@ -1,7 +1,8 @@
 // @flow
 
 import React, { Component } from 'react';
-import mainLogo from './logo.png';
+import Icon from '../Icon/Icon';
+import { ICON_BRAND } from '../../constants/icons';
 import './Header.css';
 
 type Props = {
@@ -13,7 +14,9 @@ export class Header extends Component<Props> {
   render() {
     return (
       <header className="Header">
-        <img className="Header__logo" alt="" src={mainLogo} />
+        <span className="Header__logo">
+          <Icon type={ICON_BRAND} />
+        </span>
         <h1 className="Header__title">Deadfire AI Editor</h1>
       </header>
     )

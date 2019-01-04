@@ -1,10 +1,10 @@
 // @flow
 
-import settingsWorker from '../settings'
+//import settingsWorker from '../settings'
 
 describe.skip('settingsWorker()', () => {
-  const gen = settingsWorker();
+  //const gen = settingsWorker();
 
-  test('Renders without crashing', () => {
+  test.skip('Renders without crashing', () => {
   });
 });

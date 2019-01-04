@@ -3,7 +3,7 @@
 */
 
 export const ICON_ADD = 'plus';
-export const ICON_BRAND = 'hat';
+export const ICON_BRAND = 'brain-alt';
 export const ICON_BUSY = 'refresh';
 export const ICON_CATEGORIES = 'site-map';
 export const ICON_CLASSES = 'group-students';

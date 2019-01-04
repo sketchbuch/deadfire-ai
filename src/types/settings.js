@@ -9,6 +9,8 @@ export type Settings = {
   lang: string,
 };
 
+export type SettingsUpdate = {[string]: string | boolean };
+
 const settingsDefault: Settings = {
   installPath: '',
   lang: '',

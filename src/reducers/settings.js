@@ -2,6 +2,7 @@
 
 import {
   SETTINGS_LOAD_SUCCESS,
+  SETTINGS_UPDATE,
 } from '../constants/actionTypes';
 import type { ActionObj } from '../types/action';
 import type { Settings } from '../types/settings';
@@ -15,7 +16,8 @@ import settingsDefault from '../types/settings';
 export default function reducer(state: Settings = settingsDefault, action: ActionObj) {
   switch (action.type) {
     case SETTINGS_LOAD_SUCCESS:
-      if (action.payload && action.payload.settings) return {...state, ...action.payload.settings};
+    case SETTINGS_UPDATE:
+      if (action.payload) return {...state, ...action.payload};
       break;
 
     default:

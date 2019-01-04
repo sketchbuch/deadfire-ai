@@ -20,14 +20,14 @@ describe('<TextInput />', () => {
     expect(props.onChange.mock.calls.length).toBe(0);
   });
 
-  test('Handles className property', () => {
-    const cn1Props = { className: '' };
+  test('Handles classes property', () => {
+    const cn1Props = { classes: '' };
     const cn1Wrapper = shallow(<TextInput {...cn1Props} />);
-    const cn2Props = { className: 'TestClass' };
+    const cn2Props = { classes: 'TestClass' };
     const cn2Wrapper = shallow(<TextInput {...cn2Props} />);
 
-    expect(cn1Wrapper.find('.TextInput').hasClass('TestClass')).toEqual(false);
-    expect(cn2Wrapper.find('.TextInput').hasClass('TestClass')).toEqual(true);
+    expect(cn1Wrapper.find('.TextInput').hasClass(cn2Props.classes)).toEqual(false);
+    expect(cn2Wrapper.find('.TextInput').hasClass(cn2Props.classes)).toEqual(true);
   });
 
   test('Handles isValid property', () => {

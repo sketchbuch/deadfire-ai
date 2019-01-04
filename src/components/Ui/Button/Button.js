@@ -48,20 +48,24 @@ class Button extends React.PureComponent<Props> {
     } = this.props;
 
     return (
-      <button
-        className={classNames({
-          Button: true,
-          [classes]: !!classes,
-        })}
-        data-buttontype={buttontype}
-        disabled={disabled}
-        name={name}
-        onClick={onClick}
-        title={title}
-        type={type}
-      >
-        {children}{busy && <span className="Button__busy"><Icon type={ ICON_BUSY } /></span>}
-      </button>
+      <span className={classNames({
+        Button: true,
+        [classes]: !!classes,
+        'Button--busy': busy,
+      })}>
+        <button
+          className="Button__btn"
+          data-buttontype={buttontype}
+          disabled={disabled}
+          name={name}
+          onClick={onClick}
+          title={title}
+          type={type}
+        >
+          {children}
+        </button>
+        {busy && <span className="Button__busy"><Icon type={ ICON_BUSY } /></span>}
+      </span>
     )
   }
 }

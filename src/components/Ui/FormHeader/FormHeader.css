@@ -9,6 +9,6 @@
   margin-left: auto;
   margin-right: auto;
   margin-bottom: var(--font-size-large);
-  color: var(--col-text);
+  color: var(--col-brand);
   font-weight: normal;
 }

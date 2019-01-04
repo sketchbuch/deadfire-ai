@@ -1,10 +1,12 @@
 // @flow
 
 import * as React from 'react';
+import classNames from 'classnames';
 import './Panel.css';
 
 type Props = {
   children?: React.Node,
+  classes?: string,
 };
 
 export class Panel extends React.Component<Props> {
@@ -16,7 +18,10 @@ export class Panel extends React.Component<Props> {
 
   render() {
     return (
-      <section className="Panel">
+      <section className={classNames({
+        Panel: true,
+        [this.props.classes]: !!this.props.classes,
+      })}>
         {this.props.children}
       </section>
     )

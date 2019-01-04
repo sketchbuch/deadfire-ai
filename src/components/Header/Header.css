@@ -28,10 +28,21 @@
 }
 
 .Header__logo {
-  display: block;
-  width: auto;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  width: 5.0rem;
   height: 5.0rem;
-  margin-top: -4px;
-  margin-left: -4px;
-  margin-right: 10px;
+  font-size: var(--font-size-vlarge);
+  overflow: hidden;
+}
+
+.Header__logo .icofont {
+  font-size: inherit;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  margin-bottom: -0.5rem;
+  color: var(--col-brand);
 }

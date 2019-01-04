@@ -23,14 +23,14 @@ describe('<Textarea />', () => {
     expect(props.onChange.mock.calls.length).toBe(0);
   });
 
-  test('Handles className property', () => {
-    const cn1Props = { className: '', onChange: jest.fn(), to: '/classes' };
+  test('Handles classes property', () => {
+    const cn1Props = { classes: '', onChange: jest.fn(), to: '/classes' };
     const cn1Wrapper = shallow(<Textarea {...cn1Props} />);
-    const cn2Props = { className: 'TestClass', onChange: jest.fn(), to: '/classes' };
+    const cn2Props = { classes: 'TestClass', onChange: jest.fn(), to: '/classes' };
     const cn2Wrapper = shallow(<Textarea {...cn2Props} />);
 
-    expect(cn1Wrapper.find('textarea').hasClass('TestClass')).toEqual(false);
-    expect(cn2Wrapper.find('textarea').hasClass('TestClass')).toEqual(true);
+    expect(cn1Wrapper.find('textarea').hasClass(cn2Props.classes)).toEqual(false);
+    expect(cn2Wrapper.find('textarea').hasClass(cn2Props.classes)).toEqual(true);
   });
 
   test('Handles isValid property', () => {

@@ -35,7 +35,6 @@
     "recompose": "^0.30.0",
     "redux": "^3.7.2",
     "redux-saga": "^0.16.2",
-    "throttle-debounce": "^2.0.1",
     "uuid-js": "^0.7.5",
     "yup": "^0.26.6"
   },

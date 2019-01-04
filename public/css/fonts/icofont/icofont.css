@@ -3938,6 +3938,286 @@ url("./fonts/icofont.woff") format("woff");
   content: "\e828";
 }
 
+.icofont-aids:before
+{
+  content: "\ec06";
+}
+
+.icofont-ambulance-crescent:before
+{
+  content: "\ec07";
+}
+
+.icofont-ambulance-cross:before
+{
+  content: "\ec08";
+}
+
+.icofont-ambulance:before
+{
+  content: "\ec09";
+}
+
+.icofont-autism:before
+{
+  content: "\ec0a";
+}
+
+.icofont-bandage:before
+{
+  content: "\ec0b";
+}
+
+.icofont-blind:before
+{
+  content: "\ec0c";
+}
+
+.icofont-blood-drop:before
+{
+  content: "\ec0d";
+}
+
+.icofont-blood-test:before
+{
+  content: "\ec0e";
+}
+
+.icofont-blood:before
+{
+  content: "\ec0f";
+}
+
+.icofont-brain-alt:before
+{
+  content: "\ec10";
+}
+
+.icofont-brain:before
+{
+  content: "\ec11";
+}
+
+.icofont-capsule:before
+{
+  content: "\ec12";
+}
+
+.icofont-crutch:before
+{
+  content: "\ec13";
+}
+
+.icofont-disabled:before
+{
+  content: "\ec14";
+}
+
+.icofont-dna-alt-1:before
+{
+  content: "\ec15";
+}
+
+.icofont-dna-alt-2:before
+{
+  content: "\ec16";
+}
+
+.icofont-dna:before
+{
+  content: "\ec17";
+}
+
+.icofont-doctor-alt:before
+{
+  content: "\ec18";
+}
+
+.icofont-doctor:before
+{
+  content: "\ec19";
+}
+
+.icofont-drug-pack:before
+{
+  content: "\ec1a";
+}
+
+.icofont-drug:before
+{
+  content: "\ec1b";
+}
+
+.icofont-first-aid-alt:before
+{
+  content: "\ec1c";
+}
+
+.icofont-first-aid:before
+{
+  content: "\ec1d";
+}
+
+.icofont-heart-beat-alt:before
+{
+  content: "\ec1e";
+}
+
+.icofont-heart-beat:before
+{
+  content: "\ec1f";
+}
+
+.icofont-heartbeat:before
+{
+  content: "\ec20";
+}
+
+.icofont-herbal:before
+{
+  content: "\ec21";
+}
+
+.icofont-hospital:before
+{
+  content: "\ec22";
+}
+
+.icofont-icu:before
+{
+  content: "\ec23";
+}
+
+.icofont-injection-syringe:before
+{
+  content: "\ec24";
+}
+
+.icofont-laboratory:before
+{
+  content: "\ec25";
+}
+
+.icofont-medical-sign-alt:before
+{
+  content: "\ec26";
+}
+
+.icofont-medical-sign:before
+{
+  content: "\ec27";
+}
+
+.icofont-nurse-alt:before
+{
+  content: "\ec28";
+}
+
+.icofont-nurse:before
+{
+  content: "\ec29";
+}
+
+.icofont-nursing-home:before
+{
+  content: "\ec2a";
+}
+
+.icofont-operation-theater:before
+{
+  content: "\ec2b";
+}
+
+.icofont-paralysis-disability:before
+{
+  content: "\ec2c";
+}
+
+.icofont-patient-bed:before
+{
+  content: "\ec2d";
+}
+
+.icofont-patient-file:before
+{
+  content: "\ec2e";
+}
+
+.icofont-pills:before
+{
+  content: "\ec2f";
+}
+
+.icofont-prescription:before
+{
+  content: "\ec30";
+}
+
+.icofont-pulse:before
+{
+  content: "\ec31";
+}
+
+.icofont-stethoscope-alt:before
+{
+  content: "\ec32";
+}
+
+.icofont-stethoscope:before
+{
+  content: "\ec33";
+}
+
+.icofont-stretcher:before
+{
+  content: "\ec34";
+}
+
+.icofont-surgeon-alt:before
+{
+  content: "\ec35";
+}
+
+.icofont-surgeon:before
+{
+  content: "\ec36";
+}
+
+.icofont-tablets:before
+{
+  content: "\ec37";
+}
+
+.icofont-test-bottle:before
+{
+  content: "\ec38";
+}
+
+.icofont-test-tube:before
+{
+  content: "\ec39";
+}
+
+.icofont-thermometer-alt:before
+{
+  content: "\ec3a";
+}
+
+.icofont-thermometer:before
+{
+  content: "\ec3b";
+}
+
+.icofont-tooth:before
+{
+  content: "\ec3c";
+}
+
+.icofont-xray:before
+{
+  content: "\ec3d";
+}
+
 .icofont-xs
 {
   font-size: .5em;

@@ -11,13 +11,13 @@ describe('<NavButtonCircular />', () => {
     expect(wrapper).toHaveLength(1);
   });
 
-  test('Handles className property', () => {
-    const cn1Props = { className: '', to: '/classes' };
+  test('Handles classes property', () => {
+    const cn1Props = { classes: '', to: '/classes' };
     const cn1Wrapper = mount(<MemoryRouter><NavButtonCircular {...cn1Props} /></MemoryRouter>);
-    const cn2Props = { className: 'TestClass', to: '/classes' };
+    const cn2Props = { classes: 'TestClass', to: '/classes' };
     const cn2Wrapper = mount(<MemoryRouter><NavButtonCircular {...cn2Props} /></MemoryRouter>);
 
-    expect(cn1Wrapper.find('a').hasClass('TestClass')).toEqual(false);
-    expect(cn2Wrapper.find('a').hasClass('TestClass')).toEqual(true);
+    expect(cn1Wrapper.find('a').hasClass(cn2Props.classes)).toEqual(false);
+    expect(cn2Wrapper.find('a').hasClass(cn2Props.classes)).toEqual(true);
   });
 });
