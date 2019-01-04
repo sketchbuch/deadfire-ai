@@ -14,7 +14,7 @@ import type { LanguagesType } from '../types/lang';
 /**
 * Called when SETTINGS_LOAD_SUCCESS intercepted.
 */
-function* loadLanguageWorker(): Generator<*, *, *> {
+function* loadLanguageWorker(action: ActionObj): Generator<*, *, *> {
   yield put({ type: LANGUAGE_LOAD });
   const lang: LanguagesType = yield select((state) => state.languages.current);
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import ReduxToastr from 'react-redux-toastr';
 import { Provider } from 'react-redux';
 import store from './store/redux';
@@ -12,7 +12,7 @@ import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
+    <Router>
       <div className="App__frame">
         <App />
         <ReduxToastr
@@ -24,7 +24,7 @@ ReactDOM.render(
           transitionOut="fadeOut"
         />
       </div>
-    </BrowserRouter>
+    </Router>
   </Provider>,
   document.getElementById('root'),
 );

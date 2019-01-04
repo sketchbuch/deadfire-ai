@@ -7,10 +7,10 @@ import { APP_LOADER_REMOVED } from '../constants/actionTypes';
 /**
 * Called when APP_LOADED intercepted.
 */
-function* loadedWorker(): Generator<*, *, *> {
+function* loadedWorker(action: ActionObj): Generator<*, *, *> {
   const alDuration = getCustomNumProp('--apploader-ms');
   document.getElementsByTagName('html')[0].classList.add('app-initialised');
-
+  
   setTimeout(
     () => {
       let appLoaderEle = document && document.getElementById('apploader');

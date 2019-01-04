@@ -2,14 +2,18 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { RouteComponentProps } from 'react-router';
 import Panel from '../../components/Panel/Panel';
 import Form from './Form/Form';
 import installPathSchema from '../../validation/schemas/installPath';
 import { update } from '../../actions/settingsActions';
+import { ROUTE_HOME } from '../../constants/routes';
 import type { DispatchType } from '../../types/functions';
 import type { SettingsUpdate } from '../../types/settings';
 
 type Props = {
+  ...RouteComponentProps,
+  installPathSet: boolean,
   submitPath: (installPath: string) => void,
 };
 
@@ -29,6 +33,13 @@ export class NewLayout extends Component<Props, State> {
     installPath: '',
     touched: false,
   };
+
+  componentDidUpdate() {
+    /* if (this.state.busy && this.props.installPathSet) {
+      console.log('changing');
+      this.props.history.push(ROUTE_HOME);
+    } */
+  }
 
   onChange = (event: SyntheticInputEvent) => {
     this.update(event.target.value);
@@ -83,9 +94,9 @@ export class NewLayout extends Component<Props, State> {
   }
 }
 
-const mapStateToProps = (state: Object) => (
-  {}
-);
+const mapStateToProps = (state: Object) => ({
+  installPathSet: state.app.installPathSet,
+});
 
 const mapDispatchToProps = (dispatch: DispatchType) => {
   return {

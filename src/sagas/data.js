@@ -12,7 +12,7 @@ import type { FsObject } from '../types/fsObject';
 /**
 * Called when LANGUAGE_LOAD_SUCCESS intercepted.
 */
-function* dataWorker(): Generator<*, *, *> {
+function* dataWorker(action: ActionObj): Generator<*, *, *> {
   yield put({ type: DATA_LOAD });
 
   try {

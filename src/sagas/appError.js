@@ -9,7 +9,7 @@ import {
 /**
 * Called when APP_ERROR intercepted.
 */
-function* appErrorWorker(): Generator<*, *, *> {
+function* appErrorWorker(action: ActionObj): Generator<*, *, *> {
   yield put({ type: APP_ERROR });
   yield put({ type: APP_LOADED });
 }

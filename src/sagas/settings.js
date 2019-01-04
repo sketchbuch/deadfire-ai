@@ -8,16 +8,17 @@ import {
   SETTINGS_UPDATE_SUCCESS,
 } from '../constants/actionTypes';
 import type { FsObject } from '../types/fsObject';
+import type { ActionObj } from '../types/action';
+
 
 /**
 * Called when SETTINGS_UPDATE intercepted.
 */
-function* settingsWorker(): Generator<*, *, *> {
+function* settingsWorker(action: ActionObj): Generator<*, *, *> {
   const settings = yield select((state) => state.settings);
 
   try {
     const result: FsObject = yield writeDataFile(FILE_SETTINGS, settings);
-    console.log(result, settings);
     
     if (result.success) {
       yield put({ type: SETTINGS_UPDATE_SUCCESS });

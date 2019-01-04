@@ -27,7 +27,7 @@ import dataWorker from './data'
 /**
 * Watches for dispatched actions.
 */
-export default function* appWatcher(): Generator<*, *, *> {
+export default function* appWatcher(action: ActionObj): Generator<*, *, *> {
   yield all([
       // App
     takeLatest(APP_LOADED, loadedWorker),

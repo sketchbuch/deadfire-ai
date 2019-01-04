@@ -2,11 +2,12 @@
 
 import {
   APP_ERROR,
-  APP_STORAGE_CREATED,
   APP_LOADED,
+  APP_STORAGE_CREATED,
   DATA_LOAD_ERROR,
   LANGUAGE_LOAD_ERROR,
   SETTINGS_LOAD_ERROR,
+  SETTINGS_UPDATE_SUCCESS,
 } from '../constants/actionTypes';
 import type { ActionObj } from '../types/action';
 import type { AppType } from '../types/app';
@@ -33,6 +34,9 @@ export default function reducer(state: AppType = appDefault, action: ActionObj) 
     case APP_STORAGE_CREATED:
       return {...state, storageCreated: true};
 
+    case SETTINGS_UPDATE_SUCCESS:
+      return {...state, installPathSet: true};
+      
     default:
       return state;
   }

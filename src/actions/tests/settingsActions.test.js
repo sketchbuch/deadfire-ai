@@ -11,7 +11,7 @@ import { SETTINGS_UPDATE } from '../../constants/actionTypes';
 describe('Actions: SettingActions:', () => {
   test('update() should dispatch the correct action', () => {
     const SETTINGS = { installPath: 'path/to/file' };
-    const EXPECTED_ACTION = { type: SETTINGS_UPDATE, payload: { settings: {...SETTINGS}}};
+    const EXPECTED_ACTION = { type: SETTINGS_UPDATE, payload: {...SETTINGS}};
     expect(settingsActions.update(SETTINGS)).toEqual(EXPECTED_ACTION);
   });
 });

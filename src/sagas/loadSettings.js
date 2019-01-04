@@ -14,7 +14,7 @@ import type { FsObject } from '../types/fsObject';
 /**
 * Called when APP_LOADED intercepted.
 */
-function* loadSettingsWorker(): Generator<*, *, *> {
+function* loadSettingsWorker(action: ActionObj): Generator<*, *, *> {
   yield put({ type: SETTINGS_LOAD });
   
   try {

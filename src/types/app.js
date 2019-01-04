@@ -7,6 +7,7 @@
 export type AppType = {
   error: boolean,
   errorMsg: string,
+  installPathSet: boolean,
   loaded: boolean,
   loading: boolean,
   storageCreated: boolean,
@@ -15,6 +16,7 @@ export type AppType = {
 const appDefault: AppType = {
   error: false,
   errorMsg: '',
+  installPathSet: false,
   loaded: false,
   loading: true,
   storageCreated: false,
