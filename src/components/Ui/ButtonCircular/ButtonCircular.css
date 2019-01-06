@@ -2,7 +2,7 @@
 /* --------------- */
 
 .ButtonCircular {
-  background: var(--col-primary);
+  background: var(--col-brand);
   border-radius: 50%;
   border: 1px solid var(--col-darken-2);
   color: var(--col-white);
@@ -29,11 +29,11 @@
 }
 
 .ButtonCircular:hover {
-  background: var(--col-primary-light);
+  background: var(--col-brand-light);
 }
 
 .ButtonCircular:active {
-  background: var(--col-primary-dark);
+  background: var(--col-brand-dark);
 }
 
 

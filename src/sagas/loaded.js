@@ -1,7 +1,7 @@
 // @flow
 
 import { put } from "redux-saga/effects";
-import { getCustomNumProp } from '../utils/dom';
+import { getCustomNumProp } from '../utils';
 import { APP_LOADER_REMOVED } from '../constants/actionTypes';
 
 /**

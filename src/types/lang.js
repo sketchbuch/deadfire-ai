@@ -7,9 +7,9 @@ import { langs } from '../reducers/languages';
 * Language type def.
 */
 
-export type LangType = {
+export type Lang = {
   key: string,
   label: string,
 };
 
-export type LanguagesType = $Keys<typeof langs>
+export type Languages = $Keys<typeof langs>

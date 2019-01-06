@@ -3,7 +3,7 @@
 import * as React from 'react';
 import classNames from 'classnames';
 import type { ButtonType } from '../../../types/button';
-import type { EventHandlerType } from '../../../types/functions';
+import type { EventHandler } from '../../../types/functions';
 import './ButtonCircular.css';
 
 type Props = {
@@ -13,7 +13,7 @@ type Props = {
   classes?: string,
   disabled?: boolean,
   name?: string,
-  onClick?: EventHandlerType | null,
+  onClick?: EventHandler | null,
   title?: string,
   type?: string,
   visual?: boolean,
@@ -25,13 +25,10 @@ type Props = {
 */
 class ButtonCircular extends React.PureComponent<Props> {
   static defaultProps = {
-    action: '',
     buttontype: 'default',
     children: null,
     disabled: false,
-    name: '',
     onClick: null,
-    title: '',
     type: 'button',
     visual: false,
   };

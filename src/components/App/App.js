@@ -1,10 +1,11 @@
 // @flow
 
 import React, { Component } from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as appActions from '../../actions/appActions';
-import type { DispatchType } from '../../types/functions';
 import AppPresenter from './AppPresenter';
+import type { Dispatch as ReduxDispatch } from 'redux';
 
 type Props = {
   appLoading: () => void,
@@ -32,13 +33,17 @@ export class App extends Component<Props> {
   render() {
     const { error,  errorMsg, installPathSet, loaded, storageCreated } = this.props;
 
-    return <AppPresenter
-      error={error}
-      errorMsg={errorMsg}
-      installPathSet={installPathSet}
-      storageCreated={storageCreated}
-      loaded={loaded}
-    />;
+    return (
+      <BrowserRouter>
+        <AppPresenter
+          error={error}
+          errorMsg={errorMsg}
+          installPathSet={installPathSet}
+          storageCreated={storageCreated}
+          loaded={loaded}
+        />
+      </BrowserRouter>
+    );
   }
 }
 
@@ -52,7 +57,7 @@ const mapStateToProps = (state: Object) => (
   }
 );
 
-const mapDispatchToProps = (dispatch: DispatchType) => {
+const mapDispatchToProps = (dispatch: ReduxDispatch) => {
   return {
     appLoading: () => {
       dispatch(appActions.loading())

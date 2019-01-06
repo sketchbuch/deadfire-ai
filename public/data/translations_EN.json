@@ -6,6 +6,12 @@
     "AppError": {
       "ErrorTxt": "Error Loading"
     },
+    "HomeLayout": {
+      "Scripts": "Scripts",
+      "ScriptsDescription": "Create/Edit AI Scripts",
+      "Settings": "Settings",
+      "SettingsDescription": "Manage Deadfire AI settings"
+    },
     "NewLayout": {
       "Button": "Submit Path",
       "Description": "Please provide the full path to your install of Deadfire.",

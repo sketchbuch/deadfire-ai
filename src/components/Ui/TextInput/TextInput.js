@@ -3,7 +3,7 @@
 import * as React from 'react';
 import classNames from 'classnames';
 import { UI_ERROR_CLASS } from '../../../constants/ui';
-import type { EventHandlerType } from '../../../types/functions';
+import type { EventHandler } from '../../../types/functions';
 import './TextInput.css';
 
 type Props = {
@@ -13,9 +13,9 @@ type Props = {
   isValid?: boolean,
   maxLength?: number,
   name?: string,
-  onBlur?: EventHandlerType | null,
-  onChange?: EventHandlerType | null,
-  onKeyUp?: EventHandlerType | null,
+  onBlur?: EventHandler | null,
+  onChange?: EventHandler | null,
+  onKeyUp?: EventHandler | null,
   placeholder?: string,
   title?: string,
   type?: string,
@@ -67,9 +67,9 @@ class TextInput extends React.PureComponent<Props> {
           disabled={disabled}
           name={name}
           maxLength={maxLength}
-          onBlur={disabled ? null : onBlur}
-          onKeyUp={disabled ? null : onKeyUp}
-          onChange={disabled ? null : onChange}
+          onBlur={onBlur}
+          onKeyUp={onKeyUp}
+          onChange={onChange}
           placeholder={placeholder}
           title={title}
           type={type}

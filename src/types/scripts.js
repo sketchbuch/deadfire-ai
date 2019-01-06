@@ -4,7 +4,7 @@
 * AI Script type def.
 */
 
-export type ScriptsType = {
+export type Scripts = {
   filename: string,
   name: string,
 };

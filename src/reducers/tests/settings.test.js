@@ -24,7 +24,7 @@ describe('Reducer: Settings', () => {
       const actionObj = {
         type: SETTINGS_LOAD_SUCCESS,
         payload: {
-          settings: { lang: LANG },
+          lang: LANG,
         },
       };
       const expectedState = {...settingsDefault, lang: LANG };

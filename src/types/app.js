@@ -4,7 +4,7 @@
 * App type def.
 */
 
-export type AppType = {
+export type AppState = {
   error: boolean,
   errorMsg: string,
   installPathSet: boolean,
@@ -13,7 +13,7 @@ export type AppType = {
   storageCreated: boolean,
 };
 
-const appDefault: AppType = {
+const appDefault: AppState = {
   error: false,
   errorMsg: '',
   installPathSet: false,

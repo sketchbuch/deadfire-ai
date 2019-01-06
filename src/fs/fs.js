@@ -2,7 +2,7 @@
 
 import * as io from '../constants/io';
 import type { FsObject } from '../types/fsObject';
-import type { LanguagesType } from '../types/lang';
+import type { Languages } from '../types/lang';
 
 let electron = null;
 let fs = require('fs');
@@ -107,7 +107,7 @@ export function readDataFile(fileName: string): Promise<FsObject> {
 /**
 * Loads a language file
 */
-export function readLangFile(lang: LanguagesType): Promise<FsObject> {
+export function readLangFile(lang: Languages): Promise<FsObject> {
   return new Promise((resolve, reject) => {
     const FILE_PATH = getLanguagePath(lang)
 
@@ -192,7 +192,7 @@ export function writeFile(fileName: string, jsonContent: Object | string): Promi
 /**
 * Returns the full filepath for a language file stored in the app installation folder.
 */
-function getLanguagePath(lang: LanguagesType): string {
+function getLanguagePath(lang: Languages): string {
   return `${APP_PATH}/${FOLDER}/data/translations_${lang}.${io.FILE_TYPE}`;
 }
 

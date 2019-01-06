@@ -4,7 +4,7 @@ import * as React from 'react';
 import classNames from 'classnames';
 import Icon from '../../Icon/Icon';
 import { ICON_BUSY } from '../../../constants/icons';
-import type { EventHandlerType } from '../../../types/functions';
+import type { EventHandler } from '../../../types/functions';
 import './Button.css';
 
 type Props = {
@@ -14,7 +14,7 @@ type Props = {
   classes?: string,
   disabled?: boolean,
   name?: string,
-  onClick?: EventHandlerType | null,
+  onClick?: EventHandler | null,
   title?: string,
   type?: string,
 };

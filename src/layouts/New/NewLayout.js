@@ -1,15 +1,14 @@
 // @flow
 
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
-import Panel from '../../components/Panel/Panel';
+import { connect } from 'react-redux';
 import Form from './Form/Form';
+import Panel from '../../components/Panel/Panel';
 import installPathSchema from '../../validation/schemas/installPath';
-import { update } from '../../actions/settingsActions';
-import { ROUTE_HOME } from '../../constants/routes';
-import type { DispatchType } from '../../types/functions';
+import type { Dispatch as ReduxDispatch } from 'redux';
 import type { SettingsUpdate } from '../../types/settings';
+import { update } from '../../actions/settingsActions';
 
 type Props = {
   ...RouteComponentProps,
@@ -33,13 +32,6 @@ export class NewLayout extends Component<Props, State> {
     installPath: '',
     touched: false,
   };
-
-  componentDidUpdate() {
-    /* if (this.state.busy && this.props.installPathSet) {
-      console.log('changing');
-      this.props.history.push(ROUTE_HOME);
-    } */
-  }
 
   onChange = (event: SyntheticInputEvent) => {
     this.update(event.target.value);
@@ -98,7 +90,7 @@ const mapStateToProps = (state: Object) => ({
   installPathSet: state.app.installPathSet,
 });
 
-const mapDispatchToProps = (dispatch: DispatchType) => {
+const mapDispatchToProps = (dispatch: ReduxDispatch) => {
   return {
     submitPath: (settings: SettingsUpdate) => {
       dispatch(update(settings));

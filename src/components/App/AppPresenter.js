@@ -7,9 +7,7 @@ import ErrorLayout from '../../layouts/Error/ErrorLayout';
 import HomeLayout from '../../layouts/Home/HomeLayout';
 import NotFoundLayout from '../../layouts/NotFound/NotFoundLayout';
 import Header from '../../components/Header/Header';
-import {
-  ROUTE_HOME,
-} from '../../constants/routes';
+import { ROUTE_HOME } from '../../constants/routes';
 import './AppPresenter.css';
 
 type Props = {

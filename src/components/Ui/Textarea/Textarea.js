@@ -6,7 +6,7 @@ import { UI_ERROR_CLASS } from '../../../constants/ui';
 import './Textarea.css';
 
 type Props = {
-  className?: string,
+  classes?: string,
   disabled?: boolean,
   isValid?: boolean,
   name?: string,
@@ -23,34 +23,41 @@ type Props = {
 */
 class Textarea extends React.PureComponent<Props> {
   static defaultProps = {
-    className: '',
     disabled: false,
     isValid: true,
-    name: '',
     onBlur: null,
     onChange: null,
-    placeholder: '',
-    title: '',
-    value: '',
   };
 
   props: Props;
 
   render() {
+    const {
+      classes,
+      disabled,
+      isValid,
+      name,
+      onBlur,
+      onChange,
+      placeholder,
+      title,
+      value,
+    } = this.props;
+
     return (
         <textarea
           className={classNames({
             Textarea: true,
-            [this.props.classes]: !!this.props.classes,
-            [UI_ERROR_CLASS]: !this.props.isValid 
+            [classes]: !!classes,
+            [UI_ERROR_CLASS]: !isValid 
           })}
-          disabled={this.props.disabled}
-          onBlur={this.props.disabled ? null : this.props.onBlur}
-          onChange={this.props.disabled ? null : this.props.onChange}
-          name={this.props.name}
-          placeholder={this.props.placeholder}
-          title={this.props.title}
-          value={this.props.value}
+          disabled={disabled}
+          onBlur={disabled ? null : onBlur}
+          onChange={disabled ? null : onChange}
+          name={name}
+          placeholder={placeholder}
+          title={title}
+          value={value}
         />
     )
   }

@@ -23,11 +23,9 @@ type Props = {
 */
 class NavButtonCircular extends React.PureComponent<Props> {
   static defaultProps = {
-    action: '',
     buttontype: 'default',
     children: null,
     disabled: false,
-    title: '',
     type: 'button',
   };
 

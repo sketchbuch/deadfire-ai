@@ -16,7 +16,7 @@ describe('<TextInput />', () => {
       disabled: true,
     };
     const wrapper = mount(<TextInput {...props} />);
-    wrapper.simulate('change')
+    wrapper.simulate('keydown', { which: 'a' });
     expect(props.onChange.mock.calls.length).toBe(0);
   });
 

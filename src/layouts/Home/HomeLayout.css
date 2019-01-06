@@ -1,0 +1,67 @@
+/* Home Layout */
+/* ----------- */
+
+.HomeLayout {
+  width: 100%;
+  height: 100%;
+  margin: 0px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  max-width: 500px;
+}
+
+.HomeLayout__item {
+  display: block;
+  width: 100%;
+}
+
+.HomeLayout__link {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  color: var(--col-text);
+  position: relative;
+  padding: 15px 20px 15px 70px;
+}
+
+.HomeLayout__title {
+  display: block;
+  line-height: var(--lh-reduced);
+  font-size: var(--font-size);
+}
+
+.HomeLayout__link:active .HomeLayout__title {
+  color: var(--col-brand);
+}
+
+.HomeLayout__link:hover  .ButtonCircular {
+  background: var(--col-brand-light);
+}
+
+.HomeLayout__link:active  .ButtonCircular {
+  background: var(--col-brand-dark);
+}
+
+.HomeLayout__description {
+  display: block;
+  color: var(--col-lighten-5);
+  line-height: var(--lh-reduced);
+  font-size: var(--font-size-small);
+}
+
+.HomeLayout__icon {
+  position: absolute;
+  left: 10px;
+  width: 50px;
+  height: 50px;
+}
+
+.HomeLayout .icofont {
+  pointer-events: none;
+  font-size: 2.75rem;
+  color: var(--col-white);
+}

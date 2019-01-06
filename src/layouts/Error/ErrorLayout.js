@@ -17,7 +17,7 @@ class ErrorLayout extends Component<Props> {
 
   render() {
     return (
-      <Panel>
+      <Panel classes="ErrorLayout">
         <h2>Error</h2>
         <p>{this.props.errorMsg}</p>
       </Panel>

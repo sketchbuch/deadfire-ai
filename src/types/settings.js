@@ -4,14 +4,14 @@
 * Settings type def.
 */
 
-export type Settings = {
+export type SettingsState = {
   installPath: string,
   lang: string,
 };
 
 export type SettingsUpdate = {[string]: string | boolean };
 
-const settingsDefault: Settings = {
+const settingsDefault: SettingsState = {
   installPath: '',
   lang: '',
 };

@@ -10,14 +10,14 @@ import {
   SETTINGS_UPDATE_SUCCESS,
 } from '../constants/actionTypes';
 import type { ActionObj } from '../types/action';
-import type { AppType } from '../types/app';
+import type { AppState } from '../types/app';
 import appDefault from '../types/app';
 
 
 /**
 * App Reducer.
 */
-export default function reducer(state: AppType = appDefault, action: ActionObj) {
+export default function reducer(state: AppState = appDefault, action: ActionObj) {
   switch (action.type) {
     case DATA_LOAD_ERROR:
     case LANGUAGE_LOAD_ERROR:
