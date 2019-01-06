@@ -1,7 +1,9 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import Translation, { trans } from '../../../components/Translation/Translation';
+import Translation, {
+  trans,
+} from '../../../components/Translation/Translation';
 import {
   Button,
   FieldError,
@@ -21,19 +23,11 @@ type Props = {
   value: string,
 };
 
-
 export class Form extends PureComponent<Props> {
   props: Props;
 
   render() {
-    const {
-      busy,
-      disabled,
-      errors,
-      onChange,
-      onSubmit,
-      value,
-    } = this.props;
+    const { busy, disabled, errors, onChange, onSubmit, value } = this.props;
 
     return (
       <FormElement onSubmit={onSubmit}>
@@ -41,7 +35,7 @@ export class Form extends PureComponent<Props> {
         <FormDescription text={trans('Description', 'NewLayout')} />
 
         <FieldWrap>
-          <TextInput 
+          <TextInput
             name="installPath"
             onChange={onChange}
             placeholder={trans('Placeholder', 'NewLayout')}
@@ -55,9 +49,8 @@ export class Form extends PureComponent<Props> {
           <Translation name="Button" ns="NewLayout" />
         </Button>
       </FormElement>
-    )
+    );
   }
 }
-
 
 export default Form;

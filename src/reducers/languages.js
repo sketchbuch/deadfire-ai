@@ -1,40 +1,51 @@
 // @flow
 
-import { 
-  SETTINGS_LOAD_SUCCESS,
-} from '../constants/actionTypes';
+import { SETTINGS_LOAD_SUCCESS } from '../constants/actionTypes';
 import type { ActionObj } from '../types/action';
 
 export const langs = {
   EN: 'English',
   DE: 'Deutsch',
-}
+};
 
 type initialState = {
   available: {},
   current: string,
-  default: string
+  default: string,
 };
 
 const defaultState = {
-  available: {...langs},
+  available: { ...langs },
   current: 'EN',
-  default: 'EN'
+  default: 'EN',
 };
 
-
 /**
-* Languages Reducer.
-*/
-export default function reducer(state: initialState = defaultState, action: ActionObj) {
+ * Languages Reducer.
+ */
+export default function reducer(
+  state: initialState = defaultState,
+  action: ActionObj
+) {
   switch (action.type) {
     case SETTINGS_LOAD_SUCCESS:
       let reqLang = '';
       const { payload }: Object = action;
-      if (payload.settings !== undefined && payload.settings.language !== undefined) reqLang = payload.settings.language;
+      if (
+        payload.settings !== undefined &&
+        payload.settings.language !== undefined
+      )
+        reqLang = payload.settings.language;
 
-      const langFound = Object.keys(state.available).find((lang) => lang === reqLang);
-      if (langFound) return {...state, available: {...state.available}, current: langFound };
+      const langFound = Object.keys(state.available).find(
+        lang => lang === reqLang
+      );
+      if (langFound)
+        return {
+          ...state,
+          available: { ...state.available },
+          current: langFound,
+        };
       break;
 
     default:

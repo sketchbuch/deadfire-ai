@@ -26,8 +26,12 @@ describe('<TextInput />', () => {
     const cn2Props = { classes: 'TestClass' };
     const cn2Wrapper = shallow(<TextInput {...cn2Props} />);
 
-    expect(cn1Wrapper.find('.TextInput').hasClass(cn2Props.classes)).toEqual(false);
-    expect(cn2Wrapper.find('.TextInput').hasClass(cn2Props.classes)).toEqual(true);
+    expect(cn1Wrapper.find('.TextInput').hasClass(cn2Props.classes)).toEqual(
+      false
+    );
+    expect(cn2Wrapper.find('.TextInput').hasClass(cn2Props.classes)).toEqual(
+      true
+    );
   });
 
   test('Handles isValid property', () => {
@@ -36,7 +40,11 @@ describe('<TextInput />', () => {
     const iv2Props = { isValid: false };
     const iv2Wrapper = shallow(<TextInput {...iv2Props} />);
 
-    expect(iv1Wrapper.find('.TextInput').hasClass(UI_ERROR_CLASS)).toEqual(false);
-    expect(iv2Wrapper.find('.TextInput').hasClass(UI_ERROR_CLASS)).toEqual(true);
+    expect(iv1Wrapper.find('.TextInput').hasClass(UI_ERROR_CLASS)).toEqual(
+      false
+    );
+    expect(iv2Wrapper.find('.TextInput').hasClass(UI_ERROR_CLASS)).toEqual(
+      true
+    );
   });
 });

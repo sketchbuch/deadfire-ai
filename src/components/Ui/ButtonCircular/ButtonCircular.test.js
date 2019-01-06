@@ -25,7 +25,11 @@ describe('<ButtonCircular />', () => {
     const cn2Props = { classes: 'TestClass' };
     const cn2Wrapper = shallow(<ButtonCircular {...cn2Props} />);
 
-    expect(cn1Wrapper.find('.ButtonCircular').hasClass(cn2Props.classes)).toEqual(false);
-    expect(cn2Wrapper.find('.ButtonCircular').hasClass(cn2Props.classes)).toEqual(true);
+    expect(
+      cn1Wrapper.find('.ButtonCircular').hasClass(cn2Props.classes)
+    ).toEqual(false);
+    expect(
+      cn2Wrapper.find('.ButtonCircular').hasClass(cn2Props.classes)
+    ).toEqual(true);
   });
 });

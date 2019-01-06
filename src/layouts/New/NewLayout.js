@@ -23,7 +23,6 @@ type State = {
   touched: boolean,
 };
 
-
 export class NewLayout extends Component<Props, State> {
   props: Props;
   state: State = {
@@ -35,21 +34,20 @@ export class NewLayout extends Component<Props, State> {
 
   onChange = (event: SyntheticInputEvent) => {
     this.update(event.target.value);
-  }
+  };
 
   onSubmit = async (event: SyntheticInputEvent) => {
     event.preventDefault();
-    
+
     const installPath = this.state.installPath;
     const hadErrors = await this.update(installPath);
 
     if (!hadErrors) {
-      this.setState(
-        { busy: true },
-        () => this.props.submitPath({ installPath })
+      this.setState({ busy: true }, () =>
+        this.props.submitPath({ installPath })
       );
     }
-  }
+  };
 
   update = async (installPath: string): boolean => {
     let hadErrors = false;
@@ -61,14 +59,14 @@ export class NewLayout extends Component<Props, State> {
 
     try {
       await installPathSchema.validate(installPath);
-    } catch(e) {
+    } catch (e) {
       newState.errors = [...e.errors];
       hadErrors = true;
     }
 
     this.setState(newState);
     return hadErrors;
-  }
+  };
 
   render() {
     return (
@@ -82,7 +80,7 @@ export class NewLayout extends Component<Props, State> {
           value={this.state.installPath}
         />
       </Panel>
-    )
+    );
   }
 }
 
@@ -94,9 +92,11 @@ const mapDispatchToProps = (dispatch: ReduxDispatch) => {
   return {
     submitPath: (settings: SettingsUpdate) => {
       dispatch(update(settings));
-    }
-  }
-}
+    },
+  };
+};
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(NewLayout);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(NewLayout);

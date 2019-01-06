@@ -8,8 +8,8 @@ type Props = {
 };
 
 /**
-* A wrapping component for UI elements.
-*/
+ * A wrapping component for UI elements.
+ */
 class FieldError extends React.PureComponent<Props> {
   static defaultProps = {
     errors: [],
@@ -18,13 +18,8 @@ class FieldError extends React.PureComponent<Props> {
   props: Props;
 
   render() {
-    return (
-      <p className="FieldError">
-        {this.props.errors[0]}
-      </p>
-    )
+    return <p className="FieldError">{this.props.errors[0]}</p>;
   }
 }
-
 
 export default FieldError;

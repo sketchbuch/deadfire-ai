@@ -16,7 +16,11 @@ describe('<App />', () => {
   };
 
   test('Renders without crashing', () => {
-    const wrapper = shallow(<Provider store={store}><App {...props} /></Provider>);
+    const wrapper = shallow(
+      <Provider store={store}>
+        <App {...props} />
+      </Provider>
+    );
     expect(wrapper).toHaveLength(1);
   });
 

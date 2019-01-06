@@ -1,6 +1,6 @@
 // @flow
 
-import { all, takeLatest } from "redux-saga/effects";
+import { all, takeLatest } from 'redux-saga/effects';
 import {
   APP_ERROR,
   APP_LOADED,
@@ -12,35 +12,34 @@ import {
   SETTINGS_LOAD_SUCCESS,
   SETTINGS_UPDATE,
 } from '../constants/actionTypes';
-import loadedWorker from './loaded'
-import appErrorWorker from './appError'
-import loadSettingsWorker from './loadSettings'
-import settingsWorker from './settings'
-import languageWorker from './loadLanguage'
-import dataWorker from './data'
-
-
-/**
-* Sagas
-*/
+import loadedWorker from './loaded';
+import appErrorWorker from './appError';
+import loadSettingsWorker from './loadSettings';
+import settingsWorker from './settings';
+import languageWorker from './loadLanguage';
+import dataWorker from './data';
 
 /**
-* Watches for dispatched actions.
-*/
+ * Sagas
+ */
+
+/**
+ * Watches for dispatched actions.
+ */
 export default function* appWatcher(action: ActionObj): Generator<*, *, *> {
   yield all([
-      // App
+    // App
     takeLatest(APP_LOADED, loadedWorker),
     takeLatest(APP_LOADING, loadSettingsWorker),
 
-      // Data
+    // Data
     takeLatest(DATA_LOAD_ERROR, appErrorWorker),
 
-      // Language
+    // Language
     takeLatest(LANGUAGE_LOAD_ERROR, appErrorWorker),
     //takeLatest(LANGUAGE_LOAD_SUCCESS, dataWorker),
 
-      // Settings
+    // Settings
     takeLatest(SETTINGS_LOAD_ERROR, appErrorWorker),
     takeLatest(SETTINGS_LOAD_SUCCESS, languageWorker),
     takeLatest(SETTINGS_UPDATE, settingsWorker),

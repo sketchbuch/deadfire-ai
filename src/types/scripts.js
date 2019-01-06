@@ -1,8 +1,8 @@
 // @flow
 
 /**
-* AI Script type def.
-*/
+ * AI Script type def.
+ */
 
 export type Scripts = {
   filename: string,

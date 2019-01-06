@@ -3,9 +3,7 @@
 import React, { Component } from 'react';
 import Panel from '../../components/Panel/Panel';
 
-type Props = {
-};
-
+type Props = {};
 
 class NotFoundLayout extends Component<Props> {
   props: Props;
@@ -15,9 +13,8 @@ class NotFoundLayout extends Component<Props> {
       <Panel>
         <h2>Not Found</h2>
       </Panel>
-    )
+    );
   }
 }
-
 
 export default NotFoundLayout;

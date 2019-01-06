@@ -23,10 +23,9 @@ type Props = {
   webkitdirectory?: boolean,
 };
 
-
 /**
-* Generic input tag.
-*/
+ * Generic input tag.
+ */
 class TextInput extends React.PureComponent<Props> {
   static defaultProps = {
     disabled: false,
@@ -57,27 +56,26 @@ class TextInput extends React.PureComponent<Props> {
     } = this.props;
 
     return (
-        <input
-          className={classNames({
-            TextInput: true,
-            [classes]: !!classes,
-            [UI_ERROR_CLASS]: !isValid 
-          })}
-          defaultValue={defaultValue}
-          disabled={disabled}
-          name={name}
-          maxLength={maxLength}
-          onBlur={onBlur}
-          onKeyUp={onKeyUp}
-          onChange={onChange}
-          placeholder={placeholder}
-          title={title}
-          type={type}
-          value={value}
-        />
-    )
+      <input
+        className={classNames({
+          TextInput: true,
+          [classes]: !!classes,
+          [UI_ERROR_CLASS]: !isValid,
+        })}
+        defaultValue={defaultValue}
+        disabled={disabled}
+        name={name}
+        maxLength={maxLength}
+        onBlur={onBlur}
+        onKeyUp={onKeyUp}
+        onChange={onChange}
+        placeholder={placeholder}
+        title={title}
+        type={type}
+        value={value}
+      />
+    );
   }
 }
-
 
 export default TextInput;

@@ -7,10 +7,9 @@ type Props = {
   text: string,
 };
 
-
 /**
-* A header in a form.
-*/
+ * A header in a form.
+ */
 class FormDescription extends React.PureComponent<Props> {
   static defaultProps = {
     text: '',
@@ -19,9 +18,8 @@ class FormDescription extends React.PureComponent<Props> {
   props: Props;
 
   render() {
-    return <p className="FormDescription">{this.props.text}</p>
+    return <p className="FormDescription">{this.props.text}</p>;
   }
 }
-
 
 export default FormDescription;

@@ -18,20 +18,26 @@ type Props = {
 
 export class App extends Component<Props> {
   props: Props;
-  
+
   static defaultProps = {
     error: false,
     errorMsg: '',
     loaded: false,
     storageCreated: false,
- };
+  };
 
   componentDidMount() {
     this.props.appLoading();
   }
 
   render() {
-    const { error,  errorMsg, installPathSet, loaded, storageCreated } = this.props;
+    const {
+      error,
+      errorMsg,
+      installPathSet,
+      loaded,
+      storageCreated,
+    } = this.props;
 
     return (
       <BrowserRouter>
@@ -47,23 +53,23 @@ export class App extends Component<Props> {
   }
 }
 
-const mapStateToProps = (state: Object) => (
-  {
-    error: state.app.error,
-    errorMsg: state.app.errorMsg,
-    installPathSet: state.app.installPathSet,
-    loaded: state.app.loaded,
-    storageCreated: state.app.storageCreated,
-  }
-);
+const mapStateToProps = (state: Object) => ({
+  error: state.app.error,
+  errorMsg: state.app.errorMsg,
+  installPathSet: state.app.installPathSet,
+  loaded: state.app.loaded,
+  storageCreated: state.app.storageCreated,
+});
 
 const mapDispatchToProps = (dispatch: ReduxDispatch) => {
   return {
     appLoading: () => {
-      dispatch(appActions.loading())
-    }
-  }
-}
+      dispatch(appActions.loading());
+    },
+  };
+};
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);

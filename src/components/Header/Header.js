@@ -7,8 +7,7 @@ import { ICON_BRAND } from '../../constants/icons';
 import { ROUTE_HOME } from '../../constants/routes';
 import './Header.css';
 
-type Props = {
-};
+type Props = {};
 
 export class Header extends Component<Props> {
   props: Props;
@@ -23,9 +22,8 @@ export class Header extends Component<Props> {
           <h1 className="Header__title">Deadfire AI Editor</h1>
         </Link>
       </header>
-    )
+    );
   }
 }
-
 
 export default Header;

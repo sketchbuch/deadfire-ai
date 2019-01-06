@@ -19,10 +19,9 @@ type Props = {
   visual?: boolean,
 };
 
-
 /**
-* A round action button.
-*/
+ * A round action button.
+ */
 class ButtonCircular extends React.PureComponent<Props> {
   static defaultProps = {
     buttontype: 'default',
@@ -48,24 +47,27 @@ class ButtonCircular extends React.PureComponent<Props> {
       type,
       visual,
     } = this.props;
-    
-    const tagName = (visual) ? 'span' : 'button';
 
-    return React.createElement(tagName, {
-      className: classNames({
-        ButtonCircular: true,
-        [classes]: !!classes,
-      }),
-      "data-action": action,
-      "data-buttontype": buttontype,
-      disabled: disabled,
-      name: name,
-      onClick: onClick,
-      title: title,
-      type: type,
-    }, children);
+    const tagName = visual ? 'span' : 'button';
+
+    return React.createElement(
+      tagName,
+      {
+        className: classNames({
+          ButtonCircular: true,
+          [classes]: !!classes,
+        }),
+        'data-action': action,
+        'data-buttontype': buttontype,
+        disabled: disabled,
+        name: name,
+        onClick: onClick,
+        title: title,
+        type: type,
+      },
+      children
+    );
   }
 }
-
 
 export default ButtonCircular;

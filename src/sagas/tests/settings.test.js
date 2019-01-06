@@ -5,6 +5,5 @@
 describe.skip('settingsWorker()', () => {
   //const gen = settingsWorker();
 
-  test.skip('Renders without crashing', () => {
-  });
+  test.skip('Renders without crashing', () => {});
 });

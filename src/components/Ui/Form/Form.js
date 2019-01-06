@@ -8,10 +8,9 @@ type Props = {
   onSubmit?: () => boolean,
 };
 
-
 /**
-* A form to hold fields.
-*/
+ * A form to hold fields.
+ */
 class Form extends React.PureComponent<Props> {
   static defaultProps = {
     children: null,
@@ -22,12 +21,16 @@ class Form extends React.PureComponent<Props> {
 
   render() {
     return (
-      <form className="Form" method="get" action="#" onSubmit={this.props.onSubmit}>
+      <form
+        className="Form"
+        method="get"
+        action="#"
+        onSubmit={this.props.onSubmit}
+      >
         {this.props.children}
       </form>
-    )
+    );
   }
 }
-
 
 export default Form;

@@ -9,8 +9,7 @@ import type { MenuItem } from '../../types/menuitem';
 import menuItemDefault, { MenuItemFactory } from '../../types/menuitem';
 import './HomeLayout.css';
 
-type Props = {
-};
+type Props = {};
 
 class HomeLayout extends Component<Props> {
   props: Props;
@@ -20,11 +19,10 @@ class HomeLayout extends Component<Props> {
     super(props);
 
     this.menuItems = [];
-    [
-      'scripts',
-      'settings',
-    ].forEach((key: string, index: number) => {
-      this.menuItems.push(MenuItemFactory({...menuItemDefault, key }, Date.now()));
+    ['scripts', 'settings'].forEach((key: string, index: number) => {
+      this.menuItems.push(
+        MenuItemFactory({ ...menuItemDefault, key }, Date.now())
+      );
     });
   }
 
@@ -39,15 +37,16 @@ class HomeLayout extends Component<Props> {
                   <Icon type={item.icon} />
                 </ButtonCircular>
                 <span className="HomeLayout__title">{item.label}</span>
-                <span className="HomeLayout__description">{item.description}</span>
+                <span className="HomeLayout__description">
+                  {item.description}
+                </span>
               </Link>
             </div>
-          )
+          );
         })}
       </Panel>
-    )
+    );
   }
 }
-
 
 export default HomeLayout;

@@ -25,7 +25,9 @@ describe('<Button />', () => {
     const cn2Props = { classes: 'TestClass' };
     const cn2Wrapper = shallow(<Button {...cn2Props} />);
 
-    expect(cn1Wrapper.find('.Button').hasClass(cn2Props.classes)).toEqual(false);
+    expect(cn1Wrapper.find('.Button').hasClass(cn2Props.classes)).toEqual(
+      false
+    );
     expect(cn2Wrapper.find('.Button').hasClass(cn2Props.classes)).toEqual(true);
   });
 });

@@ -17,10 +17,9 @@ type Props = {
   value?: string,
 };
 
-
 /**
-* Textarea tag.
-*/
+ * Textarea tag.
+ */
 class Textarea extends React.PureComponent<Props> {
   static defaultProps = {
     disabled: false,
@@ -45,23 +44,22 @@ class Textarea extends React.PureComponent<Props> {
     } = this.props;
 
     return (
-        <textarea
-          className={classNames({
-            Textarea: true,
-            [classes]: !!classes,
-            [UI_ERROR_CLASS]: !isValid 
-          })}
-          disabled={disabled}
-          onBlur={disabled ? null : onBlur}
-          onChange={disabled ? null : onChange}
-          name={name}
-          placeholder={placeholder}
-          title={title}
-          value={value}
-        />
-    )
+      <textarea
+        className={classNames({
+          Textarea: true,
+          [classes]: !!classes,
+          [UI_ERROR_CLASS]: !isValid,
+        })}
+        disabled={disabled}
+        onBlur={disabled ? null : onBlur}
+        onChange={disabled ? null : onChange}
+        name={name}
+        placeholder={placeholder}
+        title={title}
+        value={value}
+      />
+    );
   }
 }
-
 
 export default Textarea;

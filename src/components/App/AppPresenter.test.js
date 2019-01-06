@@ -29,7 +29,7 @@ describe('<AppPresenter />', () => {
   });
 
   describe('When loaded="true":', () => {
-    const propsLoaded = {...props, loaded: true};
+    const propsLoaded = { ...props, loaded: true };
 
     describe('Shows ErrorLayout correctly', () => {
       test('error="false" does not render an error message', () => {
@@ -46,12 +46,20 @@ describe('<AppPresenter />', () => {
 
     describe('Shows NewLayout correctly', () => {
       test('storageCreated="true && installPathSet="false" shows the new layout', () => {
-        const wrapper = shallow(<AppPresenter {...propsLoaded} storageCreated={true} />);
+        const wrapper = shallow(
+          <AppPresenter {...propsLoaded} storageCreated={true} />
+        );
         expect(wrapper.find(NewLayout)).toHaveLength(1);
       });
 
       test('storageCreated="true && installPathSet="true" does not show the new layout', () => {
-        const wrapper = shallow(<AppPresenter {...propsLoaded} storageCreated={true} installPathSet={true} />);
+        const wrapper = shallow(
+          <AppPresenter
+            {...propsLoaded}
+            storageCreated={true}
+            installPathSet={true}
+          />
+        );
         expect(wrapper.find(NewLayout)).toHaveLength(0);
       });
     });

@@ -12,7 +12,7 @@
     "electron": "concurrently \"BROWSER=none npm start\" \"wait-on http://localhost:3000 && electron .\"",
     "electron:build": "build --em.main=build/electron.js",
     "flow": "flow",
-    "prettier": "prettier --write **/*.js",
+    "prettier": "prettier --write '**/*.js'",
     "start": "react-scripts start",
     "test": "react-scripts test --env=jsdom",
     "test:c": "react-scripts test --env=jsdom --coverage",

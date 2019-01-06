@@ -14,19 +14,14 @@ type Props = {
 
 export class InfoMessage extends React.PureComponent<Props> {
   props: Props;
-  
+
   static defaultProps = {
     children: null,
     icon: ICON_WARNING,
- };
+  };
 
   render() {
-    const {
-      children,
-      headline,
-      icon,
-      message,
-    } = this.props;
+    const { children, headline, icon, message } = this.props;
 
     return (
       <section className="InfoMessage">
@@ -37,9 +32,8 @@ export class InfoMessage extends React.PureComponent<Props> {
         {message && <p className="InfoMessage__message">{message}</p>}
         {children && <div className="InfoMessage__additional">{children}</div>}
       </section>
-    )
+    );
   }
 }
-
 
 export default InfoMessage;

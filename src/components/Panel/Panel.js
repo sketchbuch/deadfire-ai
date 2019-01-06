@@ -11,22 +11,23 @@ type Props = {
 
 export class Panel extends React.Component<Props> {
   props: Props;
-  
+
   static defaultProps = {
     children: null,
- };
+  };
 
   render() {
     return (
-      <section className={classNames({
-        Panel: true,
-        [this.props.classes]: !!this.props.classes,
-      })}>
+      <section
+        className={classNames({
+          Panel: true,
+          [this.props.classes]: !!this.props.classes,
+        })}
+      >
         {this.props.children}
       </section>
-    )
+    );
   }
 }
-
 
 export default Panel;

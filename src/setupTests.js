@@ -9,37 +9,39 @@ window.app = {
     EN: {
       App: {
         Name: 'Deadfire AI Editor',
-        Placeholder: 'This is the placeholder: %PH%'
+        Placeholder: 'This is the placeholder: %PH%',
       },
       AppError: {
-        ErrorTxt: 'Error Loading'
+        ErrorTxt: 'Error Loading',
       },
       NewLayout: {
         Headline: 'Welcome to the Deadfire AI Editor',
-        Description: 'Please provide the full path to your install of Deadfire.'
+        Description:
+          'Please provide the full path to your install of Deadfire.',
       },
       Toastr: {
-        PersistenceError: 'Error Saving'
-      }
+        PersistenceError: 'Error Saving',
+      },
     },
     DE: {
       App: {
         Name: 'DE - Deadfire AI Editor',
-        Placeholder: 'DE - This is the placeholder: %PH%'
+        Placeholder: 'DE - This is the placeholder: %PH%',
       },
       AppError: {
-        ErrorTxt: 'DE - Error Loading'
+        ErrorTxt: 'DE - Error Loading',
       },
       NewLayout: {
         Headline: 'DE - Welcome to the Deadfire AI Editor',
-        Description: 'DE - Please provide the full path to your install of Deadfire.'
+        Description:
+          'DE - Please provide the full path to your install of Deadfire.',
       },
       Toastr: {
-        PersistenceError: 'DE - Error Saving'
-      }
+        PersistenceError: 'DE - Error Saving',
+      },
     },
   },
   languages: ['EN'],
   curLang: 'EN',
-  defLang: 'EN'
+  defLang: 'EN',
 };

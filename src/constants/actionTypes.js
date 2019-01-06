@@ -1,6 +1,6 @@
 /**
-* Action Type Constants
-*/
+ * Action Type Constants
+ */
 
 // App
 export const APP_ERROR = 'APP_ERROR';

@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import { mount, shallow } from 'enzyme';
 import Translation from './Translation';
 
-const windowApp = {...window.app};
+const windowApp = { ...window.app };
 
 describe('<Translation />', () => {
   test('Renders without crashing', () => {
@@ -28,13 +28,21 @@ describe('<Translation />', () => {
   });
 
   test('Replaces placeholders', () => {
-    const wrapper = shallow(<Translation name='Placeholder' ns= 'App' placeholders={{ PH: 'Find me' }} />);
-    expect(wrapper.text()).toBe(window.app.translations.EN.App.Placeholder.replace('%PH%', 'Find me'));
+    const wrapper = shallow(
+      <Translation
+        name="Placeholder"
+        ns="App"
+        placeholders={{ PH: 'Find me' }}
+      />
+    );
+    expect(wrapper.text()).toBe(
+      window.app.translations.EN.App.Placeholder.replace('%PH%', 'Find me')
+    );
   });
 
   describe('Handles window.app correctly', () => {
     beforeEach(() => {
-      window.app = {...windowApp};
+      window.app = { ...windowApp };
     });
 
     test('Returns ?name:ns if translations undefined', () => {
@@ -42,7 +50,7 @@ describe('<Translation />', () => {
       const wrapper = shallow(<Translation name="Name" ns="App" />);
       expect(wrapper.text()).toBe('?Name:App');
     });
-    
+
     test('Returns ?name:ns if the language is undefined in translations', () => {
       window.app.curLang = 'IT';
       const wrapper = shallow(<Translation name="Name" ns="App" />);
@@ -61,20 +69,35 @@ describe('<Translation />', () => {
   });
 
   describe('shouldComponentUpdate', () => {
-    const initialProps = { name: 'Name', ns: 'App'};
-    const wrapper = shallow(<Translation {...initialProps} placeholders={{}} />);
+    const initialProps = { name: 'Name', ns: 'App' };
+    const wrapper = shallow(
+      <Translation {...initialProps} placeholders={{}} />
+    );
     const wrapperInstance = wrapper.instance();
 
     test('should not update if the props are the same', () => {
-      const shouldUpdate = wrapperInstance.shouldComponentUpdate({ name: 'Name', ns: 'App', placeholders: {} });
+      const shouldUpdate = wrapperInstance.shouldComponentUpdate({
+        name: 'Name',
+        ns: 'App',
+        placeholders: {},
+      });
       expect(shouldUpdate).toBe(false);
     });
 
     test('should update if the props are different', () => {
-      const shouldUpdate1 = wrapperInstance.shouldComponentUpdate({ name: 'Placeholder', ns: 'App' });
-      const shouldUpdate2 = wrapperInstance.shouldComponentUpdate({ name: 'Placeholder', ns: 'NotFound' });
+      const shouldUpdate1 = wrapperInstance.shouldComponentUpdate({
+        name: 'Placeholder',
+        ns: 'App',
+      });
+      const shouldUpdate2 = wrapperInstance.shouldComponentUpdate({
+        name: 'Placeholder',
+        ns: 'NotFound',
+      });
       window.app.curLang = 'DE';
-      const shouldUpdate3 = wrapperInstance.shouldComponentUpdate({ name: 'Placeholder', ns: 'NotFound' });
+      const shouldUpdate3 = wrapperInstance.shouldComponentUpdate({
+        name: 'Placeholder',
+        ns: 'NotFound',
+      });
       window.app.curLang = 'EN';
       expect(shouldUpdate1).toBe(true);
       expect(shouldUpdate2).toBe(true);

@@ -20,8 +20,8 @@ type Props = {
 };
 
 /**
-* A button.
-*/
+ * A button.
+ */
 class Button extends React.PureComponent<Props> {
   static defaultProps = {
     busy: false,
@@ -48,11 +48,13 @@ class Button extends React.PureComponent<Props> {
     } = this.props;
 
     return (
-      <span className={classNames({
-        Button: true,
-        [classes]: !!classes,
-        'Button--busy': busy,
-      })}>
+      <span
+        className={classNames({
+          Button: true,
+          [classes]: !!classes,
+          'Button--busy': busy,
+        })}
+      >
         <button
           className="Button__btn"
           data-buttontype={buttontype}
@@ -64,11 +66,14 @@ class Button extends React.PureComponent<Props> {
         >
           {children}
         </button>
-        {busy && <span className="Button__busy"><Icon type={ ICON_BUSY } /></span>}
+        {busy && (
+          <span className="Button__busy">
+            <Icon type={ICON_BUSY} />
+          </span>
+        )}
       </span>
-    )
+    );
   }
 }
-
 
 export default Button;

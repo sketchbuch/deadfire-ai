@@ -2,17 +2,14 @@
 
 import reducer from '../settings';
 import settingsDefault from '../../types/settings';
-import {
-  SETTINGS_LOAD_SUCCESS,
-} from '../../constants/actionTypes';
-
+import { SETTINGS_LOAD_SUCCESS } from '../../constants/actionTypes';
 
 /**
-* Settings Reducer Tests
-*/
+ * Settings Reducer Tests
+ */
 
 describe('Reducer: Settings', () => {
-  const initialState = {...settingsDefault};
+  const initialState = { ...settingsDefault };
 
   test('Should return the initial state if no type matches', () => {
     expect(reducer(initialState, { type: 'UNKNOWN' })).toEqual(initialState);
@@ -27,7 +24,7 @@ describe('Reducer: Settings', () => {
           lang: LANG,
         },
       };
-      const expectedState = {...settingsDefault, lang: LANG };
+      const expectedState = { ...settingsDefault, lang: LANG };
       expect(reducer(initialState, actionObj)).toEqual(expectedState);
     });
 

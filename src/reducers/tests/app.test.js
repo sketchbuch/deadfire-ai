@@ -11,36 +11,37 @@ import {
   SETTINGS_LOAD_ERROR,
 } from '../../constants/actionTypes';
 
-
 /**
-* App Reducer Tests
-*/
+ * App Reducer Tests
+ */
 
 describe('Reducer: App', () => {
-  const initialState = {...appDefault};
+  const initialState = { ...appDefault };
 
   test('Should return the initial state if no type matches', () => {
     expect(reducer(initialState, { type: 'UNKNOWN' })).toEqual(initialState);
   });
 
   test('APP_ERROR should return with error = true', () => {
-    const expectedState = {...appDefault, error: true };
+    const expectedState = { ...appDefault, error: true };
     expect(reducer(initialState, { type: APP_ERROR })).toEqual(expectedState);
   });
 
   test('APP_STORAGE_CREATED should return with storageCreated = true', () => {
-    const expectedState = {...appDefault, storageCreated: true };
-    expect(reducer(initialState, { type: APP_STORAGE_CREATED })).toEqual(expectedState);
+    const expectedState = { ...appDefault, storageCreated: true };
+    expect(reducer(initialState, { type: APP_STORAGE_CREATED })).toEqual(
+      expectedState
+    );
   });
 
   test('APP_LOADED should return with loaded = true', () => {
-    const expectedState = {...appDefault, loaded: true };
+    const expectedState = { ...appDefault, loaded: true };
     expect(reducer(initialState, { type: APP_LOADED })).toEqual(expectedState);
   });
 
   describe('Error Message:', () => {
-    const errorMsg = 'An error occured'
-    const expectedState = {...appDefault, errorMsg };
+    const errorMsg = 'An error occured';
+    const expectedState = { ...appDefault, errorMsg };
 
     test('DATA_LOAD_ERROR should set the errorMsg', () => {
       const actionObj = {

@@ -16,7 +16,9 @@ describe('<InfoMessage />', () => {
     const wrapperNoMsg = shallow(<InfoMessage {...props} />);
     expect(wrapperNoMsg.find('.InfoMessage__message')).toHaveLength(0);
 
-    const wrapperMsg = shallow(<InfoMessage {...props} message="Something went wrong" />);
+    const wrapperMsg = shallow(
+      <InfoMessage {...props} message="Something went wrong" />
+    );
     expect(wrapperMsg.find('.InfoMessage__message')).toHaveLength(1);
   });
 
@@ -24,7 +26,11 @@ describe('<InfoMessage />', () => {
     const wrapperNoChildren = shallow(<InfoMessage {...props} />);
     expect(wrapperNoChildren.find('.child')).toHaveLength(0);
 
-    const wrapperChildren = shallow(<InfoMessage {...props}><p className="child">A child</p></InfoMessage>);
+    const wrapperChildren = shallow(
+      <InfoMessage {...props}>
+        <p className="child">A child</p>
+      </InfoMessage>
+    );
     expect(wrapperChildren.find('.child')).toHaveLength(1);
   });
 });

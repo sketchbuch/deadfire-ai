@@ -17,10 +17,9 @@ type Props = {
   type?: string,
 };
 
-
 /**
-* A round action react router Nav link.
-*/
+ * A round action react router Nav link.
+ */
 class NavButtonCircular extends React.PureComponent<Props> {
   static defaultProps = {
     buttontype: 'default',
@@ -42,25 +41,24 @@ class NavButtonCircular extends React.PureComponent<Props> {
       to,
       type,
     } = this.props;
-    
+
     return (
-        <Link
-          className={classNames({
-            ButtonCircular: true,
-            [classes]: !!classes,
-          })}
-          data-action={action}
-          data-buttontype={buttontype}
-          disabled={disabled}
-          title={title}
-          to={to}
-          type={type}
-        >
-          {children}
-        </Link>
-    )
+      <Link
+        className={classNames({
+          ButtonCircular: true,
+          [classes]: !!classes,
+        })}
+        data-action={action}
+        data-buttontype={buttontype}
+        disabled={disabled}
+        title={title}
+        to={to}
+        type={type}
+      >
+        {children}
+      </Link>
+    );
   }
 }
-
 
 export default NavButtonCircular;
