@@ -4,6 +4,14 @@
   /* Fonts */
 @import "./fonts/fonts.css";
 
+  /* Vars */
+@import "./vars/colours.css";
+@import "./vars/ui.css";
+@import "./vars/typography.css";
+@import "./vars/misc.css";
+@import "./vars/dimensions.css";
+@import "./vars/zindexes.css";
+
   /* Vendor */
 @import "./vendor/icofont.css";
 @import "./vendor/react-redux-toastr.css";
@@ -11,7 +19,6 @@
 
   /* Base */
 @import "./base/normalize.css";
-@import "./base/vars.css";
 @import "./base/keyframes.css";
 @import "./base/tags.css";
 @import "./base/apploader.css";

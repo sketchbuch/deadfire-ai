@@ -6,6 +6,9 @@
     "AppError": {
       "ErrorTxt": "Error Loading"
     },
+    "ErrorLayout": {
+      "InfoMessage": "An error occured"
+    },
     "HomeLayout": {
       "Scripts": "Scripts",
       "ScriptsDescription": "Create/Edit AI Scripts",

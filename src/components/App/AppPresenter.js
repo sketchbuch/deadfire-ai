@@ -20,20 +20,26 @@ type Props = {
 
 export class AppPresenter extends Component<Props> {
   props: Props;
-  
+
   static defaultProps = {
     errorMsg: '',
   };
 
   render() {
-    const { error,  errorMsg, installPathSet, loaded, storageCreated } = this.props;
+    const {
+      error,
+      errorMsg,
+      installPathSet,
+      loaded,
+      storageCreated,
+    } = this.props;
     let content = null;
-  
+
     if (loaded) {
       if (error) {
-        content = <ErrorLayout errorMsg={errorMsg} />
+        content = <ErrorLayout errorMsg={errorMsg} />;
       } else if (storageCreated && !installPathSet) {
-        content = <NewLayout />
+        content = <NewLayout />;
       } else {
         content = (
           <Switch>
@@ -43,17 +49,14 @@ export class AppPresenter extends Component<Props> {
         );
       }
     } // Else, loader is showing.
-  
+
     return (
       <div className="App">
         <Header />
-        <div className="App__content">
-          {content}
-        </div>
+        <div className="App__content">{content}</div>
       </div>
-    )
+    );
   }
 }
-
 
 export default AppPresenter;

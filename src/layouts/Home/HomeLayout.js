@@ -35,7 +35,7 @@ class HomeLayout extends Component<Props> {
           return (
             <div key={item.id} className="HomeLayout__item">
               <Link to={item.route} className="HomeLayout__link">
-                <ButtonCircular className="HomeLayout__icon" visual={true}>
+                <ButtonCircular classes="HomeLayout__icon" visual={true}>
                   <Icon type={item.icon} />
                 </ButtonCircular>
                 <span className="HomeLayout__title">{item.label}</span>

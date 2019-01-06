@@ -1,0 +1,23 @@
+.InfoMessage {
+  position: relative;
+  text-align: center;
+}
+
+.InfoMessage__icon {
+  font-size: 8.0rem;
+  height: 8.0rem;
+  width: 8.0rem;
+  line-height: 1.0;
+  position: relative;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.InfoMessage__headline {
+  margin-bottom: 0px;
+}
+
+.InfoMessage__message {
+  font-size: 2.5rem;
+  margin-bottom: 0px;
+}
