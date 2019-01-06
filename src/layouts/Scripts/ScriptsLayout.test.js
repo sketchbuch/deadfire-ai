@@ -2,13 +2,13 @@
 
 import React from 'react';
 import { shallow } from 'enzyme';
-import Settings from './Settings';
+import ScriptsLayout from './ScriptsLayout';
 
-describe('<Settings />', () => {
+describe('<ScriptsLayout />', () => {
   const props = {};
 
   test('Renders without crashing', () => {
-    const wrapper = shallow(<Settings {...props} />);
+    const wrapper = shallow(<ScriptsLayout {...props} />);
     expect(wrapper).toHaveLength(1);
   });
 });

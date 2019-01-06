@@ -2,11 +2,11 @@
 
 import React, { Component } from 'react';
 import Panel from '../../components/Panel/Panel';
-import './Settings.css';
+import './SettingsLayout.css';
 
 type Props = {};
 
-class Settings extends Component<Props> {
+class SettingsLayout extends Component<Props> {
   props: Props;
 
   render() {
@@ -14,4 +14,4 @@ class Settings extends Component<Props> {
   }
 }
 
-export default Settings;
+export default SettingsLayout;
