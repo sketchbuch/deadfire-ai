@@ -34,18 +34,20 @@ export default function reducer(
       if (
         payload.settings !== undefined &&
         payload.settings.language !== undefined
-      )
+      ) {
         reqLang = payload.settings.language;
+      }
 
       const langFound = Object.keys(state.available).find(
         lang => lang === reqLang
       );
-      if (langFound)
+      if (langFound) {
         return {
           ...state,
           available: { ...state.available },
           current: langFound,
         };
+      }
       break;
 
     default:

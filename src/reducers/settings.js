@@ -19,7 +19,9 @@ export default function reducer(
   switch (action.type) {
     case SETTINGS_LOAD_SUCCESS:
     case SETTINGS_UPDATE:
-      if (action.payload) return { ...state, ...action.payload };
+      if (action.payload) {
+        return { ...state, ...action.payload };
+      }
       break;
 
     default:

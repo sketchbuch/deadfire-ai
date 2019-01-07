@@ -29,7 +29,9 @@ function createWindow() {
       ? 'http://localhost:3000'
       : `file://${path.join(__dirname, '../build/index.html')}`
   );
-  if (isDev) mainWindow.openDevTools();
+  if (isDev) {
+    mainWindow.openDevTools();
+  }
   mainWindow.on('closed', () => (mainWindow = null));
 }
 

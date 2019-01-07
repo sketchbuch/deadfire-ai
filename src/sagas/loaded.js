@@ -13,8 +13,9 @@ function* loadedWorker(action: ActionObj): Generator<*, *, *> {
 
   setTimeout(() => {
     let appLoaderEle = document && document.getElementById('apploader');
-    if (appLoaderEle && appLoaderEle.parentNode)
+    if (appLoaderEle && appLoaderEle.parentNode) {
       appLoaderEle.parentNode.removeChild(appLoaderEle);
+    }
   }, alDuration);
 
   yield put({ type: APP_LOADER_REMOVED });

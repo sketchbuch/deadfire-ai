@@ -61,7 +61,9 @@ export function readDataFile(fileName: string): Promise<FsObject> {
             let folders = FILE_PATH.replace(DATA_PATH, '')
               .split('/')
               .filter(f => f !== '');
-            if (folders[folders.length - 1].indexOf('.') > -1) folders.pop();
+            if (folders[folders.length - 1].indexOf('.') > -1) {
+              folders.pop();
+            }
             let finalPath =
               DATA_PATH +
               '/' +

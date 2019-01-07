@@ -24,7 +24,9 @@ export default function reducer(
     case DATA_LOAD_ERROR:
     case LANGUAGE_LOAD_ERROR:
     case SETTINGS_LOAD_ERROR:
-      if (action.payload) return { ...state, errorMsg: action.payload.error };
+      if (action.payload) {
+        return { ...state, errorMsg: action.payload.error };
+      }
       break;
 
     case APP_ERROR:

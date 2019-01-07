@@ -11,7 +11,9 @@ let as = '';
  * Reads and parses a PoE2 user AI binary file.
  */
 function readEternityAiFile(fileName) {
-  if (fileName === undefined) fileName = FILE_PATH;
+  if (fileName === undefined) {
+    fileName = FILE_PATH;
+  }
 
   fs.readFile(fileName, function(err, data) {
     console.log(fileName);

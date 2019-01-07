@@ -20,7 +20,9 @@ function* loadSettingsWorker(action: ActionObj): Generator<*, *, *> {
   try {
     const result: FsObject = yield readDataFile(FILE_SETTINGS);
 
-    if (result.wasCreated) yield put({ type: APP_STORAGE_CREATED });
+    if (result.wasCreated) {
+      yield put({ type: APP_STORAGE_CREATED });
+    }
 
     if (result.success) {
       yield put({ type: SETTINGS_LOAD_SUCCESS, payload: result.data });
