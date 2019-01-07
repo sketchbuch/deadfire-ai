@@ -11,8 +11,10 @@
     "eject": "react-scripts eject",
     "electron": "concurrently \"BROWSER=none npm start\" \"wait-on http://localhost:3000 && electron .\"",
     "electron:build": "build --em.main=build/electron.js",
+    "eslint": "eslint --config .eslintrc --fix '{,!(.vscode|build|coverage|dist|docs|flow-typed)/**/}*.{js,json,jsx}'",
+    "eslint:dry": "eslint --config .eslintrc --fix-dry-run '{,!(.vscode|build|coverage|dist|docs|flow-typed)/**/}*.{js,json,jsx}'",
     "flow": "flow",
-    "prettier": "prettier --write '**/*.js'",
+    "prettier": "prettier --config .prettierrc --write '{,!(.vscode|build|coverage|dist|docs|flow-typed)/**/}*.{js,json,jsx,md}'",
     "start": "react-scripts start",
     "test": "react-scripts test --env=jsdom",
     "test:c": "react-scripts test --env=jsdom --coverage",
@@ -46,6 +48,7 @@
     "electron-devtools-installer": "^2.2.4",
     "enzyme": "^3.4.4",
     "enzyme-adapter-react-16": "^1.2.0",
+    "eslint-config-prettier": "^3.3.0",
     "eslint-plugin-flowtype": "^2.50.0",
     "eslint-plugin-jest": "^21.21.0",
     "eslint-plugin-prettier": "^3.0.1",
@@ -59,9 +62,6 @@
     "extends": "react-app"
   },
   "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
+    "electron >= 1.8.7"
   ]
 }

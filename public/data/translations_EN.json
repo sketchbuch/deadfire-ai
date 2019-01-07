@@ -13,13 +13,16 @@
       "Scripts": "Scripts",
       "ScriptsDescription": "Create/Edit AI Scripts",
       "Settings": "Settings",
-      "SettingsDescription": "Manage Deadfire AI settings"
+      "SettingsDescription": "Manage editor settings"
     },
     "NewLayout": {
       "Button": "Submit Path",
       "Description": "Please provide the full path to your install of Deadfire.",
       "Headline": "Welcome to the Deadfire AI Editor",
       "Placeholder": "Where is Deadfire installed?"
+    },
+    "Settings": {
+      "WinTitle": "Settings"
     },
     "Toastr": {
       "PersistenceError": "Error Saving"

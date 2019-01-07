@@ -7,7 +7,7 @@ import Form from './Form/Form';
 import Panel from '../../components/Panel/Panel';
 import installPathSchema from '../../validation/schemas/installPath';
 import type { Dispatch as ReduxDispatch } from 'redux';
-import type { SettingsUpdate } from '../../types/settings';
+import type { SettingsState } from '../../types/settings';
 import { update } from '../../actions/settingsActions';
 
 type Props = {
@@ -90,7 +90,7 @@ const mapStateToProps = (state: Object) => ({
 
 const mapDispatchToProps = (dispatch: ReduxDispatch) => {
   return {
-    submitPath: (settings: SettingsUpdate) => {
+    submitPath: (settings: SettingsState) => {
       dispatch(update(settings));
     },
   };
