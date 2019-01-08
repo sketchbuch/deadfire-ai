@@ -16,8 +16,7 @@ window.app = {
       },
       NewLayout: {
         Headline: 'Welcome to the Deadfire AI Editor',
-        Description:
-          'Please provide the full path to your install of Deadfire.',
+        Description: 'Please provide the full path to your install of Deadfire.',
       },
       Toastr: {
         PersistenceError: 'Error Saving',
@@ -33,8 +32,7 @@ window.app = {
       },
       NewLayout: {
         Headline: 'DE - Welcome to the Deadfire AI Editor',
-        Description:
-          'DE - Please provide the full path to your install of Deadfire.',
+        Description: 'DE - Please provide the full path to your install of Deadfire.',
       },
       Toastr: {
         PersistenceError: 'DE - Error Saving',

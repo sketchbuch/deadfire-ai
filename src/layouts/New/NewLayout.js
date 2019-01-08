@@ -43,9 +43,7 @@ export class NewLayout extends Component<Props, State> {
     const hadErrors = await this.update(installPath);
 
     if (!hadErrors) {
-      this.setState({ busy: true }, () =>
-        this.props.submitPath({ installPath })
-      );
+      this.setState({ busy: true }, () => this.props.submitPath({ installPath }));
     }
   };
 

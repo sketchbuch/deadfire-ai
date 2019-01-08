@@ -2,11 +2,7 @@
 
 import { put } from 'redux-saga/effects';
 import { readEternityFile } from '../fs/fs';
-import {
-  DATA_LOAD,
-  DATA_LOAD_ERROR,
-  DATA_LOAD_SUCCESS,
-} from '../constants/actionTypes';
+import { DATA_LOAD, DATA_LOAD_ERROR, DATA_LOAD_SUCCESS } from '../constants/actionTypes';
 import type { FsObject } from '../types/fsObject';
 
 /**

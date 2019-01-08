@@ -65,10 +65,7 @@ export default class Translation extends Component<Props> {
     if (this.props.ns !== nextProps.ns) {
       return true;
     }
-    if (
-      JSON.stringify(this.props.placeholders) !==
-      JSON.stringify(nextProps.placeholders)
-    ) {
+    if (JSON.stringify(this.props.placeholders) !== JSON.stringify(nextProps.placeholders)) {
       return true;
     }
 

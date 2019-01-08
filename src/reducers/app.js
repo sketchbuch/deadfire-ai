@@ -16,10 +16,7 @@ import appDefault from '../types/app';
 /**
  * App Reducer.
  */
-export default function reducer(
-  state: AppState = appDefault,
-  action: ActionObj
-) {
+export default function reducer(state: AppState = appDefault, action: ActionObj) {
   switch (action.type) {
     case DATA_LOAD_ERROR:
     case LANGUAGE_LOAD_ERROR:

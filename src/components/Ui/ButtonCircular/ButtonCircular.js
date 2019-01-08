@@ -35,18 +35,7 @@ class ButtonCircular extends React.PureComponent<Props> {
   props: Props;
 
   render() {
-    const {
-      action,
-      buttontype,
-      children,
-      classes,
-      disabled,
-      name,
-      onClick,
-      title,
-      type,
-      visual,
-    } = this.props;
+    const { action, buttontype, children, classes, disabled, name, onClick, title, type, visual } = this.props;
 
     const tagName = visual ? 'span' : 'button';
 

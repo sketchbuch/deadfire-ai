@@ -29,9 +29,7 @@ describe('Reducer: App', () => {
 
   test('APP_STORAGE_CREATED should return with storageCreated = true', () => {
     const expectedState = { ...appDefault, storageCreated: true };
-    expect(reducer(initialState, { type: APP_STORAGE_CREATED })).toEqual(
-      expectedState
-    );
+    expect(reducer(initialState, { type: APP_STORAGE_CREATED })).toEqual(expectedState);
   });
 
   test('APP_LOADED should return with loaded = true', () => {

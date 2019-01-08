@@ -3,10 +3,7 @@
 import { put, select } from 'redux-saga/effects';
 import { writeDataFile } from '../fs/fs';
 import { FILE_SETTINGS } from '../constants/io';
-import {
-  SETTINGS_UPDATE_ERROR,
-  SETTINGS_UPDATE_SUCCESS,
-} from '../constants/actionTypes';
+import { SETTINGS_UPDATE_ERROR, SETTINGS_UPDATE_SUCCESS } from '../constants/actionTypes';
 import type { FsObject } from '../types/fsObject';
 import type { ActionObj } from '../types/action';
 

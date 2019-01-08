@@ -16,9 +16,7 @@ describe('<InfoMessage />', () => {
     const wrapperNoMsg = shallow(<InfoMessage {...props} />);
     expect(wrapperNoMsg.find('.InfoMessage__message')).toHaveLength(0);
 
-    const wrapperMsg = shallow(
-      <InfoMessage {...props} message="Something went wrong" />
-    );
+    const wrapperMsg = shallow(<InfoMessage {...props} message="Something went wrong" />);
     expect(wrapperMsg.find('.InfoMessage__message')).toHaveLength(1);
   });
 

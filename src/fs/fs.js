@@ -14,17 +14,13 @@ if (window !== undefined && window.require) {
 }
 
 const APP_PATH = electron !== null ? electron.remote.app.getAppPath() : '';
-const DATA_PATH =
-  electron !== null ? electron.remote.app.getPath('userData') : '';
+const DATA_PATH = electron !== null ? electron.remote.app.getPath('userData') : '';
 const FOLDER = window.location.hostname === 'localhost' ? 'public' : 'build';
 
 /**
  * Writes a file async. to the filesystem. callback receives an FsObject.
  */
-export function writeDataFile(
-  fileName: string,
-  content: object
-): Promise<FsObject> {
+export function writeDataFile(fileName: string, content: object): Promise<FsObject> {
   return new Promise((resolve, reject) => {
     const FILE_PATH = getDataPath(fileName);
 
@@ -52,66 +48,59 @@ export function readDataFile(fileName: string): Promise<FsObject> {
   return new Promise((resolve, reject) => {
     const FILE_PATH = getDataPath(fileName);
 
-    fs.readFile(
-      FILE_PATH,
-      'UTF-8',
-      (err: ?Error, data: string | Buffer = '') => {
-        if (err) {
-          if (err.code === 'ENOENT') {
-            let folders = FILE_PATH.replace(DATA_PATH, '')
-              .split('/')
-              .filter(f => f !== '');
-            if (folders[folders.length - 1].indexOf('.') > -1) {
-              folders.pop();
-            }
-            let finalPath =
-              DATA_PATH +
-              '/' +
-              (folders.length > 1 ? folders.join('/') : folders[0]);
+    fs.readFile(FILE_PATH, 'UTF-8', (err: ?Error, data: string | Buffer = '') => {
+      if (err) {
+        if (err.code === 'ENOENT') {
+          let folders = FILE_PATH.replace(DATA_PATH, '')
+            .split('/')
+            .filter(f => f !== '');
+          if (folders[folders.length - 1].indexOf('.') > -1) {
+            folders.pop();
+          }
+          let finalPath = DATA_PATH + '/' + (folders.length > 1 ? folders.join('/') : folders[0]);
 
-            try {
-              fs.mkdirSync(finalPath);
-              writeFile(fileName, {}).then(response => {
-                if (response.err) {
-                  reject({
-                    ...response,
-                    data: {},
-                    wasCreated: false,
-                  });
-                } else {
-                  resolve({
-                    ...response,
-                    data: {},
-                    wasCreated: true,
-                  });
-                }
-              });
-            } catch (createErr) {
-              reject({
-                data: {},
-                errorObj: createErr,
-                success: false,
-                wasCreated: false,
-              });
-            }
-          } else {
+          try {
+            fs.mkdirSync(finalPath);
+            writeFile(fileName, {}).then(response => {
+              if (response.err) {
+                reject({
+                  ...response,
+                  data: {},
+                  wasCreated: false,
+                });
+              } else {
+                resolve({
+                  ...response,
+                  data: {},
+                  wasCreated: true,
+                });
+              }
+            });
+          } catch (createErr) {
             reject({
               data: {},
-              errorObj: err,
+              errorObj: createErr,
               success: false,
               wasCreated: false,
             });
           }
         } else {
-          resolve({
-            data: data ? JSON.parse(data.trim()) : {},
+          reject({
+            data: {},
             errorObj: err,
-            success: true,
+            success: false,
             wasCreated: false,
           });
         }
+      } else {
+        resolve({
+          data: data ? JSON.parse(data.trim()) : {},
+          errorObj: err,
+          success: true,
+          wasCreated: false,
+        });
       }
-    );
+    });
   });
 }
 
@@ -122,34 +111,30 @@ export function readLangFile(lang: Languages): Promise<FsObject> {
   return new Promise((resolve, reject) => {
     const FILE_PATH = getLanguagePath(lang);
 
-    fs.readFile(
-      FILE_PATH,
-      'UTF-8',
-      (err: ?Error, data: string | Buffer = '') => {
-        if (err) {
-          reject({
-            data: {},
-            errorObj: err,
-            success: false,
-            wasCreated: false,
-          });
-        } else {
-          let langData = {};
+    fs.readFile(FILE_PATH, 'UTF-8', (err: ?Error, data: string | Buffer = '') => {
+      if (err) {
+        reject({
+          data: {},
+          errorObj: err,
+          success: false,
+          wasCreated: false,
+        });
+      } else {
+        let langData = {};
 
-          if (data) {
-            langData = JSON.parse(data.trim());
-            window.app.translations[lang] = langData[lang];
-          }
-
-          resolve({
-            data: langData,
-            errorObj: err,
-            success: true,
-            wasCreated: false,
-          });
+        if (data) {
+          langData = JSON.parse(data.trim());
+          window.app.translations[lang] = langData[lang];
         }
+
+        resolve({
+          data: langData,
+          errorObj: err,
+          success: true,
+          wasCreated: false,
+        });
       }
-    );
+    });
   });
 }
 
@@ -184,10 +169,7 @@ export function readEternityFile(): Promise<FsObject> {
 /**
  * Writes a file to the disc as json using the content provided.
  */
-export function writeFile(
-  fileName: string,
-  jsonContent: Object | string
-): Promise<FsObject> {
+export function writeFile(fileName: string, jsonContent: Object | string): Promise<FsObject> {
   return new Promise((resolve, reject) => {
     const FILE_PATH = getDataPath(fileName);
     const content = { [fileName.toLowerCase()]: jsonContent };

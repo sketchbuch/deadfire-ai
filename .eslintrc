@@ -6,23 +6,14 @@
     "jest": true,
     "jest/globals": true
   },
-  "extends": [
-    "react-app",
-    "plugin:flowtype/recommended",
-    "prettier"
-  ],
+  "extends": ["react-app", "plugin:flowtype/recommended", "prettier"],
   "globals": {
     "Generator": true
   },
-  "plugins": [
-    "jest",
-    "flowtype",
-    "prettier"
-  ],
+  "plugins": ["jest", "flowtype", "prettier"],
   "rules": {
     "prettier/prettier": "error",
-    "curly": [
-      "error"
-    ]
+    "curly": ["error"],
+    "max-len": ["warn", { "code": 120, "tabWidth": 2 }]
   }
 }

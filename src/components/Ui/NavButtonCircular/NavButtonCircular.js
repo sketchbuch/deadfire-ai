@@ -31,16 +31,7 @@ class NavButtonCircular extends React.PureComponent<Props> {
   props: Props;
 
   render() {
-    const {
-      action,
-      buttontype,
-      children,
-      classes,
-      disabled,
-      title,
-      to,
-      type,
-    } = this.props;
+    const { action, buttontype, children, classes, disabled, title, to, type } = this.props;
 
     return (
       <Link

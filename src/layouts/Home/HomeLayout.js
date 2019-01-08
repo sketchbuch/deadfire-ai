@@ -20,9 +20,7 @@ class HomeLayout extends Component<Props> {
 
     this.menuItems = [];
     ['scripts', 'settings'].forEach((key: string, index: number) => {
-      this.menuItems.push(
-        MenuItemFactory({ ...menuItemDefault, key }, Date.now())
-      );
+      this.menuItems.push(MenuItemFactory({ ...menuItemDefault, key }, Date.now()));
     });
   }
 
@@ -37,9 +35,7 @@ class HomeLayout extends Component<Props> {
                   <Icon type={item.icon} />
                 </ButtonCircular>
                 <span className="HomeLayout__title">{item.label}</span>
-                <span className="HomeLayout__description">
-                  {item.description}
-                </span>
+                <span className="HomeLayout__description">{item.description}</span>
               </Link>
             </div>
           );

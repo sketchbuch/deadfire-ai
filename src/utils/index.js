@@ -7,13 +7,4 @@ import setTitle from './title';
 import { sortObjectsAz, sortObjectsZa } from './sort';
 import { ucFirst, cropStr } from './strings';
 
-export {
-  cropStr,
-  generateId,
-  getCustomNumProp,
-  getItemById,
-  setTitle,
-  sortObjectsAz,
-  sortObjectsZa,
-  ucFirst,
-};
+export { cropStr, generateId, getCustomNumProp, getItemById, setTitle, sortObjectsAz, sortObjectsZa, ucFirst };

@@ -2,12 +2,7 @@
 
 import { put, select } from 'redux-saga/effects';
 import { readLangFile } from '../fs/fs';
-import {
-  APP_LOADED,
-  LANGUAGE_LOAD,
-  LANGUAGE_LOAD_ERROR,
-  LANGUAGE_LOAD_SUCCESS,
-} from '../constants/actionTypes';
+import { APP_LOADED, LANGUAGE_LOAD, LANGUAGE_LOAD_ERROR, LANGUAGE_LOAD_SUCCESS } from '../constants/actionTypes';
 import type { FsObject } from '../types/fsObject';
 import type { LanguagesType } from '../types/lang';
 

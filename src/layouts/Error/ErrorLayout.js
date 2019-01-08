@@ -26,10 +26,7 @@ class ErrorLayout extends PureComponent<Props> {
   }
 
   render() {
-    const headline =
-      window.app.translations.length > 0
-        ? trans('InfoMessage', 'ErrorLayout')
-        : 'An error occured';
+    const headline = window.app.translations.length > 0 ? trans('InfoMessage', 'ErrorLayout') : 'An error occured';
 
     return (
       <Panel classes="ErrorLayout">

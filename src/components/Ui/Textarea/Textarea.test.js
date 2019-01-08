@@ -33,12 +33,8 @@ describe('<Textarea />', () => {
     };
     const cn2Wrapper = shallow(<Textarea {...cn2Props} />);
 
-    expect(cn1Wrapper.find('textarea').hasClass(cn2Props.classes)).toEqual(
-      false
-    );
-    expect(cn2Wrapper.find('textarea').hasClass(cn2Props.classes)).toEqual(
-      true
-    );
+    expect(cn1Wrapper.find('textarea').hasClass(cn2Props.classes)).toEqual(false);
+    expect(cn2Wrapper.find('textarea').hasClass(cn2Props.classes)).toEqual(true);
   });
 
   test('Handles isValid property', () => {

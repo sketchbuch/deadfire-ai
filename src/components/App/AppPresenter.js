@@ -9,11 +9,7 @@ import SettingsLayout from '../../layouts/Settings/SettingsLayout';
 import ScriptsLayout from '../../layouts/Scripts/ScriptsLayout';
 import NotFoundLayout from '../../layouts/NotFound/NotFoundLayout';
 import Header from '../../components/Header/Header';
-import {
-  ROUTE_HOME,
-  ROUTE_SETTINGS,
-  ROUTE_SCRIPTS,
-} from '../../constants/routes';
+import { ROUTE_HOME, ROUTE_SETTINGS, ROUTE_SCRIPTS } from '../../constants/routes';
 import './AppPresenter.css';
 
 type Props = {
@@ -32,13 +28,7 @@ export class AppPresenter extends Component<Props> {
   };
 
   render() {
-    const {
-      error,
-      errorMsg,
-      installPathSet,
-      loaded,
-      storageCreated,
-    } = this.props;
+    const { error, errorMsg, installPathSet, loaded, storageCreated } = this.props;
     let content = null;
 
     if (loaded) {

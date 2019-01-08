@@ -28,16 +28,8 @@ describe('<Translation />', () => {
   });
 
   test('Replaces placeholders', () => {
-    const wrapper = shallow(
-      <Translation
-        name="Placeholder"
-        ns="App"
-        placeholders={{ PH: 'Find me' }}
-      />
-    );
-    expect(wrapper.text()).toBe(
-      window.app.translations.EN.App.Placeholder.replace('%PH%', 'Find me')
-    );
+    const wrapper = shallow(<Translation name="Placeholder" ns="App" placeholders={{ PH: 'Find me' }} />);
+    expect(wrapper.text()).toBe(window.app.translations.EN.App.Placeholder.replace('%PH%', 'Find me'));
   });
 
   describe('Handles window.app correctly', () => {
@@ -70,9 +62,7 @@ describe('<Translation />', () => {
 
   describe('shouldComponentUpdate', () => {
     const initialProps = { name: 'Name', ns: 'App' };
-    const wrapper = shallow(
-      <Translation {...initialProps} placeholders={{}} />
-    );
+    const wrapper = shallow(<Translation {...initialProps} placeholders={{}} />);
     const wrapperInstance = wrapper.instance();
 
     test('should not update if the props are the same', () => {

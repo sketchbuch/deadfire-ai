@@ -21,12 +21,7 @@ class Form extends React.PureComponent<Props> {
 
   render() {
     return (
-      <form
-        className="Form"
-        method="get"
-        action="#"
-        onSubmit={this.props.onSubmit}
-      >
+      <form className="Form" method="get" action="#" onSubmit={this.props.onSubmit}>
         {this.props.children}
       </form>
     );

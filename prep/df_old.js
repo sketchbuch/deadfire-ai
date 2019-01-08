@@ -18,9 +18,7 @@ function readEternityAiFile(fileName) {
   fs.readFile(fileName, function(err, data) {
     console.log(fileName);
 
-    const aiHeader = new Parser()
-      .uint32le('HeaderVersion')
-      .uint32le('TypesLen');
+    const aiHeader = new Parser().uint32le('HeaderVersion').uint32le('TypesLen');
 
     let aiData = aiHeader.parse(data);
     let curPos = 8;
@@ -41,9 +39,7 @@ function readEternityAiFile(fileName) {
       curPos += TYPE_GUID + TYPE_VER;
 
       if (i === TYPE_COUNT - 1) {
-        const selTypeParser = new Parser()
-          .skip(curPos)
-          .buffer('TypeID', { length: 16 });
+        const selTypeParser = new Parser().skip(curPos).buffer('TypeID', { length: 16 });
 
         aiData.TypeID = bytesToUuid(selTypeParser.parse(data).TypeID);
         curPos += TYPE_GUID;
@@ -76,14 +72,10 @@ function readEternityAiFile(fileName) {
 
       // Get types
       for (let i = 0; i < SUP_COUNT; i++) {
-        const supItemParser = new Parser()
-          .skip(curPos)
-          .buffer('CharacterClassGameData', { length: 16 });
+        const supItemParser = new Parser().skip(curPos).buffer('CharacterClassGameData', { length: 16 });
 
         const result = supItemParser.parse(data);
-        result.CharacterClassGameData = bytesToUuid(
-          result.CharacterClassGameData
-        );
+        result.CharacterClassGameData = bytesToUuid(result.CharacterClassGameData);
 
         aiData.SupportedClasses.push(result);
         curPos += TYPE_GUID;
@@ -91,9 +83,7 @@ function readEternityAiFile(fileName) {
     }
 
     // Actonsets classes
-    const asParser = new Parser()
-      .skip(curPos)
-      .uint32le('ConditionalActionSetsLen');
+    const asParser = new Parser().skip(curPos).uint32le('ConditionalActionSetsLen');
     aiData = { ...aiData, ...asParser.parse(data), ConditionalActionSet: [] };
     curPos += 4;
 
@@ -166,18 +156,10 @@ function readEternityAiFile(fileName) {
             result.Ability = bytesToUuid(result.Ability);
             result.Consumable = bytesToUuid(result.Consumable);
             result.TargetingFilter = bytesToUuid(result.TargetingFilter);
-            result.TargetingPreference = bytesToUuid(
-              result.TargetingPreference
-            );
+            result.TargetingPreference = bytesToUuid(result.TargetingPreference);
 
             actionSet.Actions.push(result);
-            curPos +=
-              TYPE_GUID +
-              TYPE_VER +
-              TYPE_VER +
-              TYPE_GUID * 5 +
-              TYPE_VER +
-              TYPE_VER;
+            curPos += TYPE_GUID + TYPE_VER + TYPE_VER + TYPE_GUID * 5 + TYPE_VER + TYPE_VER;
           }
         }
 

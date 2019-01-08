@@ -1,9 +1,7 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import Translation, {
-  trans,
-} from '../../../components/Translation/Translation';
+import Translation, { trans } from '../../../components/Translation/Translation';
 import {
   Button,
   FieldError,
