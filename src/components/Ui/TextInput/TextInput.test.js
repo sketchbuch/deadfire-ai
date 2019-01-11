@@ -1,13 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { shallow, mount } from 'enzyme';
 import TextInput from './TextInput';
 import { UI_ERROR_CLASS } from '../../../constants/ui';
 
 describe('<TextInput />', () => {
   test('Renders without crashing', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<TextInput />, div);
+    const wrapper = shallow(<TextInput />);
+    expect(wrapper).toHaveLength(1);
   });
 
   test('Handles disabled property', () => {

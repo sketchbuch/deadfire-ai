@@ -3,12 +3,13 @@
 import React, { Component } from 'react';
 import { RouteComponentProps } from 'react-router';
 import { connect } from 'react-redux';
+import Form from './Form/Form';
 import Panel from '../../components/Panel/Panel';
 import settingsDefault from '../../types/settings';
+import type { SettingsState } from '../../types/settings';
 import { ROUTE_SETTINGS } from '../../constants/routes';
 import { setTitle } from '../../utils';
 import { trans } from '../../components/Translation/Translation';
-import Form from './Form/Form';
 import './SettingsLayout.css';
 
 type Props = {
@@ -17,17 +18,16 @@ type Props = {
 };
 
 type State = {
-  error: boolean,
-  saving: boolean,
-  settings: Object,
+  busy: boolean,
+  errors: string[],
+  settings: SettingsState,
 };
 
 class SettingsLayout extends Component<Props, State> {
   props: Props;
-
   state: State = {
-    error: false,
-    saving: false,
+    busy: false,
+    errors: [],
     settings: { ...settingsDefault },
   };
 
@@ -41,10 +41,28 @@ class SettingsLayout extends Component<Props, State> {
     }
   }
 
+  onChange = (event: SyntheticInputEvent) => {
+    console.log('onChange()');
+    //this.update(event.target.value);
+  };
+
+  onSubmit = async (event: SyntheticInputEvent) => {
+    event.preventDefault();
+
+    console.log('onSubmit()');
+  };
+
   render() {
     return (
       <Panel classes="SettingsLayout">
-        <Form>test</Form>
+        <Form
+          busy={this.state.busy}
+          disabled={this.state.errors.length > 0}
+          errors={this.state.errors}
+          onChange={this.onChange}
+          onSubmit={this.onSubmit}
+          values={this.props.settings}
+        />
       </Panel>
     );
   }

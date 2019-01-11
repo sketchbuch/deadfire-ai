@@ -28,6 +28,10 @@
     "SettingsLayout": {
       "Button": "Save",
       "Headline": "Settings",
+      "LegendMisc": "Misc.",
+      "LegendDeadfire": "Deadfire",
+      "LabelLanguage": "Language",
+      "LabelInstallPath": "Install Path",
       "WinTitle": "Settings"
     },
     "Toastr": {
