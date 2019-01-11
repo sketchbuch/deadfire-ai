@@ -10,6 +10,7 @@ export type AppState = {
   installPathSet: boolean,
   loaded: boolean,
   loading: boolean,
+  menuExpanded: boolean,
   storageCreated: boolean,
 };
 
@@ -19,6 +20,7 @@ const appDefault: AppState = {
   installPathSet: false,
   loaded: false,
   loading: true,
+  menuExpanded: false,
   storageCreated: false,
 };
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import ReduxToastr from 'react-redux-toastr';
 import { Provider } from 'react-redux';
@@ -10,7 +10,7 @@ import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <Provider store={store}>
-    <div className="App__frame">
+    <Fragment>
       <App />
       <ReduxToastr
         timeOut={TOASTR_DURATION}
@@ -20,7 +20,7 @@ ReactDOM.render(
         transitionIn="bounceIn"
         transitionOut="fadeOut"
       />
-    </div>
+    </Fragment>
   </Provider>,
   document.getElementById('root')
 );

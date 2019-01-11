@@ -2,13 +2,14 @@
 
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import NewLayout from '../../layouts/New/NewLayout';
 import ErrorLayout from '../../layouts/Error/ErrorLayout';
-import HomeLayout from '../../layouts/Home/HomeLayout';
-import SettingsLayout from '../../layouts/Settings/SettingsLayout';
-import ScriptsLayout from '../../layouts/Scripts/ScriptsLayout';
-import NotFoundLayout from '../../layouts/NotFound/NotFoundLayout';
 import Header from '../../components/Header/Header';
+import HomeLayout from '../../layouts/Home/HomeLayout';
+import Menu from '../../components/Menu/Menu';
+import NewLayout from '../../layouts/New/NewLayout';
+import NotFoundLayout from '../../layouts/NotFound/NotFoundLayout';
+import ScriptsLayout from '../../layouts/Scripts/ScriptsLayout';
+import SettingsLayout from '../../layouts/Settings/SettingsLayout';
 import { ROUTE_HOME, ROUTE_SETTINGS, ROUTE_SCRIPTS } from '../../constants/routes';
 import './AppPresenter.css';
 
@@ -17,18 +18,16 @@ type Props = {
   errorMsg: string,
   installPathSet: boolean,
   loaded: boolean,
+  menuExpanded: menuExpanded,
   storageCreated: boolean,
+  toggleMenu: (expanded: boolean) => void,
 };
 
 export class AppPresenter extends Component<Props> {
   props: Props;
 
-  static defaultProps = {
-    errorMsg: '',
-  };
-
   render() {
-    const { error, errorMsg, installPathSet, loaded, storageCreated } = this.props;
+    const { error, errorMsg, installPathSet, loaded, menuExpanded, storageCreated, toggleMenu } = this.props;
     let content = null;
 
     if (loaded) {
@@ -51,6 +50,7 @@ export class AppPresenter extends Component<Props> {
     return (
       <div className="App">
         <Header />
+        {loaded && <Menu expanded={menuExpanded} toggleMenu={toggleMenu} />}
         <div className="App__content">{content}</div>
       </div>
     );

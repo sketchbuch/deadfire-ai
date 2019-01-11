@@ -12,6 +12,7 @@ describe('<App />', () => {
     dispatch: jest.fn(),
     error: false,
     errorMsg: '',
+    menuExpanded: false,
     loaded: false,
   };
 

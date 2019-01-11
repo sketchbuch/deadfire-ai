@@ -3,7 +3,9 @@
  */
 
 // App
+export const APP_CONTRACT_MENU = 'APP_CONTRACT_MENU';
 export const APP_ERROR = 'APP_ERROR';
+export const APP_EXPAND_MENU = 'APP_EXPAND_MENU';
 export const APP_LOADED = 'APP_LOADED';
 export const APP_LOADER_REMOVED = 'APP_LOADER_REMOVED';
 export const APP_LOADING = 'APP_LOADING';

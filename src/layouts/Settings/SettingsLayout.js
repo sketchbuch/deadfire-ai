@@ -8,6 +8,7 @@ import settingsDefault from '../../types/settings';
 import { ROUTE_SETTINGS } from '../../constants/routes';
 import { setTitle } from '../../utils';
 import { trans } from '../../components/Translation/Translation';
+import Form from './Form/Form';
 import './SettingsLayout.css';
 
 type Props = {
@@ -41,7 +42,11 @@ class SettingsLayout extends Component<Props, State> {
   }
 
   render() {
-    return <Panel classes="SettingsLayout">SettingsLayout</Panel>;
+    return (
+      <Panel classes="SettingsLayout">
+        <Form>test</Form>
+      </Panel>
+    );
   }
 }
 

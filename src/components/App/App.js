@@ -1,11 +1,11 @@
 // @flow
 
 import React, { Component } from 'react';
+import type { Dispatch as ReduxDispatch } from 'redux';
 import { BrowserRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as appActions from '../../actions/appActions';
 import AppPresenter from './AppPresenter';
-import type { Dispatch as ReduxDispatch } from 'redux';
 
 type Props = {
   appLoading: () => void,
@@ -13,7 +13,9 @@ type Props = {
   errorMsg: string,
   installPathSet: boolean,
   loaded: boolean,
+  menuExpanded: boolean,
   storageCreated: boolean,
+  toggleMenu: (expanded: boolean) => void,
 };
 
 export class App extends Component<Props> {
@@ -22,7 +24,9 @@ export class App extends Component<Props> {
   static defaultProps = {
     error: false,
     errorMsg: '',
+    installPathSet: false,
     loaded: false,
+    menuExpanded: false,
     storageCreated: false,
   };
 
@@ -31,7 +35,7 @@ export class App extends Component<Props> {
   }
 
   render() {
-    const { error, errorMsg, installPathSet, loaded, storageCreated } = this.props;
+    const { error, errorMsg, installPathSet, loaded, menuExpanded, storageCreated, toggleMenu } = this.props;
 
     return (
       <BrowserRouter>
@@ -39,8 +43,10 @@ export class App extends Component<Props> {
           error={error}
           errorMsg={errorMsg}
           installPathSet={installPathSet}
-          storageCreated={storageCreated}
           loaded={loaded}
+          menuExpanded={menuExpanded}
+          storageCreated={storageCreated}
+          toggleMenu={toggleMenu}
         />
       </BrowserRouter>
     );
@@ -52,6 +58,7 @@ const mapStateToProps = (state: Object) => ({
   errorMsg: state.app.errorMsg,
   installPathSet: state.app.installPathSet,
   loaded: state.app.loaded,
+  menuExpanded: state.app.menuExpanded,
   storageCreated: state.app.storageCreated,
 });
 
@@ -59,6 +66,13 @@ const mapDispatchToProps = (dispatch: ReduxDispatch) => {
   return {
     appLoading: () => {
       dispatch(appActions.loading());
+    },
+    toggleMenu: (expanded: boolean) => {
+      if (expanded) {
+        dispatch(appActions.contractMenu());
+      } else {
+        dispatch(appActions.expandMenu());
+      }
     },
   };
 };

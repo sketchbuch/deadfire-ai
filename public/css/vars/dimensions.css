@@ -1,4 +1,6 @@
 :root {
-  --header-height: 6.0rem;
+  --header-height: 6rem;
+  --menu-witdh: 75px;
+  --menu-witdh-expanded: 350px;
   --toastr-max-width: 440px;
 }

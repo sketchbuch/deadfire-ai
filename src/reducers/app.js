@@ -1,7 +1,9 @@
 // @flow
 
 import {
+  APP_CONTRACT_MENU,
   APP_ERROR,
+  APP_EXPAND_MENU,
   APP_LOADED,
   APP_STORAGE_CREATED,
   DATA_LOAD_ERROR,
@@ -37,6 +39,12 @@ export default function reducer(state: AppState = appDefault, action: ActionObj)
 
     case SETTINGS_UPDATE_SUCCESS:
       return { ...state, installPathSet: true };
+
+    case APP_CONTRACT_MENU:
+      return { ...state, menuExpanded: false };
+
+    case APP_EXPAND_MENU:
+      return { ...state, menuExpanded: true };
 
     default:
       return state;

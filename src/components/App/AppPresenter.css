@@ -1,11 +1,11 @@
-.App,
-.App__frame {
+.App {
   min-height: 100%;
   width: 100%;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
 .App__content {
@@ -14,4 +14,11 @@
   height: 100%;
   width: 100%;
   padding-top: var(--header-height);
+  padding-left: var(--menu-witdh);
+  transition: padding-left 250ms ease;
+  will-change: padding-left;
+}
+
+.Menu--expanded + .App__content {
+  padding-left: var(--menu-witdh-expanded);
 }
