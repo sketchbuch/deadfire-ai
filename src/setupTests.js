@@ -14,6 +14,10 @@ window.app = {
       AppError: {
         ErrorTxt: 'Error Loading',
       },
+      Expander: {
+        Expand: 'Expand Menu',
+        Contract: 'Contract Menu',
+      },
       NewLayout: {
         Headline: 'Welcome to the Deadfire AI Editor',
         Description: 'Please provide the full path to your install of Deadfire.',
@@ -29,6 +33,10 @@ window.app = {
       },
       AppError: {
         ErrorTxt: 'DE - Error Loading',
+      },
+      Expander: {
+        Expand: 'DE - Expand Menu',
+        Contract: 'DE - Contract Menu',
       },
       NewLayout: {
         Headline: 'DE - Welcome to the Deadfire AI Editor',

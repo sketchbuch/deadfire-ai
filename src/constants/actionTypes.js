@@ -3,9 +3,9 @@
  */
 
 // App
-export const APP_CONTRACT_MENU = 'APP_CONTRACT_MENU';
+export const APP_MENU_CONTRACT = 'APP_MENU_CONTRACT';
 export const APP_ERROR = 'APP_ERROR';
-export const APP_EXPAND_MENU = 'APP_EXPAND_MENU';
+export const APP_MENU_EXPAND = 'APP_MENU_EXPAND';
 export const APP_LOADED = 'APP_LOADED';
 export const APP_LOADER_REMOVED = 'APP_LOADER_REMOVED';
 export const APP_LOADING = 'APP_LOADING';
@@ -15,6 +15,12 @@ export const APP_STORAGE_CREATED = 'APP_STORAGE_CREATED';
 export const DATA_LOAD = 'DATA_LOAD';
 export const DATA_LOAD_ERROR = 'DATA_LOAD_ERROR';
 export const DATA_LOAD_SUCCESS = 'DATA_LOAD_SUCCESS';
+
+// Forms
+export const FORM_BUSY = 'FORM_BUSY';
+export const FORM_ERROR = 'FORM_ERROR';
+export const FORM_RESET = 'FORM_RESET';
+export const FORM_SUCCESS = 'FORM_SUCCESS';
 
 // Languages
 export const LANGUAGE_LOAD = 'LANGUAGE_LOAD';

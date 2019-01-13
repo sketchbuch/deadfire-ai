@@ -30,7 +30,6 @@ export class Menu extends Component<Props> {
   }
 
   handleExpanderClick() {
-    console.log('handleExpanderClick()', this.props.expanded, !this.props.expanded);
     this.props.toggleMenu(this.props.expanded);
   }
 

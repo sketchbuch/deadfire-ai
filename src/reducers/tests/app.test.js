@@ -3,9 +3,9 @@
 import reducer from '../app';
 import appDefault from '../../types/app';
 import {
-  APP_CONTRACT_MENU,
+  APP_MENU_CONTRACT,
   APP_ERROR,
-  APP_EXPAND_MENU,
+  APP_MENU_EXPAND,
   APP_LOADED,
   APP_STORAGE_CREATED,
   DATA_LOAD_ERROR,
@@ -39,14 +39,14 @@ describe('Reducer: App', () => {
     expect(reducer(initialState, { type: APP_LOADED })).toEqual(expectedState);
   });
 
-  test('APP_EXPAND_MENU should set menuExpanded to true', () => {
+  test('APP_MENU_EXPAND should set menuExpanded to true', () => {
     const expectedState = { ...appDefault, menuExpanded: true };
-    expect(reducer(initialState, { type: APP_EXPAND_MENU })).toEqual(expectedState);
+    expect(reducer(initialState, { type: APP_MENU_EXPAND })).toEqual(expectedState);
   });
 
-  test('APP_CONTRACT_MENU should set menuExpanded to false', () => {
+  test('APP_MENU_CONTRACT should set menuExpanded to false', () => {
     const expectedState = { ...appDefault, menuExpanded: false };
-    expect(reducer(initialState, { type: APP_CONTRACT_MENU })).toEqual(expectedState);
+    expect(reducer(initialState, { type: APP_MENU_CONTRACT })).toEqual(expectedState);
   });
 
   describe('Error Message:', () => {

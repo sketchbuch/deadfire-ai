@@ -10,6 +10,7 @@
   "globals": {
     "Generator": true
   },
+  "parser": "babel-eslint",
   "plugins": ["jest", "flowtype", "prettier"],
   "rules": {
     "prettier/prettier": "error",

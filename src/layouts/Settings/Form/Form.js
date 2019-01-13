@@ -2,7 +2,15 @@
 
 import React, { PureComponent } from 'react';
 import Translation, { trans } from '../../../components/Translation/Translation';
-import { Button, FieldWrap, Form as FormElement, FormHeader, Select, TextInput } from '../../../components/Ui';
+import {
+  Button,
+  FieldError,
+  FieldWrap,
+  Form as FormElement,
+  FormHeader,
+  Select,
+  TextInput,
+} from '../../../components/Ui';
 import { langs } from '../../../reducers/languages';
 import type { SettingsState } from '../../types/settings';
 
@@ -31,11 +39,11 @@ export class Form extends PureComponent<Props> {
           </legend>
 
           <FieldWrap>
-            <label className="Fieldwrap__left" htmlFor="language">
+            <label className="Fieldwrap__left" htmlFor="lang">
               <Translation name="LabelLanguage" ns="SettingsLayout" />
             </label>
             <div className="Fieldwrap__right">
-              <Select id="langauge" name="language" onChange={onChange} options={langs} value={values.language} />
+              <Select id="lang" name="lang" onChange={onChange} options={langs} value={values.lang} />
             </div>
           </FieldWrap>
         </fieldset>
@@ -51,18 +59,22 @@ export class Form extends PureComponent<Props> {
             </label>
             <div className="Fieldwrap__right">
               <TextInput
+                isValid={!errors.installPath}
                 name="installPath"
                 onChange={onChange}
                 placeholder={trans('Placeholder', 'NewLayout')}
                 value={values.installPath}
               />
+              <FieldError errors={errors.installPath} />
             </div>
           </FieldWrap>
         </fieldset>
 
-        <Button type="submit" disabled={disabled} busy={busy}>
-          <Translation name="Button" ns="SettingsLayout" />
-        </Button>
+        <FieldWrap classes="FieldWrap--buttons">
+          <Button type="submit" disabled={disabled} busy={busy}>
+            <Translation name="Button" ns="SettingsLayout" />
+          </Button>
+        </FieldWrap>
       </FormElement>
     );
   }

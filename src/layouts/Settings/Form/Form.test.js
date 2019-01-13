@@ -11,7 +11,10 @@ describe('<Form />', () => {
     errors: [],
     onChange: jest.fn(),
     onSubmit: jest.fn(),
-    value: '',
+    values: {
+      installPath: '',
+      lang: 'EN',
+    },
   };
 
   test('Renders without crashing', () => {

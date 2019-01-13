@@ -1,7 +1,7 @@
 // @flow
 
 import * as appActions from '../appActions';
-import { APP_CONTRACT_MENU, APP_EXPAND_MENU, APP_LOADING } from '../../constants/actionTypes';
+import { APP_MENU_CONTRACT, APP_MENU_EXPAND, APP_LOADING } from '../../constants/actionTypes';
 
 /**
  * App Actions Tests
@@ -13,13 +13,13 @@ describe('Actions: AppActions:', () => {
     expect(appActions.loading()).toEqual(EXPECTED_ACTION);
   });
 
-  test('expandMenu() should return the APP_EXPAND_MENU action', () => {
-    const EXPECTED_ACTION = { type: APP_EXPAND_MENU };
+  test('expandMenu() should return the APP_MENU_EXPAND action', () => {
+    const EXPECTED_ACTION = { type: APP_MENU_EXPAND };
     expect(appActions.expandMenu()).toEqual(EXPECTED_ACTION);
   });
 
-  test('contractMenu() should return the APP_CONTRACT_MENU action', () => {
-    const EXPECTED_ACTION = { type: APP_CONTRACT_MENU };
+  test('contractMenu() should return the APP_MENU_CONTRACT action', () => {
+    const EXPECTED_ACTION = { type: APP_MENU_CONTRACT };
     expect(appActions.contractMenu()).toEqual(EXPECTED_ACTION);
   });
 });

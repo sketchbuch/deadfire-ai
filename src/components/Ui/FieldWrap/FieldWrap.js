@@ -1,10 +1,12 @@
 //@flow
 
 import * as React from 'react';
+import classNames from 'classnames';
 import './FieldWrap.css';
 
 type Props = {
   children?: React.Node,
+  classes: string,
 };
 
 /**
@@ -18,7 +20,16 @@ class FieldWrap extends React.PureComponent<Props> {
   props: Props;
 
   render() {
-    return <div className="FieldWrap">{this.props.children}</div>;
+    return (
+      <div
+        className={classNames({
+          FieldWrap: true,
+          [this.props.classes]: !!this.props.classes,
+        })}
+      >
+        {this.props.children}
+      </div>
+    );
   }
 }
 

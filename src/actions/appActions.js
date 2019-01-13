@@ -1,6 +1,6 @@
 // @flow
 
-import { APP_CONTRACT_MENU, APP_EXPAND_MENU, APP_LOADING } from '../constants/actionTypes';
+import { APP_MENU_CONTRACT, APP_MENU_EXPAND, APP_LOADING } from '../constants/actionTypes';
 import type { ActionCreator } from '../types/action';
 
 /**
@@ -12,9 +12,9 @@ export function loading(): ActionCreator {
 }
 
 export function expandMenu(): ActionCreator {
-  return { type: APP_EXPAND_MENU };
+  return { type: APP_MENU_EXPAND };
 }
 
 export function contractMenu(): ActionCreator {
-  return { type: APP_CONTRACT_MENU };
+  return { type: APP_MENU_CONTRACT };
 }
