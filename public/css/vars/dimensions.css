@@ -1,6 +1,15 @@
 :root {
   --header-height: 6rem;
+
+  /* Menu */
   --menu-witdh: 75px;
   --menu-witdh-expanded: 350px;
-  --toastr-max-width: 440px;
+
+  /* Toaster */
+  --toastr-width: 350px;
+  --toastr-width-wide: 440px;
+  --toastr-offset: calc((var(--toastr-width) / 2) + calc(var(--menu-witdh) / 2) * -1);
+  --toastr-offset-wide: calc((var(--toastr-width-wide) / 2) + calc(var(--menu-witdh) / 2) * -1);
+  --toastr-offset-expanded: calc((var(--toastr-width) / 2) + calc(var(--menu-witdh-expanded) / 2) * -1);
+  --toastr-offset-wide-expanded: calc((var(--toastr-width-wide) / 2) + calc(var(--menu-witdh-expanded) / 2) * -1);
 }

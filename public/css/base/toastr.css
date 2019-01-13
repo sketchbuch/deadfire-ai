@@ -2,21 +2,28 @@
 /* ----------------- */
 
 .redux-toastr .bottom-center {
-	padding: 0 10px;
-	position: fixed;
-	width: 350px;
-	z-index: 99999999;
-	bottom: 75px;
-	left: 50%;
-	margin-left: -175px;
+  padding: 0 10px;
+  position: fixed;
+  width: var(--toastr-width);
+  z-index: 99999999;
+  bottom: 75px;
+  left: 50%;
+  margin-left: calc(var(--toastr-offset) * -1);
+  transition: margin-left 250ms ease, width 250ms ease;
+  will-change: margin-left, width;
 }
 
-
+body.menu-expanded .redux-toastr .bottom-center {
+  margin-left: calc(var(--toastr-offset-expanded) * -1);
+}
 
 @media screen and (min-width: 1024px) {
   .redux-toastr .bottom-center {
-    left: 20px;
-    margin-left: 0px;
-    width: var(--toastr-max-width);
-	}
+    width: var(--toastr-width-wide);
+    margin-left: calc(var(--toastr-offset-wide) * -1);
+  }
+
+  body.menu-expanded .redux-toastr .bottom-center {
+    margin-left: calc(var(--toastr-offset-wide-expanded) * -1);
+  }
 }

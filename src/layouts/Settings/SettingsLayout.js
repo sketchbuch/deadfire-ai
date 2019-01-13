@@ -4,15 +4,17 @@ import React, { Component } from 'react';
 import * as yup from 'yup';
 import { RouteComponentProps } from 'react-router';
 import { connect } from 'react-redux';
+import { toastr } from 'react-redux-toastr';
 import * as formActions from '../../actions/formActions';
 import Form from './Form/Form';
 import Panel from '../../components/Panel/Panel';
 import settingsDefault from '../../types/settings';
 import settingsSchema from '../../validation/schemas/settings';
+import type { FormsState } from '../../types/forms';
 import type { FormActionTypes } from '../../types/forms';
 import type { SettingsState } from '../../types/settings';
 import { ROUTE_SETTINGS } from '../../constants/routes';
-import { fat } from '../../types/forms';
+import { formsStates } from '../../types/forms';
 import { setTitle } from '../../utils';
 import { trans } from '../../components/Translation/Translation';
 import { update } from '../../actions/settingsActions';
@@ -20,7 +22,7 @@ import './SettingsLayout.css';
 
 type Props = {
   ...RouteComponentProps,
-  busy: boolean,
+  formState: FormsState,
   initialSettings: SettingsType,
   setFormState: (type: FormActionTypes) => void,
   submitSettings: (settings: SettingsType) => void,
@@ -52,10 +54,18 @@ export class SettingsLayout extends Component<Props, State> {
     if (window.location.pathname === ROUTE_SETTINGS) {
       setTitle(trans('WinTitle', 'SettingsLayout'));
     }
+
+    if (this.props.formState.success) {
+      toastr.success(trans('SaveSucces', 'SettingsLayout'));
+      this.props.setFormState(formsStates.RESET);
+    } else if (this.props.formState.error) {
+      toastr.error(this.props.formState.errorTitle, this.props.formState.errorMsg);
+      this.props.setFormState(formsStates.RESET);
+    }
   }
 
   componentWillUnmount() {
-    this.props.setFormState(fat.RESET);
+    this.props.setFormState(formsStates.RESET);
   }
 
   onChange = async (event: SyntheticInputEvent) => {
@@ -85,8 +95,10 @@ export class SettingsLayout extends Component<Props, State> {
       hasError = true;
     }
 
-    if (newErrors.length < 1) {
-      this.props.setFormState(fat.BUSY);
+    if (hasError) {
+      this.props.setFormState(formsStates.ERROR);
+    } else {
+      this.props.setFormState(formsStates.BUSY);
     }
 
     this.setState({ errors: newErrors }, () => {
@@ -100,11 +112,12 @@ export class SettingsLayout extends Component<Props, State> {
     return (
       <Panel classes="SettingsLayout">
         <Form
-          busy={this.props.busy}
+          busy={this.props.formState.busy}
           disabled={this.state.errors.length > 0}
           errors={this.state.errors}
           onChange={this.onChange}
           onSubmit={this.onSubmit}
+          success={this.props.formState.success}
           values={this.state.settings}
         />
       </Panel>
@@ -113,7 +126,7 @@ export class SettingsLayout extends Component<Props, State> {
 }
 
 const mapStateToProps = (state: Object) => ({
-  busy: state.forms.busy,
+  formState: state.forms,
   initialSettings: state.settings,
   languages: state.languages.available,
 });
@@ -124,7 +137,13 @@ const mapDispatchToProps = (dispatch: ReduxDispatch) => {
       dispatch(update(settings));
     },
     setFormState: (type: FormActionTypes) => {
-      dispatch(formActions[type]('settings'));
+      if (type === 'error') {
+        dispatch(
+          formActions[type]('settings', trans('SaveError', 'SettingsLayout'), trans('SaveErrorMsg', 'SettingsLayout'))
+        );
+      } else {
+        dispatch(formActions[type]('settings'));
+      }
     },
   };
 };

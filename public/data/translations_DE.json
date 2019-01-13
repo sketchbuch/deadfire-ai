@@ -1,0 +1,44 @@
+{
+  "EN": {
+    "App": {
+      "Name": "DE - Deadfire AI Editor"
+    },
+    "AppError": {
+      "ErrorTxt": "DE - Error Loading"
+    },
+    "ErrorLayout": {
+      "InfoMessage": "DE - An error occured"
+    },
+    "Expander": {
+      "Expand": "DE - Expand Menu",
+      "Contract": "DE - Contract Menu"
+    },
+    "HomeLayout": {
+      "Scripts": "DE - Scripts",
+      "ScriptsDescription": "DE - Create/Edit AI Scripts",
+      "Settings": "DE - Settings",
+      "SettingsDescription": "DE - Manage editor settings"
+    },
+    "NewLayout": {
+      "Button": "DE - Submit Path",
+      "Description": "DE - Please provide the full path to your install of Deadfire.",
+      "Headline": "DE - Welcome to the Deadfire AI Editor",
+      "Placeholder": "DE - Where is Deadfire installed?"
+    },
+    "SettingsLayout": {
+      "Button": "DE - Save",
+      "Headline": "DE - Settings",
+      "LabelInstallPath": "DE - Install Path",
+      "LabelLanguage": "DE - Language",
+      "LegendDeadfire": "DE - Deadfire",
+      "LegendMisc": "DE - Misc.",
+      "SaveError": "DE - Unable to save",
+      "SaveErrorMsg": "DE - Fix all highlighted errors and try again",
+      "SaveSucces": "DE - Settings saved",
+      "WinTitle": "DE - Settings"
+    },
+    "Persistence": {
+      "Error": "DE - Error saving"
+    }
+  }
+}

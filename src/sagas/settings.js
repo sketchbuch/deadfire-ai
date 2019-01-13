@@ -1,11 +1,11 @@
 // @flow
 
 import { put, select } from 'redux-saga/effects';
-import * as formActions from '../actions/formActions';
 import type { ActionObj } from '../types/action';
 import type { FsObject } from '../types/fsObject';
 import { FILE_SETTINGS } from '../constants/io';
 import { SETTINGS_UPDATE_ERROR, SETTINGS_UPDATE_SUCCESS } from '../constants/actionTypes';
+import { trans } from '../components/Translation/Translation';
 import { writeDataFile } from '../fs/fs';
 
 /**
@@ -19,16 +19,14 @@ function* settingsWorker(action: ActionObj): Generator<*, *, *> {
 
     if (result.success) {
       yield put({ type: SETTINGS_UPDATE_SUCCESS });
-      yield put(formActions.success('settings'));
     } else {
       yield put({
         type: SETTINGS_UPDATE_ERROR,
-        payload: { error: result.errorObj },
+        payload: { errorTitle: trans('Error', 'Persistence'), errorMsg: result.errorObj },
       });
-      yield put(formActions.error('settings'));
     }
   } catch (error) {
-    yield put({ type: SETTINGS_UPDATE_ERROR, payload: { error } });
+    yield put({ type: SETTINGS_UPDATE_ERROR, payload: { errorTitle: trans('Error', 'Persistence'), errorMsg: error } });
   }
 }
 

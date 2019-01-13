@@ -8,17 +8,17 @@ import { FORM_BUSY, FORM_ERROR, FORM_RESET, FORM_SUCCESS } from '../constants/ac
  */
 
 export function busy(formType: string): ActionCreator {
-  return { type: FORM_BUSY, payment: { formType } };
+  return { type: FORM_BUSY, payload: { formType } };
 }
 
-export function error(formType: string, error: string): ActionCreator {
-  return { type: FORM_ERROR, payment: { formType, error } };
+export function error(formType: string, errorTitle: string, errorMsg: string): ActionCreator {
+  return { type: FORM_ERROR, payload: { formType, errorTitle, errorMsg } };
 }
 
 export function reset(formType: string): ActionCreator {
-  return { type: FORM_RESET, payment: { formType } };
+  return { type: FORM_RESET, payload: { formType } };
 }
 
 export function success(formType: string): ActionCreator {
-  return { type: FORM_SUCCESS, payment: { formType } };
+  return { type: FORM_SUCCESS, payload: { formType } };
 }

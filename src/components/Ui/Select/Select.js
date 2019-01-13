@@ -9,6 +9,7 @@ import './Select.css';
 type Props = {
   classes?: string,
   disabled?: boolean,
+  id?: string,
   isValid?: boolean,
   name?: string,
   onChange?: EventHandler | null,
@@ -33,7 +34,7 @@ class Select extends React.PureComponent<Props> {
   props: Props;
 
   render() {
-    const { classes, disabled, isValid, name, onChange, options, title, value } = this.props;
+    const { classes, disabled, id, isValid, name, onChange, options, title, value } = this.props;
 
     return (
       <select
@@ -43,6 +44,7 @@ class Select extends React.PureComponent<Props> {
           [UI_ERROR_CLASS]: !isValid,
         })}
         disabled={disabled}
+        id={id}
         name={name}
         onChange={onChange}
         title={title}

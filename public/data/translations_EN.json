@@ -28,14 +28,17 @@
     "SettingsLayout": {
       "Button": "Save",
       "Headline": "Settings",
-      "LegendMisc": "Misc.",
-      "LegendDeadfire": "Deadfire",
-      "LabelLanguage": "Language",
       "LabelInstallPath": "Install Path",
+      "LabelLanguage": "Language",
+      "LegendDeadfire": "Deadfire",
+      "LegendMisc": "Misc.",
+      "SaveError": "Unable to save",
+      "SaveErrorMsg": "Fix all highlighted errors and try again",
+      "SaveSucces": "Settings saved",
       "WinTitle": "Settings"
     },
-    "Toastr": {
-      "PersistenceError": "Error Saving"
+    "Persistence": {
+      "Error": "Error saving"
     }
   }
 }

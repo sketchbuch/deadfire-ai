@@ -10,6 +10,7 @@ type Props = {
   classes?: string,
   defaultValue?: string,
   disabled?: boolean,
+  id?: string,
   isValid?: boolean,
   maxLength?: number,
   name?: string,
@@ -43,6 +44,7 @@ class TextInput extends React.PureComponent<Props> {
       classes,
       defaultValue,
       disabled,
+      id,
       isValid,
       maxLength,
       name,
@@ -64,11 +66,12 @@ class TextInput extends React.PureComponent<Props> {
         })}
         defaultValue={defaultValue}
         disabled={disabled}
-        name={name}
+        id={id}
         maxLength={maxLength}
+        name={name}
         onBlur={onBlur}
-        onKeyUp={onKeyUp}
         onChange={onChange}
+        onKeyUp={onKeyUp}
         placeholder={placeholder}
         title={title}
         type={type}

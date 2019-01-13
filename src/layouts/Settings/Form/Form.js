@@ -4,10 +4,12 @@ import React, { PureComponent } from 'react';
 import Translation, { trans } from '../../../components/Translation/Translation';
 import {
   Button,
+  Field,
   FieldError,
   FieldWrap,
   Form as FormElement,
   FormHeader,
+  Label,
   Select,
   TextInput,
 } from '../../../components/Ui';
@@ -20,6 +22,7 @@ type Props = {
   errors: string[],
   onChange: (event: SyntheticInputEvent) => void,
   onSubmit: (event: SyntheticInputEvent) => void,
+  success: boolean,
   values: SettingsState,
 };
 
@@ -39,12 +42,12 @@ export class Form extends PureComponent<Props> {
           </legend>
 
           <FieldWrap>
-            <label className="Fieldwrap__left" htmlFor="lang">
+            <Label htmlFor="lang">
               <Translation name="LabelLanguage" ns="SettingsLayout" />
-            </label>
-            <div className="Fieldwrap__right">
+            </Label>
+            <Field>
               <Select id="lang" name="lang" onChange={onChange} options={langs} value={values.lang} />
-            </div>
+            </Field>
           </FieldWrap>
         </fieldset>
 
@@ -54,11 +57,12 @@ export class Form extends PureComponent<Props> {
           </legend>
 
           <FieldWrap>
-            <label className="Fieldwrap__left" htmlFor="language">
+            <Label htmlFor="installPath">
               <Translation name="LabelInstallPath" ns="SettingsLayout" />
-            </label>
-            <div className="Fieldwrap__right">
+            </Label>
+            <Field>
               <TextInput
+                id="installPath"
                 isValid={!errors.installPath}
                 name="installPath"
                 onChange={onChange}
@@ -66,7 +70,7 @@ export class Form extends PureComponent<Props> {
                 value={values.installPath}
               />
               <FieldError errors={errors.installPath} />
-            </div>
+            </Field>
           </FieldWrap>
         </fieldset>
 

@@ -12,9 +12,11 @@ export function loading(): ActionCreator {
 }
 
 export function expandMenu(): ActionCreator {
+  document.body.classList.add('menu-expanded');
   return { type: APP_MENU_EXPAND };
 }
 
 export function contractMenu(): ActionCreator {
+  document.body.classList.remove('menu-expanded');
   return { type: APP_MENU_CONTRACT };
 }

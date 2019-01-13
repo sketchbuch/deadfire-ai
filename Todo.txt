@@ -1,1 +1,3 @@
 * Fix icon tests to not use mount
+* Add debounce for I/O like school-report
+* Add lang actions and load selected lang
