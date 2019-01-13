@@ -1,6 +1,6 @@
 // @flow
 
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import Translation, { trans } from '../../../components/Translation/Translation';
 import {
   Button,
@@ -26,7 +26,7 @@ type Props = {
   values: SettingsState,
 };
 
-export class Form extends PureComponent<Props> {
+export class Form extends Component<Props> {
   props: Props;
 
   render() {

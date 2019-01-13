@@ -48,6 +48,6 @@ window.app = {
     },
   },
   languages: ['EN'],
-  curLang: 'EN',
-  defLang: 'EN',
+  current: 'EN',
+  default: 'EN',
 };

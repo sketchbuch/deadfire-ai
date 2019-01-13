@@ -1,5 +1,5 @@
 {
-  "EN": {
+  "DE": {
     "App": {
       "Name": "DE - Deadfire AI Editor"
     },
@@ -34,7 +34,7 @@
       "LegendMisc": "DE - Misc.",
       "SaveError": "DE - Unable to save",
       "SaveErrorMsg": "DE - Fix all highlighted errors and try again",
-      "SaveSucces": "DE - Settings saved",
+      "SaveSucces": "Einstellungen gespeichert",
       "WinTitle": "DE - Settings"
     },
     "Persistence": {

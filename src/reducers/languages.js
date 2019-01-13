@@ -1,6 +1,6 @@
 // @flow
 
-import { SETTINGS_LOAD_SUCCESS } from '../constants/actionTypes';
+import { LANGUAGE_LOAD_SUCCESS, SETTINGS_LOAD_SUCCESS } from '../constants/actionTypes';
 import type { ActionObj } from '../types/action';
 
 export const langs = {
@@ -24,13 +24,14 @@ const defaultState = {
  * Languages Reducer.
  */
 export default function reducer(state: initialState = defaultState, action: ActionObj) {
+  const { payload }: Object = action;
+
   switch (action.type) {
     case SETTINGS_LOAD_SUCCESS:
       let reqLang = '';
-      const { payload }: Object = action;
 
-      if (payload.settings !== undefined && payload.settings.language !== undefined) {
-        reqLang = payload.settings.language;
+      if (payload !== undefined && payload.lang !== undefined) {
+        reqLang = payload.lang;
       }
 
       if (reqLang !== '') {
@@ -45,6 +46,17 @@ export default function reducer(state: initialState = defaultState, action: Acti
         }
       }
       break;
+
+    case LANGUAGE_LOAD_SUCCESS:
+      window.app.translations[payload.language] = payload.translations[payload.language];
+      window.app.current = payload.language;
+      console.log('LANGUAGE_LOAD_SUCCESS');
+
+      return {
+        ...state,
+        available: { ...state.available },
+        current: payload.language,
+      };
 
     default:
       return state;

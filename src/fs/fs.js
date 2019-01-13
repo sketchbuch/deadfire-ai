@@ -124,7 +124,6 @@ export function readLangFile(lang: Languages): Promise<FsObject> {
 
         if (data) {
           langData = JSON.parse(data.trim());
-          window.app.translations[lang] = langData[lang];
         }
 
         resolve({

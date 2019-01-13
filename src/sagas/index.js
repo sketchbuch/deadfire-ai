@@ -2,26 +2,24 @@
 
 import { all, takeLatest } from 'redux-saga/effects';
 import {
-  APP_ERROR,
   APP_LOADED,
   APP_LOADING,
   DATA_LOAD_ERROR,
   LANGUAGE_LOAD_ERROR,
-  LANGUAGE_LOAD_SUCCESS,
+  LANGUAGE_CHANGE,
   SETTINGS_LOAD_ERROR,
   SETTINGS_LOAD_SUCCESS,
   SETTINGS_UPDATE,
 } from '../constants/actionTypes';
-import loadedWorker from './loaded';
+import appLoadedWorker from './appLoaded';
 import appErrorWorker from './appError';
 import loadSettingsWorker from './loadSettings';
 import settingsWorker from './settings';
 import languageWorker from './loadLanguage';
-import dataWorker from './data';
 
 /**
  * Sagas
- */
+ *
 
 /**
  * Watches for dispatched actions.
@@ -29,13 +27,14 @@ import dataWorker from './data';
 export default function* appWatcher(action: ActionObj): Generator<*, *, *> {
   yield all([
     // App
-    takeLatest(APP_LOADED, loadedWorker),
+    takeLatest(APP_LOADED, appLoadedWorker),
     takeLatest(APP_LOADING, loadSettingsWorker),
 
     // Data
     takeLatest(DATA_LOAD_ERROR, appErrorWorker),
 
     // Language
+    takeLatest(LANGUAGE_CHANGE, languageWorker),
     takeLatest(LANGUAGE_LOAD_ERROR, appErrorWorker),
     //takeLatest(LANGUAGE_LOAD_SUCCESS, dataWorker),
 

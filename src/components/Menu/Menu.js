@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import Expander from './Expander/Expander';
 import Item from './Item/Item';
 import menuItemDefault, { MenuItemFactory } from '../../types/menuitem';
+import { trans } from '../Translation/Translation';
 import './Menu.css';
 
 type Props = {
@@ -45,7 +46,12 @@ export class Menu extends Component<Props> {
         })}
       >
         {this.menuItems.map(item => (
-          <Item key={item.id} {...item} />
+          <Item
+            key={item.id}
+            {...item}
+            label={trans(item.keyCapped, 'HomeLayout')}
+            description={trans(item.keyCapped + 'Description', 'HomeLayout')}
+          />
         ))}
         <Expander expanded={expanded} onClick={this.handleExpanderClick} />
       </section>

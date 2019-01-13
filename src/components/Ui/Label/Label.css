@@ -3,6 +3,7 @@
   margin-bottom: 0.45rem;
   display: block;
   width: 100%;
+  opacity: 0.5;
 }
 
 @media screen and (min-width: 1024px) {

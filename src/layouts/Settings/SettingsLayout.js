@@ -6,12 +6,14 @@ import { RouteComponentProps } from 'react-router';
 import { connect } from 'react-redux';
 import { toastr } from 'react-redux-toastr';
 import * as formActions from '../../actions/formActions';
+import { change } from '../../actions/languageActions';
 import Form from './Form/Form';
 import Panel from '../../components/Panel/Panel';
 import settingsDefault from '../../types/settings';
 import settingsSchema from '../../validation/schemas/settings';
-import type { FormsState } from '../../types/forms';
 import type { FormActionTypes } from '../../types/forms';
+import type { FormsState } from '../../types/forms';
+import type { Languages } from '../../types/lang';
 import type { SettingsState } from '../../types/settings';
 import { ROUTE_SETTINGS } from '../../constants/routes';
 import { formsStates } from '../../types/forms';
@@ -22,10 +24,11 @@ import './SettingsLayout.css';
 
 type Props = {
   ...RouteComponentProps,
+  changeLanguage: (language: Languages) => void,
   formState: FormsState,
   initialSettings: SettingsType,
   setFormState: (type: FormActionTypes) => void,
-  submitSettings: (settings: SettingsType) => void,
+  submitSettings: (settings: SettingsState) => void,
 };
 
 type State = {
@@ -56,7 +59,8 @@ export class SettingsLayout extends Component<Props, State> {
     }
 
     if (this.props.formState.success) {
-      toastr.success(trans('SaveSucces', 'SettingsLayout'));
+      console.log('INFORM');
+      toastr.success(trans('SaveSucces', 'SettingsLayout', {}));
       this.props.setFormState(formsStates.RESET);
     } else if (this.props.formState.error) {
       toastr.error(this.props.formState.errorTitle, this.props.formState.errorMsg);
@@ -85,6 +89,8 @@ export class SettingsLayout extends Component<Props, State> {
   onSubmit = async (event: SyntheticInputEvent) => {
     event.preventDefault();
     const curSettings = { ...this.state.settings };
+    const oldLang = this.props.initialSettings.lang;
+    const newLang = this.state.settings.lang;
     let newErrors = {};
     let hasError = false;
 
@@ -104,6 +110,9 @@ export class SettingsLayout extends Component<Props, State> {
     this.setState({ errors: newErrors }, () => {
       if (!hasError) {
         this.props.submitSettings(curSettings);
+        if (oldLang !== newLang) {
+          this.props.changeLanguage(newLang);
+        }
       }
     });
   };
@@ -128,11 +137,13 @@ export class SettingsLayout extends Component<Props, State> {
 const mapStateToProps = (state: Object) => ({
   formState: state.forms,
   initialSettings: state.settings,
-  languages: state.languages.available,
 });
 
 const mapDispatchToProps = (dispatch: ReduxDispatch) => {
   return {
+    changeLanguage: (language: Languages) => {
+      dispatch(change(language));
+    },
     submitSettings: (settings: SettingsState) => {
       dispatch(update(settings));
     },

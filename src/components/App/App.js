@@ -57,6 +57,7 @@ const mapStateToProps = (state: Object) => ({
   error: state.app.error,
   errorMsg: state.app.errorMsg,
   installPathSet: state.app.installPathSet,
+  languages: state.languages,
   loaded: state.app.loaded,
   menuExpanded: state.app.menuExpanded,
   storageCreated: state.app.storageCreated,

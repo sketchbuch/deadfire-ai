@@ -1,6 +1,6 @@
 // @flow
 
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 import Inner from '../Inner/Inner';
@@ -10,7 +10,7 @@ type Props = {
   ...MenuItem,
 };
 
-export class Item extends PureComponent<Props> {
+export class Item extends Component<Props> {
   props: Props;
 
   render() {

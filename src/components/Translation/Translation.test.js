@@ -21,10 +21,10 @@ describe('<Translation />', () => {
   test('Handles Language change', () => {
     const wrapper = mount(<Translation name="Name" ns="App" />);
     expect(wrapper.text()).toBe(window.app.translations.EN.App.Name);
-    window.app.curLang = 'DE';
+    window.app.current = 'DE';
     wrapper.instance().forceUpdate();
     expect(wrapper.text()).toBe(window.app.translations.DE.App.Name);
-    window.app.curLang = 'EN';
+    window.app.current = 'EN';
   });
 
   test('Replaces placeholders', () => {
@@ -44,7 +44,7 @@ describe('<Translation />', () => {
     });
 
     test('Returns ?name:ns if the language is undefined in translations', () => {
-      window.app.curLang = 'IT';
+      window.app.current = 'IT';
       const wrapper = shallow(<Translation name="Name" ns="App" />);
       expect(wrapper.text()).toBe('?Name:App');
     });
@@ -83,12 +83,12 @@ describe('<Translation />', () => {
         name: 'Placeholder',
         ns: 'NotFound',
       });
-      window.app.curLang = 'DE';
+      window.app.current = 'DE';
       const shouldUpdate3 = wrapperInstance.shouldComponentUpdate({
         name: 'Placeholder',
         ns: 'NotFound',
       });
-      window.app.curLang = 'EN';
+      window.app.current = 'EN';
       expect(shouldUpdate1).toBe(true);
       expect(shouldUpdate2).toBe(true);
       expect(shouldUpdate3).toBe(true);
@@ -99,9 +99,9 @@ describe('<Translation />', () => {
     const wrapper = mount(<Translation name="Name" ns="App" />);
     const wrapperInstance = wrapper.instance();
     expect(wrapperInstance.prevLang).toBe('EN');
-    window.app.curLang = 'DE';
+    window.app.current = 'DE';
     wrapper.setProps({ name: 'Placeholder' });
     expect(wrapperInstance.prevLang).toBe('DE');
-    window.app.curLang = 'EN';
+    window.app.current = 'EN';
   });
 });

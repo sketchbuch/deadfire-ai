@@ -13,7 +13,7 @@ type Props = {
 /**
  * A label for FieldWrap components.
  */
-class Label extends React.PureComponent<Props> {
+class Label extends React.Component<Props> {
   static defaultProps = {
     children: null,
   };

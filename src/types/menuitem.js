@@ -1,7 +1,6 @@
 // @flow
 
 import { generateId, ucFirst } from '../utils';
-import { trans } from '../components/Translation/Translation';
 import * as routes from '../constants/routes';
 import * as icons from '../constants/icons';
 
@@ -14,6 +13,7 @@ export type MenuItem = {
   icon: string,
   id: string,
   key: string,
+  keyCapped: string,
   label: string,
   route: string,
 };
@@ -23,6 +23,7 @@ const menuItemDefault: MenuItem = {
   icon: '',
   id: '',
   key: '',
+  keyCapped: '',
   label: '',
   route: '',
 };
@@ -35,15 +36,13 @@ const menuItemDefault: MenuItem = {
  */
 export function MenuItemFactory(menuitemObj: MenuItem, ts: number): MenuItem {
   const keyUpper = menuitemObj.key.toUpperCase();
-  const keyCapped = ucFirst(menuitemObj.key);
 
   return {
     ...menuItemDefault,
     ...menuitemObj,
-    description: trans(keyCapped + 'Description', 'HomeLayout'),
     icon: icons['ICON_' + keyUpper],
     id: generateId(getMenuItemIdStr(menuitemObj), ts),
-    label: trans(keyCapped, 'HomeLayout'),
+    keyCapped: ucFirst(menuitemObj.key),
     route: routes['ROUTE_' + keyUpper],
   };
 }

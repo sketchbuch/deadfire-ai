@@ -1,6 +1,6 @@
 // @flow
 
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import Inner from '../Inner/Inner';
 import { ICON_CONTRACTOR, ICON_EXPANDER } from '../../../constants/icons';
 import { trans } from '../../Translation/Translation';
@@ -10,7 +10,7 @@ type Props = {
   onClick: onClick => void,
 };
 
-export class Expander extends PureComponent<Props> {
+export class Expander extends Component<Props> {
   props: Props;
 
   render() {

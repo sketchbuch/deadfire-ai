@@ -12,7 +12,7 @@ import {
 import type { FsObject } from '../types/fsObject';
 
 /**
- * Called when APP_LOADED intercepted.
+ * Called when APP_LOADING intercepted.
  */
 function* loadSettingsWorker(action: ActionObj): Generator<*, *, *> {
   yield put({ type: SETTINGS_LOAD });

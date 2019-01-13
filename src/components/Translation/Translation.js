@@ -1,6 +1,7 @@
 // @flow
 
 import { Component } from 'react';
+import type { Languages } from '../../types/lang';
 
 type Props = {
   name: string,
@@ -10,20 +11,15 @@ type Props = {
 
 /**
  * Returns the correct translation from the translations object.
- *
- * @param string name The name/key of the translation.
- * @param string ns The namespace that the name belongs to.
- * @param mixed placeholders An optional object of replacement texts: {search: replace}
- * @return string The translation or the name if no translation is found.
  */
-export function trans(name: string, ns: string, placeholders: {} = {}) {
-  const { translations, curLang } = window.app;
+export function trans(name: string, ns: string, placeholders: {} = {}, lang: Languages = 'EN') {
+  const { translations, current } = window.app;
 
   if (translations !== undefined) {
-    if (translations[curLang] !== undefined) {
-      if (translations[curLang][ns] !== undefined) {
-        if (translations[curLang][ns][name] !== undefined) {
-          let trans = translations[curLang][ns][name].trim();
+    if (translations[current] !== undefined) {
+      if (translations[current][ns] !== undefined) {
+        if (translations[current][ns][name] !== undefined) {
+          let trans = translations[current][ns][name].trim();
 
           for (const [k, v] of Object.entries(placeholders)) {
             trans = trans.replace(`%${k}%`, v);
@@ -50,13 +46,13 @@ export default class Translation extends Component<Props> {
   prevLang: string = '';
 
   componentWillMount() {
-    if (window.app && window.app.curLang) {
-      this.prevLang = window.app.curLang;
+    if (window.app && window.app.current) {
+      this.prevLang = window.app.current;
     }
   }
 
   shouldComponentUpdate(nextProps: Props): boolean {
-    if (this.prevLang !== window.app.curLang) {
+    if (this.prevLang !== window.app.current) {
       return true;
     }
     if (this.props.name !== nextProps.name) {
@@ -73,8 +69,8 @@ export default class Translation extends Component<Props> {
   }
 
   componentWillUpdate() {
-    if (window.app && window.app.curLang) {
-      this.prevLang = window.app.curLang;
+    if (window.app && window.app.current) {
+      this.prevLang = window.app.current;
     }
   }
 

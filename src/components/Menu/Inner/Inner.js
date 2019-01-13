@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Fragment, PureComponent } from 'react';
+import React, { Fragment, Component } from 'react';
 import Icon from '../../Icon/Icon';
 import type { MenuItem } from '../../../types/menu';
 
@@ -8,7 +8,7 @@ type Props = {
   ...MenuItem,
 };
 
-export class Inner extends PureComponent<Props> {
+export class Inner extends Component<Props> {
   props: Props;
 
   render() {
