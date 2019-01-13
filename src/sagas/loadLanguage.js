@@ -17,16 +17,16 @@ import type { Languages } from '../types/lang';
  * Called when SETTINGS_LOAD_SUCCESS or LANGUAGE_CHANGE intercepted.
  */
 function* loadLanguageWorker(action: ActionObj): Generator<*, *, *> {
+  const isInitialLoad = action.type === SETTINGS_LOAD_SUCCESS;
   yield put({ type: LANGUAGE_LOAD });
-  const lang: Languages =
-    action.type === LANGUAGE_CHANGE ? action.payload.language : yield select(state => state.languages.current);
+  const lang: Languages = !isInitialLoad ? action.payload.language : yield select(state => state.languages.current);
 
   try {
     const result: FsObject = yield readLangFile(lang);
 
     if (result.success) {
       yield put({ type: LANGUAGE_LOAD_SUCCESS, payload: { language: lang, translations: result.data } });
-      if (action.type === SETTINGS_LOAD_SUCCESS) {
+      if (isInitialLoad) {
         yield put({ type: APP_LOADED });
       }
     } else {

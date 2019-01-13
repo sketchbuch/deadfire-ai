@@ -59,7 +59,6 @@ export class SettingsLayout extends Component<Props, State> {
     }
 
     if (this.props.formState.success) {
-      console.log('INFORM');
       toastr.success(trans('SaveSucces', 'SettingsLayout', {}));
       this.props.setFormState(formsStates.RESET);
     } else if (this.props.formState.error) {
@@ -109,10 +108,11 @@ export class SettingsLayout extends Component<Props, State> {
 
     this.setState({ errors: newErrors }, () => {
       if (!hasError) {
-        this.props.submitSettings(curSettings);
         if (oldLang !== newLang) {
           this.props.changeLanguage(newLang);
         }
+
+        this.props.submitSettings(curSettings);
       }
     });
   };

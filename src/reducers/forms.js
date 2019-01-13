@@ -38,7 +38,6 @@ export default function reducer(state: FormsState = formsDefault, action: Action
 
     case FORM_SUCCESS:
     case SETTINGS_UPDATE_SUCCESS:
-      console.log('#### Reducer', action.type);
       return { ...formsDefault, success: true };
 
     default:

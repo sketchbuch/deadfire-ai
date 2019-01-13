@@ -50,7 +50,6 @@ export default function reducer(state: initialState = defaultState, action: Acti
     case LANGUAGE_LOAD_SUCCESS:
       window.app.translations[payload.language] = payload.translations[payload.language];
       window.app.current = payload.language;
-      console.log('LANGUAGE_LOAD_SUCCESS');
 
       return {
         ...state,

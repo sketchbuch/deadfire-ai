@@ -14,7 +14,7 @@ import {
 import appLoadedWorker from './appLoaded';
 import appErrorWorker from './appError';
 import loadSettingsWorker from './loadSettings';
-import settingsWorker from './settings';
+import updateSettingsWorker from './updateSettings';
 import languageWorker from './loadLanguage';
 
 /**
@@ -41,6 +41,6 @@ export default function* appWatcher(action: ActionObj): Generator<*, *, *> {
     // Settings
     takeLatest(SETTINGS_LOAD_ERROR, appErrorWorker),
     takeLatest(SETTINGS_LOAD_SUCCESS, languageWorker),
-    takeLatest(SETTINGS_UPDATE, settingsWorker),
+    takeLatest(SETTINGS_UPDATE, updateSettingsWorker),
   ]);
 }

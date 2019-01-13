@@ -11,7 +11,7 @@ import { writeDataFile } from '../fs/fs';
 /**
  * Called when SETTINGS_UPDATE intercepted.
  */
-function* settingsWorker(action: ActionObj): Generator<*, *, *> {
+function* updateSettingsWorker(action: ActionObj): Generator<*, *, *> {
   const settings = yield select(state => state.settings);
 
   try {
@@ -30,4 +30,4 @@ function* settingsWorker(action: ActionObj): Generator<*, *, *> {
   }
 }
 
-export default settingsWorker;
+export default updateSettingsWorker;
