@@ -15,7 +15,7 @@
   background: var(--col-header-bg);
   border-bottom: 1px solid var(--col-darken-3);
   color: var(--col-white);
-  box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.5);
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5);
 }
 
 .Header__link {
@@ -61,7 +61,7 @@
   font-size: var(--font-size-vlarge);
   overflow: hidden;
   margin: 0px;
-  margin-right: 10px;
+  margin-right: 20px;
   position: relative;
   bottom: -0.2rem;
 }

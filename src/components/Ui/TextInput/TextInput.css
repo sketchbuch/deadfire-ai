@@ -5,7 +5,7 @@
   border-radius: var(--border-radius);
   outline: 0px;
   text-align: inherit;
-  padding: 1.0rem;
+  padding: 1rem;
   font-size: var(--font-size);
   line-height: var(--lh-reduced);
   width: 100%;
@@ -15,13 +15,8 @@
 }
 
 .TextInput:focus {
-  box-shadow: var(--col-lighten-2);
+  box-shadow: var(--focus);
 }
-
-.TextInput:hover {
-  box-shadow: var(--col-lighten-3);
-}
-
 
 /* Error */
 .TextInput.has--error,
@@ -30,7 +25,6 @@
   background: var(--col-neg-field-bg);
   border-color: var(--col-neg);
 }
-
 
 /* Disabled */
 .TextInput[disabled],

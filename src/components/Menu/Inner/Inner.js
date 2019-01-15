@@ -6,6 +6,7 @@ import type { MenuItem } from '../../../types/menu';
 
 type Props = {
   ...MenuItem,
+  expander: boolean,
 };
 
 export class Inner extends Component<Props> {
@@ -17,8 +18,12 @@ export class Inner extends Component<Props> {
         <span className="Menu__icon">
           <Icon type={this.props.icon} />
         </span>
-        <span className="Menu__title">{this.props.label}</span>
-        {this.props.description && <span className="Menu__description">{this.props.description}</span>}
+        {!this.props.expander && (
+          <div className="Menu__label">
+            <span className="Menu__title">{this.props.label}</span>
+            {this.props.description && <span className="Menu__description">{this.props.description}</span>}
+          </div>
+        )}
       </Fragment>
     );
   }

@@ -26,7 +26,7 @@
   border-radius: var(--border-radius);
   outline: 0px;
   cursor: pointer;
-  padding: 0px 1.0rem;
+  padding: 0px 1rem;
   font-size: var(--font-size);
   line-height: var(--lh-reduced);
   width: 100%;
@@ -39,7 +39,7 @@
 }
 
 .Button__btn:focus {
-  box-shadow: var(--focus), var(--but-highlight);
+  box-shadow: var(--focus-btn), var(--but-highlight);
 }
 
 .Button__btn:hover {
@@ -54,7 +54,30 @@
 .Button--busy .Button__btn,
 .Button--busy .Button__btn:focus,
 .Button--busy .Button__btn:hover,
-.Button--busy .Button__btn:active,
+.Button--busy .Button__btn:active {
+  opacity: 0.66;
+  box-shadow: none;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Warning */
+.Button__btn[data-buttontype='warning'] {
+  background: var(--col-neg);
+}
+
+.Button__btn[data-buttontype='warning']:focus {
+  box-shadow: var(--focus-error), var(--but-highlight);
+}
+
+.Button__btn[data-buttontype='warning']:hover {
+  background: var(--col-neg-light);
+}
+
+.Button__btn[data-buttontype='warning']:active {
+  background: var(--col-neg);
+}
+
 .Button__btn[disabled],
 .Button__btn[disabled]:focus,
 .Button__btn[disabled]:hover,
@@ -65,34 +88,9 @@
   pointer-events: none;
 }
 
-.Button--busy .Button__btn,
-.Button--busy .Button__btn:focus,
-.Button--busy .Button__btn:hover,
-.Button--busy .Button__btn:active {
-  opacity: 0.66;
-}
-
-
-/* Warning */
-.Button__btn[data-buttontype="warning"] {
-  background: var(--col-neg);
-}
-
-.Button__btn[data-buttontype="warning"]:focus {
-  box-shadow: var(--focus-error), var(--but-highlight);
-}
-
-.Button__btn[data-buttontype="warning"]:hover {
-  background: var(--col-neg-light);
-}
-
-.Button__btn[data-buttontype="warning"]:active {
-  background: var(--col-neg);
-}
-
-.Button__btn[disabled][data-buttontype="warning"],
-.Button__btn[disabled][data-buttontype="warning"]:focus,
-.Button__btn[disabled][data-buttontype="warning"]:hover,
-.Button__btn[disabled][data-buttontype="warning"]:active {
+.Button__btn[disabled][data-buttontype='warning'],
+.Button__btn[disabled][data-buttontype='warning']:focus,
+.Button__btn[disabled][data-buttontype='warning']:hover,
+.Button__btn[disabled][data-buttontype='warning']:active {
   background: var(--col-neg);
 }

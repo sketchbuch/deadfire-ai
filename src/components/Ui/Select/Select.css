@@ -16,11 +16,7 @@
 }
 
 .Select:focus {
-  box-shadow: var(--col-lighten-2);
-}
-
-.Select:hover {
-  box-shadow: var(--col-lighten-3);
+  box-shadow: var(--focus);
 }
 
 /* Error */

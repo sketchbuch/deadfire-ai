@@ -19,7 +19,7 @@ export class Expander extends Component<Props> {
     return (
       <div className="Menu__item Menu__expander" title={label} onClick={this.props.onClick}>
         <span className="Menu__link">
-          <Inner icon={this.props.expanded ? ICON_CONTRACTOR : ICON_EXPANDER} label={label} />
+          <Inner expander={true} icon={this.props.expanded ? ICON_CONTRACTOR : ICON_EXPANDER} label={label} />
         </span>
       </div>
     );

@@ -23,8 +23,9 @@ export class Item extends Component<Props> {
           Menu__item: true,
           'Menu__item-selected': route === window.location.pathname,
         })}
+        title={label + ' - ' + description}
       >
-        <Link to={route} className="Menu__link" title={label}>
+        <Link to={route} className="Menu__link">
           <Inner description={description} icon={icon} label={label} />
         </Link>
       </div>
