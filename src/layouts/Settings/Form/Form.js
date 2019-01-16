@@ -66,10 +66,27 @@ export class Form extends Component<Props> {
                 isValid={!errors.installPath}
                 name="installPath"
                 onChange={onChange}
-                placeholder={trans('Placeholder', 'NewLayout')}
+                placeholder={trans('PlaceholderInstallPath', 'SettingsLayout')}
                 value={values.installPath}
               />
               <FieldError errors={errors.installPath} />
+            </Field>
+          </FieldWrap>
+
+          <FieldWrap>
+            <Label htmlFor="aiPath">
+              <Translation name="LabelAiPath" ns="SettingsLayout" />
+            </Label>
+            <Field>
+              <TextInput
+                id="aiPath"
+                isValid={!errors.aiPath}
+                name="aiPath"
+                onChange={onChange}
+                placeholder={trans('PlaceholderAiPath', 'SettingsLayout')}
+                value={values.aiPath}
+              />
+              <FieldError errors={errors.aiPath} />
             </Field>
           </FieldWrap>
         </fieldset>

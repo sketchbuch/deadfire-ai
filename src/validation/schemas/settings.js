@@ -13,6 +13,10 @@ const settingsSchema = (context: string) => {
 
   if (context === 'submit') {
     return yup.object().shape({
+      aiPath: yup
+        .string()
+        .trim()
+        .required(),
       installPath: yup
         .string()
         .trim()
@@ -21,6 +25,7 @@ const settingsSchema = (context: string) => {
     });
   }
   return yup.object().shape({
+    aiPath: yup.string().trim(),
     installPath: yup.string().trim(),
     lang,
   });

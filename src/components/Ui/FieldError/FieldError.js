@@ -18,6 +18,7 @@ class FieldError extends React.PureComponent<Props> {
   props: Props;
 
   render() {
+    console.log(this.props.errors);
     if (this.props.errors.length < 1) {
       return null;
     }

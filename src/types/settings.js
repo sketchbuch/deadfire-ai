@@ -5,6 +5,7 @@
  */
 
 export type SettingsState = {
+  aiPath: string,
   installPath: string,
   lang: string,
 };
@@ -12,6 +13,7 @@ export type SettingsState = {
 export type SettingsUpdate = { [string]: string | boolean };
 
 const settingsDefault: SettingsState = {
+  aiPath: '',
   installPath: '',
   lang: '',
 };

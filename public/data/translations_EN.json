@@ -28,10 +28,13 @@
     "SettingsLayout": {
       "Button": "Save",
       "Headline": "Settings",
+      "LabelAiPath": "AI Path",
       "LabelInstallPath": "Install Path",
       "LabelLanguage": "Language",
       "LegendDeadfire": "Deadfire",
       "LegendMisc": "Misc.",
+      "PlaceholderAiPath": "Where are AI scripts located?",
+      "PlaceholderInstallPath": "Where is Deadfire installed?",
       "SaveError": "Unable to save",
       "SaveErrorMsg": "Fix all highlighted errors and try again",
       "SaveSucces": "Settings saved",

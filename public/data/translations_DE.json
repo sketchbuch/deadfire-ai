@@ -1,5 +1,5 @@
 {
-  "DE": {
+  "EN": {
     "App": {
       "Name": "DE - Deadfire AI Editor"
     },
@@ -28,13 +28,16 @@
     "SettingsLayout": {
       "Button": "DE - Save",
       "Headline": "DE - Settings",
+      "LabelAiPath": "DE - AI Path",
       "LabelInstallPath": "DE - Install Path",
       "LabelLanguage": "DE - Language",
       "LegendDeadfire": "DE - Deadfire",
       "LegendMisc": "DE - Misc.",
+      "PlaceholderAiPath": "DE - Where are AI scripts located?",
+      "PlaceholderInstallPath": "DE - Where is Deadfire installed?",
       "SaveError": "DE - Unable to save",
       "SaveErrorMsg": "DE - Fix all highlighted errors and try again",
-      "SaveSucces": "Einstellungen gespeichert",
+      "SaveSucces": "DE - Settings saved",
       "WinTitle": "DE - Settings"
     },
     "Persistence": {
