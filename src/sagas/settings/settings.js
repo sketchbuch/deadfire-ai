@@ -4,9 +4,9 @@ import { put, select, takeLatest } from 'redux-saga/effects';
 import {
   APP_LOADING,
   SETTINGS_LOAD_ERROR,
-  SETTINGS_UPDATE,
+  SETTINGS_SAVE,
   SETTINGS_LOAD_SUCCESS,
-  SETTINGS_UPDATE_ERROR,
+  SETTINGS_SAVE_ERROR,
 } from '../../constants/actionTypes';
 import * as appActions from '../../actions/appActions';
 import * as settingsActions from '../../actions/settingsActions';
@@ -18,7 +18,7 @@ import { readDataFile, writeDataFile } from '../../fs/fs';
 import { trans } from '../../components/Translation/Translation';
 
 export default function* settingsWatcher() {
-  yield [takeLatest(APP_LOADING, loadSettingsWorker), takeLatest(SETTINGS_UPDATE, updateSettingsWorker)];
+  yield [takeLatest(APP_LOADING, loadSettingsWorker), takeLatest(SETTINGS_SAVE, saveSettingsWorker)];
 }
 
 function* loadSettingsWorker(action: ActionObj): Generator<*, *, *> {
@@ -44,21 +44,20 @@ function* loadSettingsWorker(action: ActionObj): Generator<*, *, *> {
   }
 }
 
-function* updateSettingsWorker(action: ActionObj): Generator<*, *, *> {
-  const settings: SettingsState = yield select(state => state.settings);
-
+function* saveSettingsWorker(action: ActionObj): Generator<*, *, *> {
   try {
+    const settings: SettingsState = yield select(state => state.settings);
     const result: FsObject = yield writeDataFile(FILE_SETTINGS, settings);
 
     if (result.success) {
       yield put(settingsActions.updateSuccess());
     } else {
       yield put({
-        type: SETTINGS_UPDATE_ERROR,
+        type: SETTINGS_SAVE_ERROR,
         payload: { errorTitle: trans('Error', 'Persistence'), errorMsg: result.errorObj },
       });
     }
   } catch (error) {
-    yield put({ type: SETTINGS_UPDATE_ERROR, payload: { errorTitle: trans('Error', 'Persistence'), errorMsg: error } });
+    yield put({ type: SETTINGS_SAVE_ERROR, payload: { errorTitle: trans('Error', 'Persistence'), errorMsg: error } });
   }
 }

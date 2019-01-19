@@ -55,3 +55,7 @@ UniqueID (guid [16])
 CanEdit (bool [1])
 Description length (integer [4])
 Description (string [length])
+
+
+
+https://formidable.com/blog/2017/real-world-redux-saga-patterns/

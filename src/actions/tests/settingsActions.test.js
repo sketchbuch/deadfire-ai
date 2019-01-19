@@ -1,12 +1,12 @@
 // @flow
 
-import { SETTINGS_LOAD, SETTINGS_UPDATE, SETTINGS_UPDATE_SUCCESS } from '../../constants/actionTypes';
+import { SETTINGS_LOAD, SETTINGS_SAVE, SETTINGS_SAVE_SUCCESS } from '../../constants/actionTypes';
 import * as settingsActions from '../settingsActions';
 
 describe('Actions: SettingActions:', () => {
-  test('update() should dispatch the SETTINGS_UPDATE action', () => {
+  test('update() should dispatch the SETTINGS_SAVE action', () => {
     const SETTINGS = { installPath: 'path/to/file' };
-    const EXPECTED_ACTION = { type: SETTINGS_UPDATE, payload: { ...SETTINGS } };
+    const EXPECTED_ACTION = { type: SETTINGS_SAVE, payload: { ...SETTINGS } };
     expect(settingsActions.update(SETTINGS)).toEqual(EXPECTED_ACTION);
   });
 
@@ -14,7 +14,7 @@ describe('Actions: SettingActions:', () => {
     expect(settingsActions.load()).toEqual({ type: SETTINGS_LOAD });
   });
 
-  test('updateSuccess() should dispatch the SETTINGS_UPDATE action', () => {
-    expect(settingsActions.updateSuccess()).toEqual({ type: SETTINGS_UPDATE_SUCCESS });
+  test('updateSuccess() should dispatch the SETTINGS_SAVE action', () => {
+    expect(settingsActions.updateSuccess()).toEqual({ type: SETTINGS_SAVE_SUCCESS });
   });
 });

@@ -9,7 +9,7 @@ import {
   DATA_LOAD_ERROR,
   LANGUAGE_LOAD_ERROR,
   SETTINGS_LOAD_ERROR,
-  SETTINGS_UPDATE_SUCCESS,
+  SETTINGS_SAVE_SUCCESS,
 } from '../constants/actionTypes';
 import type { ActionObj } from '../types/action';
 import type { AppState } from '../types/app';
@@ -43,7 +43,7 @@ export default function reducer(state: AppState = appDefault, action: ActionObj)
     case APP_STORAGE_CREATED:
       return { ...state, storageCreated: true };
 
-    case SETTINGS_UPDATE_SUCCESS:
+    case SETTINGS_SAVE_SUCCESS:
       return { ...state, installPathSet: true };
 
     default:

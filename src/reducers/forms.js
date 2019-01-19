@@ -8,8 +8,8 @@ import {
   FORM_ERROR,
   FORM_RESET,
   FORM_SUCCESS,
-  SETTINGS_UPDATE_ERROR,
-  SETTINGS_UPDATE_SUCCESS,
+  SETTINGS_SAVE_ERROR,
+  SETTINGS_SAVE_SUCCESS,
 } from '../constants/actionTypes';
 
 /**
@@ -25,19 +25,11 @@ export default function reducer(state: FormsState = formsDefault, action: Action
       return { ...formsDefault };
 
     case FORM_ERROR:
-    case SETTINGS_UPDATE_ERROR:
-      const newState = { ...formsDefault, error: true };
-
-      if (action.payload.errorMsg) {
-        newState.errorMsg = action.payload.errorMsg;
-      }
-      if (action.payload.errorTitle) {
-        newState.errorTitle = action.payload.errorTitle;
-      }
-      return newState;
+    case SETTINGS_SAVE_ERROR:
+      return { ...formsDefault, ...action.payload, error: true };
 
     case FORM_SUCCESS:
-    case SETTINGS_UPDATE_SUCCESS:
+    case SETTINGS_SAVE_SUCCESS:
       return { ...formsDefault, success: true };
 
     default:
