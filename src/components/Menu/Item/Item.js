@@ -19,8 +19,7 @@ export class Item extends Component<Props> {
     return (
       <div
         key={id}
-        className={classNames({
-          Menu__item: true,
+        className={classNames('Menu__item', {
           'Menu__item-selected': route === window.location.pathname,
         })}
         title={label + ' - ' + description}

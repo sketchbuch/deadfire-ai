@@ -22,4 +22,5 @@
 @import './base/keyframes.css';
 @import './base/tags.css';
 @import './base/apploader.css';
+@import './base/skeleton.css';
 @import './base/toastr.css';

@@ -4,10 +4,6 @@ import reducer from '../settings';
 import settingsDefault from '../../types/settings';
 import { SETTINGS_LOAD_SUCCESS } from '../../constants/actionTypes';
 
-/**
- * Settings Reducer Tests
- */
-
 describe('Reducer: Settings', () => {
   const initialState = { ...settingsDefault };
 

@@ -1,21 +1,27 @@
-/* Key Frames */
-/* ---------- */
+@keyframes skeletonLoading {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}
 
 @keyframes fadein {
   0% {
-    opacity: 0.0;
+    opacity: 0;
   }
   100% {
-    opacity: 1.0;
+    opacity: 1;
   }
 }
 
 @keyframes fadeout {
   0% {
-    opacity: 1.0;
+    opacity: 1;
   }
   100% {
-    opacity: 0.0;
+    opacity: 0;
   }
 }
 
@@ -66,37 +72,39 @@
 
 @keyframes loader-expand {
   0% {
-    opacity: 1.0;
-    transform: scale(0.0);
+    opacity: 1;
+    transform: scale(0);
   }
   100% {
-    opacity: 0.0;
-    transform: scale(2.0);
+    opacity: 0;
+    transform: scale(2);
   }
 }
 
 @keyframes spinner {
-  to {transform: rotate(360deg);}
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes sidebaritem-new {
   0% {
-    opacity: 0.0;
+    opacity: 0;
     width: 0%;
   }
   100% {
-    opacity: 1.0;
+    opacity: 1;
     width: 100%;
   }
 }
 
 @keyframes sidebaritem-deleting {
   0% {
-    opacity: 1.0;
+    opacity: 1;
     transform: translateX(0%);
   }
   100% {
-    opacity: 0.0;
+    opacity: 0;
     transform: translateX(100%);
   }
 }

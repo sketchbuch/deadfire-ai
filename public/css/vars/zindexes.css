@@ -1,6 +1,6 @@
 :root {
   --z-apploader: 10000;
-  --z-header: 20;
-  --z-menu: 10;
+  --z-header: 200;
+  --z-menu: 100;
   --z-puller: 2;
 }

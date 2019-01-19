@@ -4,10 +4,6 @@ import reducer from '../forms';
 import formsDefault from '../../types/forms';
 import { FORM_BUSY, FORM_RESET } from '../../constants/actionTypes';
 
-/**
- * Forms Reducer Tests
- */
-
 describe('Reducer: Forms', () => {
   const initialState = { ...formsDefault };
 

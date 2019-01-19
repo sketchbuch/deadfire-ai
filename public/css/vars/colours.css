@@ -11,7 +11,7 @@
   --col-lighten-7: rgba(255, 255, 255, 0.7);
   --col-lighten-8: rgba(255, 255, 255, 0.8);
   --col-lighten-9: rgba(255, 255, 255, 0.9);
-  --col-lighten-10: rgba(255, 255, 255, 1.0);
+  --col-lighten-10: rgba(255, 255, 255, 1);
 
   --col-darken-1: rgba(0, 0, 0, 0.1);
   --col-darken-2: rgba(0, 0, 0, 0.2);
@@ -22,7 +22,7 @@
   --col-darken-7: rgba(0, 0, 0, 0.7);
   --col-darken-8: rgba(0, 0, 0, 0.8);
   --col-darken-9: rgba(0, 0, 0, 0.9);
-  --col-darken-10: rgba(0, 0, 0, 1.0);
+  --col-darken-10: rgba(0, 0, 0, 1);
 
   --col-placeholder: var(--col-lighten-3);
   --col-field-bg: rgba(255, 255, 255, 0.05);
@@ -36,6 +36,7 @@
 
   --col-bg: #0f2125;
   --col-header-bg: #152938;
+  --col-sidebar-bg: rgba(255, 255, 255, 0.05);
   --col-text: var(--col-white);
 
   --col-pos: #85d341;

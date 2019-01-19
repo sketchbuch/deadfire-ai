@@ -13,10 +13,6 @@ import {
   SETTINGS_LOAD_ERROR,
 } from '../../constants/actionTypes';
 
-/**
- * App Reducer Tests
- */
-
 describe('Reducer: App', () => {
   const initialState = { ...appDefault };
 

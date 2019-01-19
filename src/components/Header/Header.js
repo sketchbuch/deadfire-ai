@@ -17,7 +17,6 @@ export class Header extends Component<Props> {
     let label = 'Deadfire AI Editor';
     if (window.app && window.app.translations[window.app.current]) {
       label = <Translation name="Name" ns="App" />;
-      console.debug('test');
     }
 
     return (

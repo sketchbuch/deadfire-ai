@@ -1,14 +1,23 @@
 // @flow
 
-import { APP_MENU_CONTRACT, APP_MENU_EXPAND, APP_LOADING } from '../constants/actionTypes';
+import {
+  APP_ERROR,
+  APP_LOADED,
+  APP_LOADER_REMOVED,
+  APP_LOADING,
+  APP_MENU_CONTRACT,
+  APP_MENU_EXPAND,
+  APP_STORAGE_CREATED,
+} from '../constants/actionTypes';
 import type { ActionCreator } from '../types/action';
 
-/**
- * App Actions
- */
+export function contractMenu(): ActionCreator {
+  document.body.classList.remove('menu-expanded');
+  return { type: APP_MENU_CONTRACT };
+}
 
-export function loading(): ActionCreator {
-  return { type: APP_LOADING };
+export function error(): ActionCreator {
+  return { type: APP_ERROR };
 }
 
 export function expandMenu(): ActionCreator {
@@ -16,7 +25,18 @@ export function expandMenu(): ActionCreator {
   return { type: APP_MENU_EXPAND };
 }
 
-export function contractMenu(): ActionCreator {
-  document.body.classList.remove('menu-expanded');
-  return { type: APP_MENU_CONTRACT };
+export function loading(): ActionCreator {
+  return { type: APP_LOADING };
+}
+
+export function loaded(): ActionCreator {
+  return { type: APP_LOADED };
+}
+
+export function loaderRemoved(): ActionCreator {
+  return { type: APP_LOADER_REMOVED };
+}
+
+export function storageCreated(): ActionCreator {
+  return { type: APP_STORAGE_CREATED };
 }

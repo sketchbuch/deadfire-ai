@@ -39,8 +39,7 @@ export class Menu extends Component<Props> {
 
     return (
       <section
-        className={classNames({
-          Menu: true,
+        className={classNames('Menu', {
           [classes]: !!classes,
           'Menu--expanded': !!expanded,
         })}

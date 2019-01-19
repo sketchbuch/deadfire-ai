@@ -5,6 +5,10 @@
   --menu-witdh: 75px;
   --menu-witdh-expanded: 350px;
 
+  /* Sidebar*/
+  --sidebar-header-height: 50px;
+  --sidebar-footer-height: 50px;
+
   /* Toaster */
   --toastr-width: 350px;
   --toastr-width-wide: 440px;

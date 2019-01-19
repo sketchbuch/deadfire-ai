@@ -1,21 +1,21 @@
 // @flow
-
-import { put, select } from 'redux-saga/effects';
-import { readLangFile } from '../fs/fs';
+import { put, select, takeLatest } from 'redux-saga/effects';
+import { readLangFile } from '../../fs/fs';
 import {
-  APP_LOADED,
   LANGUAGE_CHANGE,
   LANGUAGE_LOAD,
   LANGUAGE_LOAD_ERROR,
   LANGUAGE_LOAD_SUCCESS,
   SETTINGS_LOAD_SUCCESS,
-} from '../constants/actionTypes';
-import type { FsObject } from '../types/fsObject';
-import type { Languages } from '../types/lang';
+} from '../../constants/actionTypes';
+import * as appActions from '../../actions/appActions';
+import type { FsObject } from '../../types/fsObject';
+import type { Languages } from '../../types/lang';
 
-/**
- * Called when SETTINGS_LOAD_SUCCESS or LANGUAGE_CHANGE intercepted.
- */
+export default function* languageWatcher() {
+  yield [takeLatest(LANGUAGE_CHANGE, loadLanguageWorker), takeLatest(SETTINGS_LOAD_SUCCESS, loadLanguageWorker)];
+}
+
 function* loadLanguageWorker(action: ActionObj): Generator<*, *, *> {
   const isInitialLoad = action.type === SETTINGS_LOAD_SUCCESS;
   yield put({ type: LANGUAGE_LOAD });
@@ -27,7 +27,7 @@ function* loadLanguageWorker(action: ActionObj): Generator<*, *, *> {
     if (result.success) {
       yield put({ type: LANGUAGE_LOAD_SUCCESS, payload: { language: lang, translations: result.data } });
       if (isInitialLoad) {
-        yield put({ type: APP_LOADED });
+        yield put(appActions.loaded());
       }
     } else {
       yield put({
@@ -39,5 +39,3 @@ function* loadLanguageWorker(action: ActionObj): Generator<*, *, *> {
     yield put({ type: LANGUAGE_LOAD_ERROR, payload: { error } });
   }
 }
-
-export default loadLanguageWorker;

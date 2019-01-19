@@ -5,7 +5,7 @@
 import { applyMiddleware, compose, createStore } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import allReducers from '../reducers';
-import appWatcher from '../sagas';
+import rootWatcher from '../sagas';
 
 const sagaMiddleware = createSagaMiddleware();
 const reduxDevTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
@@ -25,7 +25,7 @@ if (window && window.__REDUX_DEVTOOLS_EXTENSION__ && !navigator.userAgent.includ
 const store = createStore(allReducers, initialState, reduxMiddleware);
 
 // run the saga
-sagaMiddleware.run(appWatcher);
+sagaMiddleware.run(rootWatcher);
 
 window.store = store; // Just for testing!!! Delete!!!
 export default store;

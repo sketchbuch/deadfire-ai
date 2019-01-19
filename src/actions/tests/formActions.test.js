@@ -3,10 +3,6 @@
 import * as formActions from '../formActions';
 import { FORM_BUSY, FORM_ERROR, FORM_RESET, FORM_SUCCESS } from '../../constants/actionTypes';
 
-/**
- * Form Actions Tests
- */
-
 describe('Actions: FormActions:', () => {
   const formType = 'settings';
   test('busy() should set the busy status', () => {
