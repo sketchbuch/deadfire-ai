@@ -15,9 +15,6 @@ import type { ActionObj } from '../types/action';
 import type { AppState } from '../types/app';
 import appDefault from '../types/app';
 
-/**
- * App Reducer.
- */
 export default function reducer(state: AppState = appDefault, action: ActionObj) {
   switch (action.type) {
     case DATA_LOAD_ERROR:

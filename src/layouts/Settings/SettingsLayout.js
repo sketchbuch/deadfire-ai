@@ -6,6 +6,8 @@ import { RouteComponentProps } from 'react-router';
 import { connect } from 'react-redux';
 import { toastr } from 'react-redux-toastr';
 import * as formActions from '../../actions/formActions';
+import * as languageActions from '../../actions/languageActions';
+import * as settingsActions from '../../actions/settingsActions';
 import Form from './Form/Form';
 import Panel from '../../components/Panel/Panel';
 import settingsDefault from '../../types/settings';
@@ -15,11 +17,10 @@ import type { FormsState } from '../../types/forms';
 import type { Languages } from '../../types/lang';
 import type { SettingsState } from '../../types/settings';
 import { ROUTE_SETTINGS } from '../../constants/routes';
-import { change } from '../../actions/languageActions';
+import { DOMAIN_SETTINGS } from '../../constants/domains';
 import { formsStates } from '../../types/forms';
 import { setTitle } from '../../utils';
 import { trans } from '../../components/Translation/Translation';
-import { update } from '../../actions/settingsActions';
 import './SettingsLayout.css';
 
 type Props = {
@@ -28,7 +29,7 @@ type Props = {
   formState: FormsState,
   initialSettings: SettingsType,
   setFormState: (type: FormActionTypes) => void,
-  submitSettings: (settings: SettingsState) => void,
+  saveSettings: (settings: SettingsState) => void,
 };
 
 type State = {
@@ -112,7 +113,7 @@ export class SettingsLayout extends Component<Props, State> {
           this.props.changeLanguage(newLang);
         }
 
-        this.props.submitSettings(curSettings);
+        this.props.saveSettings(curSettings);
       }
     });
   };
@@ -142,18 +143,22 @@ const mapStateToProps = (state: Object) => ({
 const mapDispatchToProps = (dispatch: ReduxDispatch) => {
   return {
     changeLanguage: (language: Languages) => {
-      dispatch(change(language));
+      dispatch(languageActions.change(language));
     },
-    submitSettings: (settings: SettingsState) => {
-      dispatch(update(settings));
+    saveSettings: (settings: SettingsState) => {
+      dispatch(settingsActions.save(settings));
     },
     setFormState: (type: FormActionTypes) => {
       if (type === 'error') {
         dispatch(
-          formActions[type]('settings', trans('SaveError', 'SettingsLayout'), trans('SaveErrorMsg', 'SettingsLayout'))
+          formActions[type](
+            DOMAIN_SETTINGS,
+            trans('SaveError', 'SettingsLayout'),
+            trans('SaveErrorMsg', 'SettingsLayout')
+          )
         );
       } else {
-        dispatch(formActions[type]('settings'));
+        dispatch(formActions[type](DOMAIN_SETTINGS));
       }
     },
   };

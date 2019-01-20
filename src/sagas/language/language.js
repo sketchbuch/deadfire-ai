@@ -1,6 +1,5 @@
 // @flow
 import { put, select, takeLatest } from 'redux-saga/effects';
-import { readLangFile } from '../../fs/fs';
 import {
   LANGUAGE_CHANGE,
   LANGUAGE_LOAD,
@@ -11,6 +10,7 @@ import {
 import * as appActions from '../../actions/appActions';
 import type { FsObject } from '../../types/fsObject';
 import type { Languages } from '../../types/lang';
+import { readLangFile } from '../../fs';
 
 export default function* languageWatcher() {
   yield [takeLatest(LANGUAGE_CHANGE, loadLanguageWorker), takeLatest(SETTINGS_LOAD_SUCCESS, loadLanguageWorker)];

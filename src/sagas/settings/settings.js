@@ -14,7 +14,7 @@ import type { ActionObj } from '../../types/action';
 import type { FsObject } from '../../types/fsObject';
 import type { SettingsState } from '../../types/settings';
 import { FILE_SETTINGS } from '../../constants/io';
-import { readDataFile, writeDataFile } from '../../fs/fs';
+import { readDataFile, writeDataFile } from '../../fs';
 import { trans } from '../../components/Translation/Translation';
 
 export default function* settingsWatcher() {
@@ -50,7 +50,7 @@ function* saveSettingsWorker(action: ActionObj): Generator<*, *, *> {
     const result: FsObject = yield writeDataFile(FILE_SETTINGS, settings);
 
     if (result.success) {
-      yield put(settingsActions.updateSuccess());
+      yield put(settingsActions.saveSuccess());
     } else {
       yield put({
         type: SETTINGS_SAVE_ERROR,

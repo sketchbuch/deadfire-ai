@@ -8,10 +8,10 @@ export function load(): ActionCreator {
   return { type: SETTINGS_LOAD };
 }
 
-export function update(settings: SettingsState): ActionCreator {
+export function save(settings: SettingsState): ActionCreator {
   return { type: SETTINGS_SAVE, payload: { ...settings } };
 }
 
-export function updateSuccess(): ActionCreator {
+export function saveSuccess(): ActionCreator {
   return { type: SETTINGS_SAVE_SUCCESS };
 }

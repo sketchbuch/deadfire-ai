@@ -20,9 +20,6 @@ const defaultState = {
   default: 'EN',
 };
 
-/**
- * Languages Reducer.
- */
 export default function reducer(state: initialState = defaultState, action: ActionObj) {
   const { payload }: Object = action;
 

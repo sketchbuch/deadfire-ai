@@ -2,15 +2,18 @@
 
 import * as React from 'react';
 import classNames from 'classnames';
+import type { Domains } from '../../types/domains';
 import * as sidebarActions from '../../actions/sidebarActions';
 import './Sidebar.css';
 
 type Props = {
   children?: React.Node,
+  dispatch: Function,
+  domain: Domains,
   footer: boolean,
   header: boolean,
+  itemCount: number,
   loading: boolean,
-  dispatch: Function,
 };
 
 /**
@@ -26,7 +29,9 @@ class Sidebar extends React.Component<Props> {
   props: Props;
 
   componentDidMount() {
-    this.props.dispatch(sidebarActions.loading());
+    if (this.props.loading || (!this.props.loading && this.props.itemCount < 1)) {
+      this.props.dispatch(sidebarActions.loading(this.props.domain));
+    }
   }
 
   renderContent() {

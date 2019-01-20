@@ -1,6 +1,4 @@
-/**
- * Action Type Constants
- */
+// @flow
 
 // App
 export const APP_MENU_CONTRACT = 'APP_MENU_CONTRACT';
@@ -20,7 +18,15 @@ export const DATA_LOAD_SUCCESS = 'DATA_LOAD_SUCCESS';
 export const FORM_BUSY = 'FORM_BUSY';
 export const FORM_ERROR = 'FORM_ERROR';
 export const FORM_RESET = 'FORM_RESET';
+export const FORM_SAVE = 'FORM_SAVE';
 export const FORM_SUCCESS = 'FORM_SUCCESS';
+export const formActionTypes = {
+  [FORM_BUSY]: FORM_BUSY,
+  [FORM_ERROR]: FORM_ERROR,
+  [FORM_RESET]: FORM_RESET,
+  [FORM_SAVE]: FORM_SAVE,
+  [FORM_SUCCESS]: FORM_SUCCESS,
+};
 
 // Languages
 export const LANGUAGE_CHANGE = 'LANGUAGE_CHANGE';
@@ -38,5 +44,6 @@ export const SETTINGS_LOAD_ERROR = 'SETTINGS_LOAD_ERROR';
 export const SETTINGS_LOAD_SUCCESS = 'SETTINGS_LOAD_SUCCESS';
 
 // Sidebar
-export const SIDEBAR_LOADED = 'SIDEBAR_LOADED';
 export const SIDEBAR_LOADING = 'SIDEBAR_LOADING';
+export const SIDEBAR_LOADING_ERROR = 'SIDEBAR_LOADING_ERROR';
+export const SIDEBAR_LOADING_SUCCESS = 'SIDEBAR_LOADING_SUCCESS';

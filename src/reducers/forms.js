@@ -12,10 +12,6 @@ import {
   SETTINGS_SAVE_SUCCESS,
 } from '../constants/actionTypes';
 
-/**
- * Forms Reducer.
- */
-
 export default function reducer(state: FormsState = formsDefault, action: ActionObj) {
   switch (action.type) {
     case FORM_BUSY:

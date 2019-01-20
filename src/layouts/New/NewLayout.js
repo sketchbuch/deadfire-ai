@@ -8,7 +8,7 @@ import Panel from '../../components/Panel/Panel';
 import installPathSchema from '../../validation/schemas/installPath';
 import type { Dispatch as ReduxDispatch } from 'redux';
 import type { SettingsState } from '../../types/settings';
-import { update } from '../../actions/settingsActions';
+import * as settingsActions from '../../actions/settingsActions';
 
 type Props = {
   ...RouteComponentProps,
@@ -89,7 +89,7 @@ const mapStateToProps = (state: Object) => ({
 const mapDispatchToProps = (dispatch: ReduxDispatch) => {
   return {
     submitPath: (settings: SettingsState) => {
-      dispatch(update(settings));
+      dispatch(settingsActions.save(settings));
     },
   };
 };

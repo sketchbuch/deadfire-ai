@@ -1,6 +1,4 @@
-/**
- * Icon Constants (for icofont)
- */
+// @flow
 
 export const ICON_ADD = 'plus';
 export const ICON_BRAND = 'brain-alt';

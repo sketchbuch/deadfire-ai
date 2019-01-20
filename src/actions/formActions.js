@@ -15,6 +15,10 @@ export function reset(formType: string): ActionCreator {
   return { type: FORM_RESET, payload: { formType } };
 }
 
+export function save(formType: string): ActionCreator {
+  return { type: FORM_SUCCESS, payload: { formType } };
+}
+
 export function success(formType: string): ActionCreator {
   return { type: FORM_SUCCESS, payload: { formType } };
 }
