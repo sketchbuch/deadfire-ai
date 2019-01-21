@@ -1,0 +1,30 @@
+/* Sidebar List */
+/* ------------ */
+
+.SidebarList {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.SidebarList--pb {
+  height: calc(100% - var(--sidebar-pb-height));
+}
+
+.SidebarList--sh {
+  height: calc(100% - var(--sidebar-footer-height));
+}
+
+.SidebarList--pb.SidebarList--sh {
+  height: calc(100% - var(--sidebar-footer-height-pb));
+}
+
+@media screen and (min-width: 1024px) {
+  .SidebarList {
+    border-right: 1px solid var(--col-sidebar-border);
+  }
+}

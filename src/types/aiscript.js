@@ -15,6 +15,7 @@ export type Aiscript = {
   ...$Exact<DomainBase>,
   byteStructure: ByteStructure,
   fileName: string,
+  fullyParsed: boolean,
   label: string,
 };
 
@@ -22,6 +23,7 @@ const aiscriptDefault: Aiscript = {
   ...domainBaseDefault,
   byteStructure: { ...byteStructureDefault },
   fileName: '',
+  fullyParsed: false,
   label: '',
 };
 
@@ -39,9 +41,8 @@ export function factory(aiscriptObj: Aiscript, ts: number): Aiscript {
       id: generateId(getIdStr(aiscriptObj), ts),
     };
   }
-  console.dir({ ...aiscriptObj });
-  const newObj = hydrate(aiscriptObj);
-  return newObj;
+
+  return hydrate(aiscriptObj);
 }
 
 /**

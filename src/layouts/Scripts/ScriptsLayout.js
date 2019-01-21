@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 import Panel from '../../components/Panel/Panel';
 import type { Aiscript } from '../../types/aiscript';
 import { DOMAIN_SCRIPTS } from '../../constants/domains';
-import { Sidebar, SidebarFooter, SidebarHeader } from '../../components/Sidebar';
+import { Sidebar, SidebarFooter, SidebarHeader, SidebarList } from '../../components/Sidebar';
+import { aiScriptSort } from '../../types/aiscript';
 import './ScriptsLayout.css';
 
 type Props = {
@@ -19,11 +20,13 @@ class ScriptsLayout extends Component<Props> {
 
   render() {
     const { aiscripts, dispatch, loading } = this.props;
+    console.log(aiscripts, loading);
 
     return (
       <Panel classes="ScriptsLayout">
         <Sidebar dispatch={dispatch} domain={DOMAIN_SCRIPTS} itemCount={aiscripts.length} loading={loading}>
-          <SidebarHeader title="Sidebar" /># of scripts: {aiscripts.length}
+          <SidebarHeader title="Sidebar" />
+          <SidebarList items={aiscripts} listType={DOMAIN_SCRIPTS} sortOrder={aiScriptSort} />
           <SidebarFooter />
         </Sidebar>
       </Panel>

@@ -14,6 +14,7 @@ export default function reducer(state: SidebarState = sidebarDefault, action: Ac
       return { ...state, error: true, loading: false };
 
     case SIDEBAR_LOADING_SUCCESS:
+      console.log('Sidebar Reducer');
       return { ...state, loading: false };
 
     default:
