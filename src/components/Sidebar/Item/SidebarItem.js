@@ -1,10 +1,12 @@
 // @flow
 
-import './SidebarItem.css';
 import React, { Component } from 'react';
+import classNames from 'classnames';
 import SidebarInner from '../Inner/SidebarInner';
 import type { Aiscript } from '../../../types/aiscript';
 import type { Domains } from '../../../types/domains';
+import { PARSE_STATE_ERROR } from '../../../constants/misc';
+import './SidebarItem.css';
 
 type Props = {
   item: Aiscript,
@@ -19,11 +21,18 @@ class SidebarItem extends Component<Props> {
   props: Props;
 
   render() {
+    const isError = this.props.item.parseState === PARSE_STATE_ERROR;
     return (
-      <li className="SidebarItem" title={this.props.item.getTooltip()}>
+      <li
+        className={classNames('SidebarItem', {
+          'SidebarItem--error': isError,
+        })}
+        title={this.props.item.getTooltip()}
+      >
         <SidebarInner
           description={this.props.item.getDescription()}
           icon={this.props.item.getIcon()}
+          isError={isError}
           label={this.props.item.getLabel()}
           link={this.props.item.getUrl('link')}
           linkEdit=""

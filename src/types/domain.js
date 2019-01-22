@@ -12,6 +12,7 @@ export type DomainBase = {
   getLabel: () => string,
   getTooltip: () => string,
   getUrl: (linkType: string) => string,
+  hydrated: boolean,
   id: string,
   updated: number,
 };
@@ -24,6 +25,7 @@ const domainBaseDefault: DomainBase = {
   getLabel: () => {},
   getTooltip: () => {},
   getUrl: () => {},
+  hydrated: false,
   id: '',
   updated: -1,
 };

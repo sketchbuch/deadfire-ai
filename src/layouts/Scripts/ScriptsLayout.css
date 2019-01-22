@@ -3,7 +3,8 @@
   height: 100%;
   margin: 0px auto;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: nowrap;
   justify-content: flex-start;
   align-items: flex-start;
   padding: 0px;

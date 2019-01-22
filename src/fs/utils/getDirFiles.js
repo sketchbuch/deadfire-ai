@@ -11,7 +11,7 @@ async function getDirFiles(dir: string, fileType?: string = ''): Promise<FsObjec
     fs.readdir(dir, 'UTF-8', (err: ?Error, files: string[]) => {
       if (err) {
         reject({
-          data: {},
+          data: { files: [] },
           errorObj: err,
           success: false,
         });

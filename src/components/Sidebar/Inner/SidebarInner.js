@@ -9,6 +9,7 @@ type Props = {
   children?: React.Node,
   description: string,
   icon: string,
+  isError: boolean,
   label: string,
   link: string,
   linkEdit: string,

@@ -8,14 +8,15 @@ import sidebarDefault from '../types/sidebar';
 export default function reducer(state: SidebarState = sidebarDefault, action: ActionObj) {
   switch (action.type) {
     case SIDEBAR_LOADING:
-      return { ...state, loading: true };
+      return { ...state };
+    //return { ...state, loading: true };
 
     case SIDEBAR_LOADING_ERROR:
       return { ...state, error: true, loading: false };
 
     case SIDEBAR_LOADING_SUCCESS:
-      console.log('Sidebar Reducer');
-      return { ...state, loading: false };
+      return { ...state };
+    //return { ...state, loading: false };
 
     default:
       return state;

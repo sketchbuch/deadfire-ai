@@ -1,30 +1,57 @@
 // @flow
 
-import { SIDEBAR_LOADING_SUCCESS } from '../constants/actionTypes';
+import aiscriptDefault, { factory } from '../types/aiscript';
+import reduce from '../utils/reducers';
 import type { ActionObj } from '../types/action';
 import type { Aiscript } from '../types/aiscript';
 import type { AiscriptObj } from '../types/aiscript';
-import aiscriptDefault, { factory } from '../types/aiscript';
+import { AISCRIPT_LOADING_ERROR, AISCRIPT_LOADING_SUCCESS, SIDEBAR_LOADING_SUCCESS } from '../constants/actionTypes';
+import { PARSE_STATE_ERROR } from '../constants/misc';
 
 export default function reducer(state: Aiscript[] = [], action: ActionObj) {
+  const { payload } = action;
+  let item = undefined;
+
   switch (action.type) {
     case SIDEBAR_LOADING_SUCCESS:
-      console.log('AI Script Reducer');
-      if (action.payload.domain === 'scripts') {
-        if (action.payload.files !== undefined) {
+      if (payload.domain === 'scripts') {
+        if (payload.files !== undefined) {
           const newState = [];
-          action.payload.files.forEach((file: AiscriptObj) => {
-            const label = !file.parseError ? file.byteStructure.Name : file.fileName;
+          payload.files.forEach((file: AiscriptObj) => {
             newState.push(
-              factory(
-                { ...aiscriptDefault, byteStructure: { ...file.byteStructure }, fileName: file.fileName, label },
-                Date.now()
-              )
+              factory({ ...aiscriptDefault, fileName: file, filePath: payload.aiPath, label: file }, Date.now())
             );
           });
           return newState;
         }
       }
+      break;
+
+    case AISCRIPT_LOADING_ERROR:
+      item = state.find((aiscript: Aiscript) => aiscript.id === payload.id);
+      if (item !== undefined) {
+        return reduce.arr.updateObj(state, {
+          ...item,
+          parseErrorMsg: payload.parseErrorMsg,
+          parseState: PARSE_STATE_ERROR,
+          parsing: false,
+        });
+      }
+
+      break;
+
+    case AISCRIPT_LOADING_SUCCESS:
+      item = state.find((aiscript: Aiscript) => aiscript.id === payload.id);
+      if (item !== undefined) {
+        return reduce.arr.updateObj(state, {
+          ...item,
+          byteStructure: payload.byteStructure,
+          label: payload.byteStructure.Name,
+          parseState: payload.parseState,
+          parsing: false,
+        });
+      }
+
       break;
 
     default:

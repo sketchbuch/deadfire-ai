@@ -23,6 +23,8 @@ import { setTitle } from '../../utils';
 import { trans } from '../../components/Translation/Translation';
 import './SettingsLayout.css';
 
+const NS = 'SettingsLayout';
+
 type Props = {
   ...RouteComponentProps,
   changeLanguage: (language: Languages) => void,
@@ -51,16 +53,16 @@ export class SettingsLayout extends Component<Props, State> {
   }
 
   componentDidMount() {
-    setTitle(trans('WinTitle', 'SettingsLayout'));
+    setTitle(trans('WinTitle', NS));
   }
 
   componentDidUpdate(prevProps: Props, prevState: State) {
     if (window.location.pathname === ROUTE_SETTINGS) {
-      setTitle(trans('WinTitle', 'SettingsLayout'));
+      setTitle(trans('WinTitle', NS));
     }
 
     if (this.props.formState.success) {
-      toastr.success(trans('SaveSucces', 'SettingsLayout', {}));
+      toastr.success(trans('SaveSucces', NS, {}));
       this.props.setFormState(formsStates.RESET);
     } else if (this.props.formState.error) {
       toastr.error(this.props.formState.errorTitle, this.props.formState.errorMsg);
@@ -150,13 +152,7 @@ const mapDispatchToProps = (dispatch: ReduxDispatch) => {
     },
     setFormState: (type: FormActionTypes) => {
       if (type === 'error') {
-        dispatch(
-          formActions[type](
-            DOMAIN_SETTINGS,
-            trans('SaveError', 'SettingsLayout'),
-            trans('SaveErrorMsg', 'SettingsLayout')
-          )
-        );
+        dispatch(formActions[type](DOMAIN_SETTINGS, trans('SaveError', NS), trans('SaveErrorMsg', NS)));
       } else {
         dispatch(formActions[type](DOMAIN_SETTINGS));
       }

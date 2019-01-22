@@ -13,6 +13,6 @@ export function loading(domain: Domains): ActionCreator {
   return { type: SIDEBAR_LOADING, payload: { domain } };
 }
 
-export function success(domain: Domains, files: string[]): ActionCreator {
-  return { type: SIDEBAR_LOADING_SUCCESS, payload: { domain, files } };
+export function success(domain: Domains, files: string[], aiPath: string): ActionCreator {
+  return { type: SIDEBAR_LOADING_SUCCESS, payload: { domain, files, aiPath } };
 }

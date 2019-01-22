@@ -25,6 +25,10 @@
       "Headline": "Welcome to the Deadfire AI Editor",
       "Placeholder": "Where is Deadfire installed?"
     },
+    "ScriptsLayout": {
+      "SidebarHeader": "AI Scripts",
+      "WinTitle": "AI Scripts"
+    },
     "SettingsLayout": {
       "Button": "Save",
       "Headline": "Settings",
