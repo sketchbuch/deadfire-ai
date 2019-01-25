@@ -9,6 +9,6 @@ import md5 from 'md5';
  * @param number ts The timestamp to be used in creating the MD5 hash.
  * @return string The new ID, a MD5 hash of txtStr + ts.
  */
-export function generateId(txtStr: string, ts: number): string {
+export function generateId(txtStr: string, ts: number = 0): string {
   return md5(txtStr + ts);
 }

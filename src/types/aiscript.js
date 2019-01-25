@@ -5,7 +5,7 @@ import type { ByteStructure } from './byteStructure';
 import byteStructureDefault from './byteStructure';
 import { generateId } from '../utils/ids';
 import { ICON_SCRIPTS, ICON_WARNING } from '../constants/icons';
-import { ROUTE_SCRIPTS_EDIT } from '../constants/routes';
+import { ROUTE_SCRIPTS_EDIT, ROUTE_SCRIPTS_PARSE_ERROR } from '../constants/routes';
 import { PARSE_STATE_ERROR, PARSE_STATE_FULL, PARSE_STATE_QUICK, PARSE_STATE_UNPARSED } from '../constants/misc';
 
 const parseStates = [PARSE_STATE_UNPARSED, PARSE_STATE_QUICK, PARSE_STATE_FULL, PARSE_STATE_ERROR];
@@ -48,7 +48,7 @@ export function factory(aiscriptObj: Aiscript, ts: number): Aiscript {
       ...aiscriptObj,
       created: ts,
       updated: ts,
-      id: generateId(getIdStr(aiscriptObj), ts),
+      id: generateId(getIdStr(aiscriptObj)),
     };
   }
 
@@ -99,7 +99,13 @@ export function hydrate(aiscriptObj: Aiscript): Aiscript {
         return this.getLabel();
       },
       getUrl: function(linkType: string) {
-        return ROUTE_SCRIPTS_EDIT.replace(':scriptId', this.id);
+        let script = ROUTE_SCRIPTS_EDIT;
+
+        if (this.parseState === PARSE_STATE_ERROR) {
+          script = ROUTE_SCRIPTS_PARSE_ERROR;
+        }
+
+        return script.replace(':scriptId', this.id);
       },
     };
   }
