@@ -8,7 +8,7 @@ import { ICON_SCRIPTS, ICON_WARNING } from '../constants/icons';
 import { ROUTE_SCRIPTS_EDIT, ROUTE_SCRIPTS_PARSE_ERROR } from '../constants/routes';
 import { PARSE_STATE_ERROR, PARSE_STATE_FULL, PARSE_STATE_QUICK, PARSE_STATE_UNPARSED } from '../constants/misc';
 
-const parseStates = [PARSE_STATE_UNPARSED, PARSE_STATE_QUICK, PARSE_STATE_FULL, PARSE_STATE_ERROR];
+const parseStates = [PARSE_STATE_ERROR, PARSE_STATE_FULL, PARSE_STATE_QUICK, PARSE_STATE_UNPARSED];
 export type ParseStates = $Values<typeof parseStates>;
 
 export type AiscriptObj = {
@@ -25,6 +25,7 @@ export type Aiscript = {
   label: string,
   parseErrorMsg: string,
   parseState: ParseStates,
+  parsing: boolean,
 };
 
 const aiscriptDefault: Aiscript = {
@@ -35,6 +36,7 @@ const aiscriptDefault: Aiscript = {
   label: '',
   parseErrorMsg: '',
   parseState: PARSE_STATE_UNPARSED,
+  parsing: false,
 };
 
 export const aiScriptSort = ['label', 'updated'];

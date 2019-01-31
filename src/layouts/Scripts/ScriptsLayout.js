@@ -9,6 +9,7 @@ import * as sidebarActions from '../../actions/sidebarActions';
 import EditPanel from '../../components/EditPanel/EditPanel';
 import Panel from '../../components/Panel/Panel';
 import ParseError from './ParseError/ParseError';
+import getVisibleAiscripts from '../../selectors/aiscripts';
 import type { Aiscript } from '../../types/aiscript';
 import { DOMAIN_SCRIPTS } from '../../constants/domains';
 import { PARSE_STATE_UNPARSED } from '../../constants/misc';
@@ -29,6 +30,7 @@ type Props = {
   aiscripts: Aiscript[],
   loadSidebar: () => void,
   quickParseScript: (aiScript: Aiscript) => void,
+  setParsing: (aiScripts: string[]) => void,
 };
 
 /**
@@ -40,7 +42,6 @@ export function withAiscript(
   items: Aiscript[]
 ) {
   const scriptItem = items.filter(item => item.id === routerProps.match.params.scriptId);
-  console.log('routerProps.match.params.scriptId', routerProps.match.params.scriptId);
   return () => <WrappedComponent {...routerProps} item={scriptItem[0]} />;
 }
 
@@ -55,40 +56,36 @@ class ScriptsLayout extends Component<Props> {
     if (window.location.pathname === ROUTE_SCRIPTS) {
       setTitle(trans('WinTitle', NS));
     }
-  }
 
-  getItems() {
-    let items = this.props.aiscripts;
-
-    if (items.length > 0) {
-      items = items.slice(0, 10);
-      items.forEach(item => {
-        if (item.parseState === PARSE_STATE_UNPARSED && window.quickParse[item.id] === undefined) {
-          window.quickParse[item.id] = true;
-          this.props.quickParseScript(item);
+    if (this.props.aiscripts.length > 0) {
+      const itemsToParse = [];
+      this.props.aiscripts.forEach(item => {
+        if (item.parseState === PARSE_STATE_UNPARSED && !item.parsing) {
+          itemsToParse.push(item);
         }
       });
-    }
 
-    return items;
+      if (itemsToParse.length > 0) {
+        this.props.setParsing(itemsToParse);
+      }
+    }
   }
 
   render() {
     const { aiscripts, loadSidebar } = this.props;
-    const items = this.getItems();
 
     return (
       <Panel classes="ScriptsLayout">
         <Sidebar loadSidebar={loadSidebar} domaiInfoMessagen={DOMAIN_SCRIPTS} loading={aiscripts.length < 1}>
           <SidebarHeader title={trans('SidebarHeader', NS)} />
-          <SidebarList items={items} listType={DOMAIN_SCRIPTS} sortOrder={aiScriptSort} />
+          <SidebarList items={aiscripts} listType={DOMAIN_SCRIPTS} sortOrder={aiScriptSort} />
           <SidebarFooter />
         </Sidebar>
         <Switch>
           <Route
             path={ROUTE_SCRIPTS_PARSE_ERROR}
             render={routerProps => {
-              const ScriptedParseError = withAiscript(ParseError, routerProps, items);
+              const ScriptedParseError = withAiscript(ParseError, routerProps, aiscripts);
               return <ScriptedParseError />;
             }}
           />
@@ -102,7 +99,7 @@ class ScriptsLayout extends Component<Props> {
 }
 
 const mapStateToProps = (state: Object) => ({
-  aiscripts: state.aiscripts,
+  aiscripts: getVisibleAiscripts(state),
 });
 
 const mapDispatchToProps = (dispatch: ReduxDispatch) => {
@@ -111,7 +108,10 @@ const mapDispatchToProps = (dispatch: ReduxDispatch) => {
       dispatch(sidebarActions.loading(DOMAIN_SCRIPTS));
     },
     quickParseScript: (aiScript: Aiscript) => {
-      dispatch(aiscriptActions.quickParse(aiScript));
+      dispatch(aiscriptActions.loadQuick(aiScript));
+    },
+    setParsing: (aiScripts: string[]) => {
+      dispatch(aiscriptActions.setParsing(aiScripts));
     },
   };
 };

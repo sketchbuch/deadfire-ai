@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 import Icon from '../Icon/Icon';
 import Translation from '../Translation/Translation';
@@ -10,7 +10,7 @@ import './Header.css';
 
 type Props = {};
 
-export class Header extends Component<Props> {
+export class Header extends PureComponent<Props> {
   props: Props;
 
   render() {

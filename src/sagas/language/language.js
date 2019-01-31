@@ -8,6 +8,7 @@ import {
   SETTINGS_LOAD_SUCCESS,
 } from '../../constants/actionTypes';
 import * as appActions from '../../actions/appActions';
+import type { ActionObj } from '../../types/action';
 import type { FsObject } from '../../types/fsObject';
 import type { Languages } from '../../types/lang';
 import { readLangFile } from '../../fs';

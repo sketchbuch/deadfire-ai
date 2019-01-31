@@ -5,7 +5,12 @@ import reduce from '../utils/reducers';
 import type { ActionObj } from '../types/action';
 import type { Aiscript } from '../types/aiscript';
 import type { AiscriptObj } from '../types/aiscript';
-import { AISCRIPT_LOADING_ERROR, AISCRIPT_LOADING_SUCCESS, SIDEBAR_LOADING_SUCCESS } from '../constants/actionTypes';
+import {
+  AISCRIPT_LOADING_ERROR,
+  AISCRIPT_LOADING_SUCCESS,
+  SIDEBAR_LOADING_SUCCESS,
+  AISCRIPT_SET_PARSING,
+} from '../constants/actionTypes';
 import { PARSE_STATE_ERROR } from '../constants/misc';
 
 export default function reducer(state: Aiscript[] = [], action: ActionObj) {
@@ -28,27 +33,44 @@ export default function reducer(state: Aiscript[] = [], action: ActionObj) {
       break;
 
     case AISCRIPT_LOADING_ERROR:
-      item = state.find((aiscript: Aiscript) => aiscript.id === payload.id);
-      if (item !== undefined) {
-        return reduce.arr.updateObj(state, {
-          ...item,
-          parseErrorMsg: payload.parseErrorMsg,
-          parseState: PARSE_STATE_ERROR,
-          parsing: false,
-        });
+      if (payload.id !== undefined) {
+        item = state.find((aiscript: Aiscript) => aiscript.id === payload.id);
+        if (item !== undefined) {
+          return reduce.arr.updateObj(state, {
+            ...item,
+            parseErrorMsg: payload.parseErrorMsg,
+            parseState: PARSE_STATE_ERROR,
+            parsing: false,
+          });
+        }
       }
 
       break;
 
     case AISCRIPT_LOADING_SUCCESS:
-      item = state.find((aiscript: Aiscript) => aiscript.id === payload.id);
-      if (item !== undefined) {
-        return reduce.arr.updateObj(state, {
-          ...item,
-          byteStructure: payload.byteStructure,
-          label: payload.byteStructure.Name,
-          parseState: payload.parseState,
-          parsing: false,
+      if (payload.id !== undefined) {
+        item = state.find((aiscript: Aiscript) => aiscript.id === payload.id);
+        if (item !== undefined) {
+          return reduce.arr.updateObj(state, {
+            ...item,
+            byteStructure: payload.byteStructure,
+            label: payload.byteStructure.Name,
+            parseState: payload.parseState,
+            parsing: false,
+          });
+        }
+      }
+
+      break;
+
+    case AISCRIPT_SET_PARSING:
+      if (payload.aiScripts !== undefined) {
+        return state.map(item => {
+          if (payload.aiScripts.find(selItem => selItem.id === item.id)) {
+            return { ...item, parsing: true };
+          } else {
+            return item;
+          }
         });
       }
 
