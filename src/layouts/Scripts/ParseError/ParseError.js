@@ -4,15 +4,18 @@ import React, { Component } from 'react';
 import { RouteComponentProps } from 'react-router';
 import EditPanel from '../../../components/EditPanel/EditPanel';
 import InfoMessage from '../../../components/InfoMessage/InfoMessage';
+import ParsingMessage from '../../../components/ParsingMessage/ParsingMessage';
 import type { Aiscript } from '../../../types/aiscript';
+import { Button } from '../../../components/Ui';
 import { ICON_WARNING } from '../../../constants/icons';
 import { ROUTE_SCRIPTS_PARSE_ERROR } from '../../../constants/routes';
 import { setTitle } from '../../../utils';
-import { trans } from '../../../components/Translation/Translation';
+import Translation, { trans } from '../../../components/Translation/Translation';
+import './ParseError.css';
 
-const NS = 'ScriptsLayout';
+const NS = 'ParseError';
 
-type Props = { ...RouteComponentProps, item: Aiscript };
+type Props = { ...RouteComponentProps, fullParseScript: (aiScript: Aiscript) => void, item: Aiscript };
 
 class ParseError extends Component<Props> {
   props: Props;
@@ -27,17 +30,25 @@ class ParseError extends Component<Props> {
     }
   }
 
+  handleClick = () => this.props.fullParseScript([this.props.item]);
+
   render() {
     const { item } = this.props;
-    console.log('item', item);
-    if (!item) {
-      return null;
-    }
+
     return (
       <EditPanel>
-        <InfoMessage headline="Parsing error" icon={ICON_WARNING} message={item.getLabel()}>
-          {item.parseErrorMsg}
-        </InfoMessage>
+        {this.props.item.parsing ? (
+          <ParsingMessage />
+        ) : (
+          <InfoMessage headline={trans('Headline', NS)} icon={ICON_WARNING} message={item.parseErrorMsg}>
+            <p>{item.getLabel()}</p>
+            <p className="ParseError__retry">
+              <Button inline onClick={this.handleClick} busy={this.props.item.parsing}>
+                <Translation name="RetryBtn" ns={NS} />
+              </Button>
+            </p>
+          </InfoMessage>
+        )}
       </EditPanel>
     );
   }

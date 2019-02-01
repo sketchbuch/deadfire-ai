@@ -4,7 +4,7 @@ import domainBaseDefault from './domain';
 import type { ByteStructure } from './byteStructure';
 import byteStructureDefault from './byteStructure';
 import { generateId } from '../utils/ids';
-import { ICON_SCRIPTS, ICON_WARNING } from '../constants/icons';
+import { ICON_BUSY, ICON_SCRIPTS, ICON_WARNING } from '../constants/icons';
 import { ROUTE_SCRIPTS_EDIT, ROUTE_SCRIPTS_PARSE_ERROR } from '../constants/routes';
 import { PARSE_STATE_ERROR, PARSE_STATE_FULL, PARSE_STATE_QUICK, PARSE_STATE_UNPARSED } from '../constants/misc';
 
@@ -92,7 +92,15 @@ export function hydrate(aiscriptObj: Aiscript): Aiscript {
         return '';
       },
       getIcon: function() {
-        return this.parseState === PARSE_STATE_ERROR ? ICON_WARNING : ICON_SCRIPTS;
+        let icon = ICON_SCRIPTS;
+
+        if (this.parsing) {
+          icon = ICON_BUSY;
+        } else if (this.parseState === PARSE_STATE_ERROR) {
+          icon = ICON_WARNING;
+        }
+
+        return icon;
       },
       getLabel: function() {
         return this.label;

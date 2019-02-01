@@ -19,6 +19,14 @@ describe('<Button />', () => {
     expect(wrapper.find('.icofont-refresh')).toHaveLength(1);
   });
 
+  test('Handles inline property', () => {
+    const props = {
+      inline: true,
+    };
+    const wrapper = mount(<Button {...props} />);
+    expect(wrapper.find('.Button--inline')).toHaveLength(1);
+  });
+
   test('Handles classes property', () => {
     const cn1Props = { classes: '' };
     const cn1Wrapper = shallow(<Button {...cn1Props} />);

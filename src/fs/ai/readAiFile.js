@@ -3,12 +3,13 @@
 import byteStructureDefault from '../../types/byteStructure';
 import type { FsObject } from '../../types/fsObject';
 import { fs } from '../utils/fs';
-import { parseQuick } from './parser';
+import { parseFull, parseQuick } from './parser';
+import { PARSE_STATE_QUICK, PARSE_STATE_FULL } from '../../constants/misc';
 
 /**
  * Reads an AI Script file and returns the contents
  */
-async function readAiFile(aiFile: string): Promise<FsObject> {
+async function readAiFile(aiFile: string, parseType: PARSE_STATE_QUICK | PARSE_STATE_FULL): Promise<FsObject> {
   const result = await new Promise((resolve, reject) => {
     fs.readFile(aiFile, (err: ?Error, data: Buffer = '') => {
       if (err) {
@@ -29,9 +30,16 @@ async function readAiFile(aiFile: string): Promise<FsObject> {
 
   if (result.success) {
     try {
-      const byteStructure = parseQuick(result.data.bytes);
+      let parsedByteStructure = {};
+
+      if (parseType === PARSE_STATE_FULL) {
+        parsedByteStructure = parseFull(result.data.bytes);
+      } else {
+        parsedByteStructure = parseQuick(result.data.bytes);
+      }
+
       result.data = {
-        byteStructure: { ...byteStructureDefault, ...byteStructure },
+        byteStructure: { ...byteStructureDefault, ...parsedByteStructure },
         fileName: aiFile,
         parseError: false,
       };

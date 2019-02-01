@@ -1,6 +1,7 @@
 // @flow
 
 import React from 'react';
+import './Icon.css';
 
 type Props = {
   type: string,

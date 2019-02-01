@@ -24,7 +24,7 @@ export class InfoMessage extends React.PureComponent<Props> {
     const { children, headline, icon, message } = this.props;
 
     return (
-      <section className="InfoMessage">
+      <section className="InfoMessage" data-type={icon}>
         <span className="InfoMessage__icon">
           <Icon type={icon} />
         </span>

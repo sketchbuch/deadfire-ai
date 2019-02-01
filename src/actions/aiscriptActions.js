@@ -9,7 +9,8 @@ import {
   AISCRIPT_LOADING,
   AISCRIPT_LOADING_ERROR,
   AISCRIPT_LOADING_SUCCESS,
-  AISCRIPT_SET_PARSING,
+  AISCRIPT_SET_FULL_PARSING,
+  AISCRIPT_SET_QUICK_PARSING,
 } from '../constants/actionTypes';
 
 export function loadError(id: string, parseErrorMsg: string): ActionCreator {
@@ -36,9 +37,16 @@ export function loadFull(aiScript: Aiscript): ActionCreator {
   };
 }
 
-export function setParsing(aiScripts: Aiscript[]): ActionCreator {
+export function setQuickParsing(aiScripts: Aiscript[]): ActionCreator {
   return {
-    type: AISCRIPT_SET_PARSING,
+    type: AISCRIPT_SET_QUICK_PARSING,
+    payload: { aiScripts },
+  };
+}
+
+export function setFullParsing(aiScripts: Aiscript[]): ActionCreator {
+  return {
+    type: AISCRIPT_SET_FULL_PARSING,
     payload: { aiScripts },
   };
 }

@@ -13,6 +13,7 @@ type Props = {
   children?: React.Node,
   classes?: string,
   disabled?: boolean,
+  inline: boolean,
   name?: string,
   onClick?: EventHandler | null,
   title?: string,
@@ -35,7 +36,7 @@ class Button extends React.PureComponent<Props> {
   props: Props;
 
   render() {
-    const { buttontype, classes, children, disabled, busy, name, onClick, title, type } = this.props;
+    const { buttontype, classes, children, disabled, busy, inline, name, onClick, title, type } = this.props;
 
     return (
       <span
@@ -43,6 +44,7 @@ class Button extends React.PureComponent<Props> {
           Button: true,
           [classes]: !!classes,
           'Button--busy': busy,
+          'Button--inline': inline,
         })}
       >
         <button

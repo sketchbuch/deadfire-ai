@@ -3,12 +3,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
-import { RouteComponentProps } from 'react-router';
 import * as aiscriptActions from '../../actions/aiscriptActions';
 import * as sidebarActions from '../../actions/sidebarActions';
-import EditPanel from '../../components/EditPanel/EditPanel';
 import Panel from '../../components/Panel/Panel';
 import ParseError from './ParseError/ParseError';
+import Edit from './Edit/Edit';
 import getVisibleAiscripts from '../../selectors/aiscripts';
 import type { Aiscript } from '../../types/aiscript';
 import { DOMAIN_SCRIPTS } from '../../constants/domains';
@@ -22,28 +21,19 @@ import './ScriptsLayout.css';
 
 const NS = 'ScriptsLayout';
 
-if (window.quickParse === undefined) {
-  window.quickParse = {};
-}
+/**
+ * Returns the correct Aiscript based on the route.
+ */
+export const getScript = (scriptId: string, items: Aiscript[]) => {
+  return items.filter(item => item.id === scriptId)[0];
+};
 
 type Props = {
   aiscripts: Aiscript[],
   loadSidebar: () => void,
-  quickParseScript: (aiScript: Aiscript) => void,
-  setParsing: (aiScripts: string[]) => void,
+  setFullParsing: (aiScripts: string[]) => void,
+  setQuickParsing: (aiScripts: string[]) => void,
 };
-
-/**
- * A HoC to add the router props and the selected script to the wrapped component.
- */
-export function withAiscript(
-  WrappedComponent: React.ComponentType<any>,
-  routerProps: RouteComponentProps,
-  items: Aiscript[]
-) {
-  const scriptItem = items.filter(item => item.id === routerProps.match.params.scriptId);
-  return () => <WrappedComponent {...routerProps} item={scriptItem[0]} />;
-}
 
 class ScriptsLayout extends Component<Props> {
   props: Props;
@@ -66,7 +56,7 @@ class ScriptsLayout extends Component<Props> {
       });
 
       if (itemsToParse.length > 0) {
-        this.props.setParsing(itemsToParse);
+        this.props.setQuickParsing(itemsToParse);
       }
     }
   }
@@ -81,18 +71,24 @@ class ScriptsLayout extends Component<Props> {
           <SidebarList items={aiscripts} listType={DOMAIN_SCRIPTS} sortOrder={aiScriptSort} />
           <SidebarFooter />
         </Sidebar>
-        <Switch>
-          <Route
-            path={ROUTE_SCRIPTS_PARSE_ERROR}
-            render={routerProps => {
-              const ScriptedParseError = withAiscript(ParseError, routerProps, aiscripts);
-              return <ScriptedParseError />;
-            }}
-          />
-          <Route path={ROUTE_SCRIPTS_EDIT}>
-            <EditPanel>Edit</EditPanel>
-          </Route>
-        </Switch>
+        {aiscripts.length > 0 && (
+          <Switch>
+            <Route
+              path={ROUTE_SCRIPTS_PARSE_ERROR}
+              render={routerProps => {
+                const aiScript = getScript(routerProps.match.params.scriptId, aiscripts);
+                return <ParseError fullParseScript={this.props.setFullParsing} item={aiScript} />;
+              }}
+            />
+            <Route
+              path={ROUTE_SCRIPTS_EDIT}
+              render={routerProps => {
+                const aiScript = getScript(routerProps.match.params.scriptId, aiscripts);
+                return <Edit fullParseScript={this.props.setFullParsing} item={aiScript} />;
+              }}
+            />
+          </Switch>
+        )}
       </Panel>
     );
   }
@@ -107,11 +103,11 @@ const mapDispatchToProps = (dispatch: ReduxDispatch) => {
     loadSidebar: () => {
       dispatch(sidebarActions.loading(DOMAIN_SCRIPTS));
     },
-    quickParseScript: (aiScript: Aiscript) => {
-      dispatch(aiscriptActions.loadQuick(aiScript));
+    setFullParsing: (aiScript: Aiscript) => {
+      dispatch(aiscriptActions.setFullParsing(aiScript));
     },
-    setParsing: (aiScripts: string[]) => {
-      dispatch(aiscriptActions.setParsing(aiScripts));
+    setQuickParsing: (aiScripts: string[]) => {
+      dispatch(aiscriptActions.setQuickParsing(aiScripts));
     },
   };
 };

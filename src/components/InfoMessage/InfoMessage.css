@@ -4,20 +4,35 @@
 }
 
 .InfoMessage__icon {
-  font-size: 8.0rem;
-  height: 8.0rem;
-  width: 8.0rem;
-  line-height: 1.0;
+  font-size: 8rem;
+  height: 8rem;
+  width: 8rem;
+  line-height: 1;
   position: relative;
   display: inline-block;
   margin-bottom: 20px;
+  color: var(--col-brand);
 }
 
 .InfoMessage__headline {
   margin-bottom: 0px;
+  color: var(--col-brand);
+}
+
+.InfoMessage[data-type='warning'] .InfoMessage__headline {
+  color: var(--col-neg);
 }
 
 .InfoMessage__message {
   font-size: 2.5rem;
   margin-bottom: 0px;
+}
+
+.InfoMessage__additional {
+  margin-top: 2rem;
+  color: var(--col-lighten-5);
+}
+
+.InfoMessage__additional > *:last-child {
+  margin-bottom: 0;
 }

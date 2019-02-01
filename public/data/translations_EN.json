@@ -6,6 +6,9 @@
     "AppError": {
       "ErrorTxt": "Error Loading"
     },
+    "Edit": {
+      "WinTitle": "AI Scripts > Edit"
+    },
     "ErrorLayout": {
       "InfoMessage": "An error occured"
     },
@@ -25,6 +28,18 @@
       "Headline": "Welcome to the Deadfire AI Editor",
       "Placeholder": "Where is Deadfire installed?"
     },
+    "ParseError": {
+      "Headline": "Parsing error",
+      "RetryBtn": "Retry parsing",
+      "WinTitle": "AI Scripts > Error Parsing"
+    },
+    "ParsingMessage": {
+      "Headline": "Parsing",
+      "Message": "Please wait..."
+    },
+    "Persistence": {
+      "Error": "Error saving"
+    },
     "ScriptsLayout": {
       "SidebarHeader": "AI Scripts",
       "WinTitle": "AI Scripts"
@@ -43,9 +58,6 @@
       "SaveErrorMsg": "Fix all highlighted errors and try again",
       "SaveSucces": "Settings saved",
       "WinTitle": "Settings"
-    },
-    "Persistence": {
-      "Error": "Error saving"
     }
   }
 }

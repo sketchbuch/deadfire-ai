@@ -8,8 +8,9 @@ import type { AiscriptObj } from '../types/aiscript';
 import {
   AISCRIPT_LOADING_ERROR,
   AISCRIPT_LOADING_SUCCESS,
+  AISCRIPT_SET_FULL_PARSING,
+  AISCRIPT_SET_QUICK_PARSING,
   SIDEBAR_LOADING_SUCCESS,
-  AISCRIPT_SET_PARSING,
 } from '../constants/actionTypes';
 import { PARSE_STATE_ERROR } from '../constants/misc';
 
@@ -63,7 +64,8 @@ export default function reducer(state: Aiscript[] = [], action: ActionObj) {
 
       break;
 
-    case AISCRIPT_SET_PARSING:
+    case AISCRIPT_SET_FULL_PARSING:
+    case AISCRIPT_SET_QUICK_PARSING:
       if (payload.aiScripts !== undefined) {
         return state.map(item => {
           if (payload.aiScripts.find(selItem => selItem.id === item.id)) {

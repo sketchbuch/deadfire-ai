@@ -1,0 +1,11 @@
+.Icon {
+  display: inline-block;
+}
+
+.icofont-refresh {
+  animation: spinner 1s linear infinite;
+}
+
+.icofont-warning {
+  color: var(--col-neg);
+}
