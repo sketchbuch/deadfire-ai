@@ -19,7 +19,15 @@ function* watchAiscriptLoading() {
     if (result.success) {
       yield put(aiscriptActions.loadSuccess(result.data.byteStructure, payload.id, meta.parseType));
     } else {
-      yield put(aiscriptActions.loadError(payload.id, result.errorObj.toString()));
+      let stack = '';
+
+      if (result.errorObj.stack) {
+        stack = result.errorObj.stack;
+      } else if (result.errorObj.lineNumber && result.errorObj.fileName) {
+        stack = result.errorObj.lineNumber + ': ' + result.errorObj.fileName;
+      }
+
+      yield put(aiscriptActions.loadError(payload.id, result.errorObj.toString(), stack));
     }
   }
 }

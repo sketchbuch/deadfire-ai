@@ -13,8 +13,8 @@ import {
   AISCRIPT_SET_QUICK_PARSING,
 } from '../constants/actionTypes';
 
-export function loadError(id: string, parseErrorMsg: string): ActionCreator {
-  return { type: AISCRIPT_LOADING_ERROR, payload: { parseErrorMsg, id } };
+export function loadError(id: string, parseErrorMsg: string, parseErrorStack?: string = ''): ActionCreator {
+  return { type: AISCRIPT_LOADING_ERROR, payload: { id, parseErrorMsg, parseErrorStack } };
 }
 
 export function loadSuccess(byteStructure: ByteStructure, id: string, parseState: ParseStates): ActionCreator {

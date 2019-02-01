@@ -40,6 +40,7 @@ export default function reducer(state: Aiscript[] = [], action: ActionObj) {
           return reduce.arr.updateObj(state, {
             ...item,
             parseErrorMsg: payload.parseErrorMsg,
+            parseErrorStack: payload.parseErrorStack,
             parseState: PARSE_STATE_ERROR,
             parsing: false,
           });

@@ -41,7 +41,8 @@ class ParseError extends Component<Props> {
           <ParsingMessage />
         ) : (
           <InfoMessage headline={trans('Headline', NS)} icon={ICON_WARNING} message={item.parseErrorMsg}>
-            <p>{item.getLabel()}</p>
+            <p className="ParseError__name">{item.getLabel()}</p>
+            <p className="ParseError__stack">{item.parseErrorStack}</p>
             <p className="ParseError__retry">
               <Button inline onClick={this.handleClick} busy={this.props.item.parsing}>
                 <Translation name="RetryBtn" ns={NS} />

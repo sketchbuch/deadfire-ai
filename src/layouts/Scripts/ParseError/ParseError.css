@@ -1,3 +1,8 @@
 .ParseError__retry {
   margin-top: 6rem;
 }
+
+.ParseError__stack {
+  margin-top: 3rem;
+  font-size: var(--font-size-small);
+}

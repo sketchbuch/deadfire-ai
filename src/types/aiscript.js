@@ -24,6 +24,7 @@ export type Aiscript = {
   filePath: string,
   label: string,
   parseErrorMsg: string,
+  parseErrorStack: string,
   parseState: ParseStates,
   parsing: boolean,
 };
@@ -35,6 +36,7 @@ const aiscriptDefault: Aiscript = {
   filePath: '',
   label: '',
   parseErrorMsg: '',
+  parseErrorStack: '',
   parseState: PARSE_STATE_UNPARSED,
   parsing: false,
 };
