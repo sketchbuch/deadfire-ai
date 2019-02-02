@@ -1,10 +1,5 @@
 // @flow
 
-import type { ActionCreator } from '../types/action';
-import type { Aiscript } from '../../types/aiscript';
-import type { ByteStructure } from '../../types/byteStructure';
-import type { ParseStates } from '../../types/aiscript';
-import { PARSE_STATE_FULL, PARSE_STATE_QUICK } from '../constants/misc';
 import {
   AISCRIPT_LOADING,
   AISCRIPT_LOADING_ERROR,
@@ -12,6 +7,11 @@ import {
   AISCRIPT_SET_FULL_PARSING,
   AISCRIPT_SET_QUICK_PARSING,
 } from '../constants/actionTypes';
+import type { ActionCreator } from '../types/action';
+import type { Aiscript } from '../../types/aiscript';
+import type { ByteStructure } from '../../types/byteStructure';
+import type { ParseStates } from '../../types/aiscript';
+import { PARSE_STATE_FULL, PARSE_STATE_QUICK } from '../constants/misc';
 
 export function loadError(id: string, parseErrorMsg: string, parseErrorStack?: string = ''): ActionCreator {
   return { type: AISCRIPT_LOADING_ERROR, payload: { id, parseErrorMsg, parseErrorStack } };

@@ -1,7 +1,7 @@
 // @flow
 
-import * as formActions from '../formActions';
 import { FORM_BUSY, FORM_ERROR, FORM_RESET, FORM_SUCCESS } from '../../constants/actionTypes';
+import * as formActions from '../formActions';
 
 describe('Actions: FormActions:', () => {
   const formType = 'settings';
