@@ -22,8 +22,7 @@ class Field extends React.PureComponent<Props> {
   render() {
     return (
       <div
-        className={classNames({
-          Field: true,
+        className={classNames('Field', {
           [this.props.classes]: !!this.props.classes,
         })}
       >

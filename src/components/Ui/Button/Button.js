@@ -40,8 +40,7 @@ class Button extends React.PureComponent<Props> {
 
     return (
       <span
-        className={classNames({
-          Button: true,
+        className={classNames('Button', {
           [classes]: !!classes,
           'Button--busy': busy,
           'Button--inline': inline,

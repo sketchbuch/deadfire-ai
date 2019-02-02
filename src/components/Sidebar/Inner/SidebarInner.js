@@ -16,7 +16,7 @@ type Props = {
   onClick: Function | null,
 };
 
-const ItemContent = (props: Props) => {
+export const ItemContent = (props: Props) => {
   return (
     <React.Fragment>
       <span className="SidebarInner__icon">

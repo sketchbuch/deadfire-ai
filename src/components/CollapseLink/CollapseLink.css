@@ -1,0 +1,43 @@
+.CollapseLink {
+  color: var(--col-brand);
+  text-decoration: none;
+  display: inline-block;
+  padding: 4px;
+  position: relative;
+  background: 0px;
+  border: none;
+  outline: none;
+}
+
+.CollapseLink:focus {
+  outline: none;
+  color: var(--col-brand-light);
+}
+
+.CollapseLink:hover {
+  outline: none;
+  color: var(--col-brand-light);
+}
+
+.CollapseLink:active {
+  color: var(--col-text);
+}
+
+.CollapseLink:after {
+  position: absolute;
+  content: ' ';
+  bottom: 4px;
+  left: 0px;
+  background: var(--col-brand);
+  height: 1px;
+  width: 100%;
+}
+
+.CollapseLink:focus:after,
+.CollapseLink:hover:after {
+  background: var(--col-brand-light);
+}
+
+.CollapseLink:active:after {
+  background: var(--col-text);
+}

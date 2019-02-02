@@ -38,8 +38,7 @@ class Select extends React.PureComponent<Props> {
 
     return (
       <select
-        className={classNames({
-          Select: true,
+        className={classNames('Select', {
           [classes]: !!classes,
           [UI_ERROR_CLASS]: !isValid,
         })}

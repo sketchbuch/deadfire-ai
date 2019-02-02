@@ -35,8 +35,7 @@ class Textarea extends React.PureComponent<Props> {
 
     return (
       <textarea
-        className={classNames({
-          Textarea: true,
+        className={classNames('Textarea', {
           [classes]: !!classes,
           [UI_ERROR_CLASS]: !isValid,
         })}

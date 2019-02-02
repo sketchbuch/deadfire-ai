@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import { RouteComponentProps } from 'react-router';
 import EditPanel from '../../../components/EditPanel/EditPanel';
 import InfoMessage from '../../../components/InfoMessage/InfoMessage';
+import CollapseLink from '../../../components/CollapseLink/CollapseLink';
 import ParsingMessage from '../../../components/ParsingMessage/ParsingMessage';
 import type { Aiscript } from '../../../types/aiscript';
 import { Button } from '../../../components/Ui';
@@ -17,8 +18,15 @@ const NS = 'ParseError';
 
 type Props = { ...RouteComponentProps, fullParseScript: (aiScript: Aiscript) => void, item: Aiscript };
 
-class ParseError extends Component<Props> {
+type State = {
+  stackExpanded: boolean,
+};
+
+class ParseError extends Component<Props, State> {
   props: Props;
+  state: State = {
+    stackExpanded: false,
+  };
 
   componentDidMount() {
     setTitle(trans('WinTitle', NS));
@@ -31,6 +39,10 @@ class ParseError extends Component<Props> {
   }
 
   handleClick = () => this.props.fullParseScript([this.props.item]);
+  handleStackClick = (event: SyntheticMouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    this.setState({ stackExpanded: !this.state.stackExpanded });
+  };
 
   render() {
     const { item } = this.props;
@@ -42,12 +54,19 @@ class ParseError extends Component<Props> {
         ) : (
           <InfoMessage headline={trans('Headline', NS)} icon={ICON_WARNING} message={item.parseErrorMsg}>
             <p className="ParseError__name">{item.getLabel()}</p>
-            <p className="ParseError__stack">{item.parseErrorStack}</p>
             <p className="ParseError__retry">
               <Button inline onClick={this.handleClick} busy={this.props.item.parsing}>
                 <Translation name="RetryBtn" ns={NS} />
               </Button>
             </p>
+            <p className="ParseError__viewstack">
+              <CollapseLink
+                onClick={this.handleStackClick}
+                name={this.state.stackExpanded ? 'StackHide' : 'StackShow'}
+                ns={NS}
+              />
+            </p>
+            {this.state.stackExpanded && <p className="ParseError__stack">{item.parseErrorStack}</p>}
           </InfoMessage>
         )}
       </EditPanel>

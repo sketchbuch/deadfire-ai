@@ -22,8 +22,7 @@ class FieldWrap extends React.PureComponent<Props> {
   render() {
     return (
       <div
-        className={classNames({
-          FieldWrap: true,
+        className={classNames('FieldWrap', {
           [this.props.classes]: !!this.props.classes,
         })}
       >

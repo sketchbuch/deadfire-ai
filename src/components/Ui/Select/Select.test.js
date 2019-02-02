@@ -7,4 +7,9 @@ describe('<Select />', () => {
     const wrapper = shallow(<Select />);
     expect(wrapper).toHaveLength(1);
   });
+
+  test('Renders the correct number of opions', () => {
+    const wrapper = shallow(<Select options={{ a: 'A', b: 'B', c: 'C' }} />);
+    expect(wrapper.find('option')).toHaveLength(3);
+  });
 });

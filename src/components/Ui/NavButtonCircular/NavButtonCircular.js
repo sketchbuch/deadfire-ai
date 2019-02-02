@@ -35,8 +35,7 @@ class NavButtonCircular extends React.PureComponent<Props> {
 
     return (
       <Link
-        className={classNames({
-          ButtonCircular: true,
+        className={classNames('ButtonCircular', {
           [classes]: !!classes,
         })}
         data-action={action}

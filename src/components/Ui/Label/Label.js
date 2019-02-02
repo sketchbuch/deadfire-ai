@@ -23,8 +23,7 @@ class Label extends React.Component<Props> {
   render() {
     return (
       <label
-        className={classNames({
-          Label: true,
+        className={classNames('Label', {
           [this.props.classes]: !!this.props.classes,
         })}
         htmlFor={this.props.htmlFor}

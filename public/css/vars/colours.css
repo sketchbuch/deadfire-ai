@@ -38,6 +38,8 @@
   --col-header-bg: #152938;
   --col-sidebar-bg: rgba(255, 255, 255, 0.05);
   --col-text: var(--col-white);
+  --col-focus-1: rgba(90, 182, 221, 0.1);
+  --col-focus-2: rgba(90, 182, 221, 0.2);
 
   --col-pos: #85d341;
   --col-pos-light: #92db53;

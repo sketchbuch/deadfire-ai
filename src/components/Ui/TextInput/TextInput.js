@@ -59,8 +59,7 @@ class TextInput extends React.PureComponent<Props> {
 
     return (
       <input
-        className={classNames({
-          TextInput: true,
+        className={classNames('TextInput', {
           [classes]: !!classes,
           [UI_ERROR_CLASS]: !isValid,
         })}

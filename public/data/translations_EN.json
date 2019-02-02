@@ -31,6 +31,8 @@
     "ParseError": {
       "Headline": "Parsing error",
       "RetryBtn": "Retry parsing",
+      "StackShow": "Show stack trace",
+      "StackHide": "Hide stack trace",
       "WinTitle": "AI Scripts > Error Parsing"
     },
     "ParsingMessage": {
@@ -41,6 +43,7 @@
       "Error": "Error saving"
     },
     "ScriptsLayout": {
+      "SearchPlaceholder": "Search AI Scripts...",
       "SidebarHeader": "AI Scripts",
       "WinTitle": "AI Scripts"
     },

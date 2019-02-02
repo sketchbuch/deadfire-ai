@@ -72,26 +72,26 @@ export function hydrate(aiscriptObj: Aiscript): Aiscript {
     hydratedObj = {
       ...hydratedObj,
       hydrated: true,
-      contains: function(term?: string, anywhere?: boolean = false) {
-        if (term) {
-          term = term.toLowerCase();
-          const searchStr = this.label.toLowerCase();
+      contains: function(term: string, anywhere?: boolean = false) {
+        term = term.toLowerCase();
+        const searchStr = this.label.toLowerCase();
 
-          if (anywhere) {
-            if (searchStr.indexOf(term) !== -1) {
-              return true;
-            }
-          } else {
-            if (searchStr.indexOf(term) === 0) {
-              return true;
-            }
+        if (anywhere) {
+          if (searchStr.indexOf(term) !== -1) {
+            return true;
+          }
+        } else {
+          if (searchStr.indexOf(term) === 0) {
+            return true;
           }
         }
 
         return false;
       },
       getDescription: function() {
-        return '';
+        return this.byteStructure.ConditionalActionSetsLen > 0
+          ? `(${this.byteStructure.ConditionalActionSetsLen})`
+          : '(0)';
       },
       getIcon: function() {
         let icon = ICON_SCRIPTS;
@@ -108,9 +108,9 @@ export function hydrate(aiscriptObj: Aiscript): Aiscript {
         return this.label;
       },
       getTooltip: function() {
-        return this.getLabel();
+        return `${this.getLabel()} - ${this.getDescription()}`;
       },
-      getUrl: function(linkType: string) {
+      getUrl: function() {
         let script = ROUTE_SCRIPTS_EDIT;
 
         if (this.parseState === PARSE_STATE_ERROR) {

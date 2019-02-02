@@ -1,18 +1,21 @@
 // @flow
 
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { createSelector } from 'reselect';
 import * as aiscriptActions from '../../actions/aiscriptActions';
 import * as sidebarActions from '../../actions/sidebarActions';
+import Edit from './Edit/Edit';
+import Icon from '../../components/Icon/Icon';
 import Panel from '../../components/Panel/Panel';
 import ParseError from './ParseError/ParseError';
-import Edit from './Edit/Edit';
-import getVisibleAiscripts from '../../selectors/aiscripts';
 import type { Aiscript } from '../../types/aiscript';
 import { DOMAIN_SCRIPTS } from '../../constants/domains';
+import { ICON_SEARCH } from '../../constants/icons';
 import { PARSE_STATE_UNPARSED } from '../../constants/misc';
 import { ROUTE_SCRIPTS, ROUTE_SCRIPTS_EDIT, ROUTE_SCRIPTS_PARSE_ERROR } from '../../constants/routes';
+import { SearchField } from '../../components/Ui';
 import { Sidebar, SidebarFooter, SidebarHeader, SidebarList } from '../../components/Sidebar';
 import { aiScriptSort } from '../../types/aiscript';
 import { setTitle } from '../../utils';
@@ -35,8 +38,18 @@ type Props = {
   setQuickParsing: (aiScripts: string[]) => void,
 };
 
-class ScriptsLayout extends Component<Props> {
+type State = {
+  searching: boolean,
+  term: string,
+};
+
+class ScriptsLayout extends Component<Props, State> {
   props: Props;
+  state: State = {
+    searching: false,
+    term: '',
+  };
+  itemsToParse: Aiscript[] = [];
 
   componentDidMount() {
     setTitle(trans('WinTitle', NS));
@@ -48,29 +61,57 @@ class ScriptsLayout extends Component<Props> {
     }
 
     if (this.props.aiscripts.length > 0) {
-      const itemsToParse = [];
-      this.props.aiscripts.forEach(item => {
-        if (item.parseState === PARSE_STATE_UNPARSED && !item.parsing) {
-          itemsToParse.push(item);
-        }
-      });
-
-      if (itemsToParse.length > 0) {
-        this.props.setQuickParsing(itemsToParse);
+      if (this.itemsToParse.length > 0) {
+        this.props.setQuickParsing(this.itemsToParse);
       }
     }
   }
 
+  handleSearchIconClick = (event: SyntheticMouseEvent<HTMLSpanElement>) => {
+    this.setState({ searching: !this.state.searching });
+  };
+
+  handleSearchChange = (event: SyntheticMouseEvent<HTMLSpanElement>) => {
+    this.setState({ term: event.currentTarget.value });
+  };
+
+  getListItems(aiscripts: Aiscript[]) {
+    const items = getVisibleAiscripts(aiscripts, { term: this.state.term });
+    this.itemsToParse = [];
+    items.forEach(item => {
+      if (item.parseState === PARSE_STATE_UNPARSED && !item.parsing) {
+        this.itemsToParse.push(item);
+      }
+    });
+
+    return items;
+  }
+
   render() {
     const { aiscripts, loadSidebar } = this.props;
+    const items = this.getListItems(aiscripts);
 
     return (
       <Panel classes="ScriptsLayout">
         <Sidebar loadSidebar={loadSidebar} domaiInfoMessagen={DOMAIN_SCRIPTS} loading={aiscripts.length < 1}>
-          <SidebarHeader title={trans('SidebarHeader', NS)} />
-          <SidebarList items={aiscripts} listType={DOMAIN_SCRIPTS} sortOrder={aiScriptSort} />
+          <SidebarHeader title={trans('SidebarHeader', NS)} showHeadline={!this.state.searching}>
+            {this.state.searching ? (
+              <SearchField
+                onChange={this.handleSearchChange}
+                placeholder={trans('SearchPlaceholder', NS)}
+                sidebar
+                term={this.state.term}
+              />
+            ) : (
+              <span onClick={this.handleSearchIconClick}>
+                <Icon type={ICON_SEARCH} />
+              </span>
+            )}
+          </SidebarHeader>
+          <SidebarList items={items} listType={DOMAIN_SCRIPTS} sortOrder={aiScriptSort} />
           <SidebarFooter />
         </Sidebar>
+
         {aiscripts.length > 0 && (
           <Switch>
             <Route
@@ -94,8 +135,24 @@ class ScriptsLayout extends Component<Props> {
   }
 }
 
+const getVisibleAiscripts = createSelector(
+  [aiscripts => aiscripts, (aiscripts, props) => props.term],
+  (aiscripts, term) => {
+    let items = [...aiscripts];
+    if (term !== '') {
+      items = items.filter(i => i.contains(term, true));
+    }
+
+    if (items.length > 0) {
+      return items.slice(0, 10);
+    }
+
+    return [];
+  }
+);
+
 const mapStateToProps = (state: Object) => ({
-  aiscripts: getVisibleAiscripts(state),
+  aiscripts: state.aiscripts,
 });
 
 const mapDispatchToProps = (dispatch: ReduxDispatch) => {

@@ -56,6 +56,10 @@
   position: relative;
 }
 
+.SidebarHeader[data-headline='false'] .SidebarHeader__controls {
+  padding-left: 0px;
+}
+
 .SidebarHeader__search {
   background: var(--col-darken-1);
   border: 1px solid var(--col-darken-2);

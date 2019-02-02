@@ -1,6 +1,6 @@
 :root {
-  --focus: 0px 0px 10px 3px rgba(90, 182, 221, 0.1);
-  --focus-btn: 0px 0px 10px 3px rgba(90, 182, 221, 0.2);
+  --focus: 0px 0px 10px 3px var(--col-focus-1);
+  --focus-btn: 0px 0px 10px 3px var(--col-focus-2);
   --focus-error: 0px 0px 1px 4px rgba(232, 73, 24, 0.2);
   --but-highlight: inset 0px 7px 9px -7px var(--col-lighten-4);
   --border-radius: 4px;
