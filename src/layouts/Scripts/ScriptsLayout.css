@@ -9,3 +9,7 @@
   align-items: flex-start;
   padding: 0px;
 }
+
+.ScriptsLayout .EditPanel .EditPanelHeader + .InfoMessage {
+  padding-top: 20px;
+}

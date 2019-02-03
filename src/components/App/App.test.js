@@ -3,17 +3,13 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { shallow } from 'enzyme';
-import { App } from './App';
 import store from '../../store/redux';
+import { App } from './App';
 
 describe('<App />', () => {
   const props = {
     appLoading: jest.fn(),
-    dispatch: jest.fn(),
-    error: false,
-    errorMsg: '',
-    menuExpanded: false,
-    loaded: false,
+    toggleMenu: jest.fn(),
   };
 
   test('Renders without crashing', () => {
@@ -25,7 +21,7 @@ describe('<App />', () => {
     expect(wrapper).toHaveLength(1);
   });
 
-  test('Calls app loading', () => {
+  test('Calls appLoading()', () => {
     const mockAppLoading = jest.fn();
     shallow(<App {...props} appLoading={mockAppLoading} />);
     expect(mockAppLoading).toHaveBeenCalledTimes(1);

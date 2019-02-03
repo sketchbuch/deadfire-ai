@@ -1,0 +1,24 @@
+.ActionSet {
+  position: relative;
+  width: 100%;
+  background: var(--col-lighten-1);
+}
+
+.ActionSet__header {
+  background: var(--col-lighten-1);
+  border: 1px solid var(--col-darken-2);
+}
+
+.ActionSet__headline {
+  font-size: var(--font-size);
+  padding: 5px 10px;
+  margin: 0px;
+}
+
+.ActionSet__body {
+  padding: 5px 10px;
+}
+
+.ActionSet__body > *:last-child {
+  margin-bottom: 0;
+}

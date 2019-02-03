@@ -5,51 +5,9 @@ import { UUID } from '../utils/fs';
 const Parser = require('binary-parser').Parser;
 
 /**
- * Parses the contents of an AI file just up until the name.
- */
-export function parseQuick(fileContents: string) {
-  const aiHeader = new Parser().uint32le('HeaderVersion').uint32le('TypesLen');
-
-  let aiData = aiHeader.parse(fileContents);
-  let curPos = INT32 + INT32;
-  aiData.Types = [];
-
-  // Get types
-  for (let i = 0; i < aiData.TypesLen; i++) {
-    const typeParser = new Parser()
-      .skip(curPos)
-      .buffer('TypeID', { length: 16 })
-      .uint32le('Version');
-
-    const result = typeParser.parse(fileContents);
-    result.TypeID = bytesToUuid(result.TypeID);
-
-    aiData.Types.push(result);
-    curPos += GUID + INT32;
-
-    if (i === aiData.TypesLen - 1) {
-      const selTypeParser = new Parser().skip(curPos).buffer('TypeID', { length: 16 });
-
-      aiData.TypeID = bytesToUuid(selTypeParser.parse(fileContents).TypeID);
-      curPos += GUID;
-    }
-  }
-
-  // Name
-  const nameParser = new Parser()
-    .skip(curPos)
-    .uint8('NameLen')
-    .string('Name', { length: 'NameLen' });
-
-  aiData = { ...aiData, ...nameParser.parse(fileContents) };
-
-  return aiData;
-}
-
-/**
  * Parses the full contents of an AI file
  */
-export function parseFull(fileContents: string) {
+export function parse(fileContents: string, quick: boolean = false) {
   const aiHeader = new Parser().uint32le('HeaderVersion').uint32le('TypesLen');
 
   let aiData = aiHeader.parse(fileContents);
@@ -111,8 +69,12 @@ export function parseFull(fileContents: string) {
 
   // Actonsets classes
   const asParser = new Parser().skip(curPos).uint32le('ConditionalActionSetsLen');
-  aiData = { ...aiData, ...asParser.parse(fileContents), ConditionalActionSet: [] };
+  aiData = { ...aiData, ...asParser.parse(fileContents), ConditionalActionSets: [] };
   curPos += INT32;
+
+  if (quick) {
+    return aiData;
+  }
 
   if (aiData.ConditionalActionSetsLen > 0) {
     // Get types
@@ -188,7 +150,7 @@ export function parseFull(fileContents: string) {
         .uint32le('Cooldown');
 
       actionSet = { ...actionSet, ...postActionsParser.parse(fileContents) };
-      aiData.ConditionalActionSet.push(actionSet);
+      aiData.ConditionalActionSets.push(actionSet);
       curPos += INT32 + INT32;
     }
   }

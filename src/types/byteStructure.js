@@ -29,7 +29,7 @@ type ActionSetAction = {
   Cooldown: number,
 };
 
-type ActionSet = {
+export type ActionSet = {
   TypeID: string,
   Version: number,
   NameLen: number,

@@ -74,7 +74,7 @@ export function hydrate(aiscriptObj: Aiscript): Aiscript {
       hydrated: true,
       contains: function(term: string, anywhere?: boolean = false) {
         term = term.toLowerCase();
-        const searchStr = this.label.toLowerCase();
+        const searchStr = (this.label + this.fileName).toLowerCase();
 
         if (anywhere) {
           if (searchStr.indexOf(term) !== -1) {

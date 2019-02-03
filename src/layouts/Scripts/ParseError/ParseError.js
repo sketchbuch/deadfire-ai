@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import { RouteComponentProps } from 'react-router';
 import EditPanel from '../../../components/EditPanel/EditPanel';
+import EditPanelHeader from '../../../components/EditPanel/Header/EditPanelHeader';
 import InfoMessage from '../../../components/InfoMessage/InfoMessage';
 import CollapseLink from '../../../components/CollapseLink/CollapseLink';
 import ParsingMessage from '../../../components/ParsingMessage/ParsingMessage';
@@ -49,6 +50,7 @@ class ParseError extends Component<Props, State> {
 
     return (
       <EditPanel>
+        <EditPanelHeader title={item.getLabel()} />
         {this.props.item.parsing ? (
           <ParsingMessage />
         ) : (

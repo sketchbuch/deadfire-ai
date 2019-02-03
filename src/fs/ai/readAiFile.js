@@ -3,7 +3,7 @@
 import byteStructureDefault from '../../types/byteStructure';
 import type { FsObject } from '../../types/fsObject';
 import { fs } from '../utils/fs';
-import { parseFull, parseQuick } from './parser';
+import { parse } from './parser';
 import { PARSE_STATE_QUICK, PARSE_STATE_FULL } from '../../constants/misc';
 
 /**
@@ -33,9 +33,9 @@ async function readAiFile(aiFile: string, parseType: PARSE_STATE_QUICK | PARSE_S
       let parsedByteStructure = {};
 
       if (parseType === PARSE_STATE_FULL) {
-        parsedByteStructure = parseFull(result.data.bytes);
+        parsedByteStructure = parse(result.data.bytes);
       } else {
-        parsedByteStructure = parseQuick(result.data.bytes);
+        parsedByteStructure = parse(result.data.bytes, true);
       }
 
       result.data = {

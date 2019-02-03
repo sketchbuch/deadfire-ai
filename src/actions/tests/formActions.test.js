@@ -20,6 +20,11 @@ describe('Actions: FormActions:', () => {
     expect(formActions.reset(formType)).toEqual(EXPECTED_ACTION);
   });
 
+  test('save() should restore default state', () => {
+    const EXPECTED_ACTION = { type: FORM_SUCCESS, payload: { formType } };
+    expect(formActions.save(formType)).toEqual(EXPECTED_ACTION);
+  });
+
   test('success() should restore default state', () => {
     const EXPECTED_ACTION = { type: FORM_SUCCESS, payload: { formType } };
     expect(formActions.success(formType)).toEqual(EXPECTED_ACTION);
