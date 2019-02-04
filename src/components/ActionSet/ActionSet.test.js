@@ -5,7 +5,7 @@ import { shallow } from 'enzyme';
 import { ActionSet } from './ActionSet';
 
 describe('<ActionSet />', () => {
-  const props = {};
+  const props = { set: {} };
 
   test('Renders without crashing', () => {
     const wrapper = shallow(<ActionSet {...props} />);

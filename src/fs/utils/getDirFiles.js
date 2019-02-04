@@ -1,6 +1,6 @@
 // @flow
 
-import { filterFiles } from './filterFiles';
+import filterFiles from './filterFiles';
 import { fs } from './fs';
 
 /**

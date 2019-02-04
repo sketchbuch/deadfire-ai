@@ -21,19 +21,17 @@ export const DATA_LOAD = 'DATA_LOAD';
 export const DATA_LOAD_ERROR = 'DATA_LOAD_ERROR';
 export const DATA_LOAD_SUCCESS = 'DATA_LOAD_SUCCESS';
 
+// Eternity files
+export const ETERNITY_LOAD = 'ETERNITY_LOAD';
+export const ETERNITY_LOAD_SUCCESS = 'ETERNITY_LOAD_SUCCESS';
+export const ETERNITY_LOAD_ERROR = 'ETERNITY_LOAD_ERROR';
+
 // Forms
 export const FORM_BUSY = 'FORM_BUSY';
 export const FORM_ERROR = 'FORM_ERROR';
 export const FORM_RESET = 'FORM_RESET';
 export const FORM_SAVE = 'FORM_SAVE';
 export const FORM_SUCCESS = 'FORM_SUCCESS';
-export const formActionTypes = {
-  [FORM_BUSY]: FORM_BUSY,
-  [FORM_ERROR]: FORM_ERROR,
-  [FORM_RESET]: FORM_RESET,
-  [FORM_SAVE]: FORM_SAVE,
-  [FORM_SUCCESS]: FORM_SUCCESS,
-};
 
 // Languages
 export const LANGUAGE_CHANGE = 'LANGUAGE_CHANGE';
