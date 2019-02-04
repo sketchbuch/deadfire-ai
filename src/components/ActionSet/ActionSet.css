@@ -1,7 +1,7 @@
 .ActionSet {
   position: relative;
   width: 100%;
-  background: var(--col-lighten-1);
+  background: var(--col-field-bg);
 }
 
 .ActionSet__header {

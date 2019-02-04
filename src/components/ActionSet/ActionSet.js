@@ -40,6 +40,8 @@ export class ActionSet extends React.Component<Props> {
               return (
                 <div className="ActionSet__condition" key={setCond.TypeID}>
                   <Select
+                    className="AppSelect"
+                    classNamePrefix="AppSelect__"
                     onChange={() => {}}
                     value={options.find(opt => {
                       return opt.value === setCond.ConditionalSet;

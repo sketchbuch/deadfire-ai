@@ -25,7 +25,8 @@
   --col-darken-10: rgba(0, 0, 0, 1);
 
   --col-placeholder: var(--col-lighten-3);
-  --col-field-bg: rgba(255, 255, 255, 0.05);
+  --col-field-bg: #19292d;
+  --col-select-bg: #19292d;
 
   --col-brand: #5196a0;
   --col-brand-light: #63aeb9;

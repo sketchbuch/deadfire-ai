@@ -15,6 +15,7 @@ import settingsSchema from '../../validation/schemas/settings';
 import type { FormActionTypes } from '../../types/forms';
 import type { FormsState } from '../../types/forms';
 import type { Languages } from '../../types/lang';
+import type { LangOption } from '../../types/lang';
 import type { SettingsState } from '../../types/settings';
 import { ROUTE_SETTINGS } from '../../constants/routes';
 import { DOMAIN_SETTINGS } from '../../constants/domains';
@@ -88,6 +89,20 @@ export class SettingsLayout extends Component<Props, State> {
     this.setState({ errors: newErrors, settings: newSettings });
   };
 
+  onSelectChange = async (selOption: LangOption) => {
+    const { value } = selOption;
+    const newSettings = { ...this.state.settings };
+    let newErrors = { ...this.state.errors };
+
+    try {
+      newSettings['lang'] = await yup.reach(settingsSchema('change'), 'lang').validate(value);
+    } catch (error) {
+      newErrors['lang'] = error;
+    }
+
+    this.setState({ errors: newErrors, settings: newSettings });
+  };
+
   onSubmit = async (event: SyntheticInputEvent) => {
     event.preventDefault();
     const curSettings = { ...this.state.settings };
@@ -128,6 +143,7 @@ export class SettingsLayout extends Component<Props, State> {
           disabled={this.state.errors.length > 0}
           errors={this.state.errors}
           onChange={this.onChange}
+          onSelectChange={this.onSelectChange}
           onSubmit={this.onSubmit}
           success={this.props.formState.success}
           values={this.state.settings}

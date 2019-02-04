@@ -1,6 +1,7 @@
 // @flow
 
 import React, { Component } from 'react';
+import Select from 'react-select';
 import Translation, { trans } from '../../../components/Translation/Translation';
 import {
   Button,
@@ -10,17 +11,27 @@ import {
   Form as FormElement,
   FormHeader,
   Label,
-  Select,
   TextInput,
 } from '../../../components/Ui';
-import { langs } from '../../../reducers/languages';
+import type { LangOption } from '../../types/lang';
 import type { SettingsState } from '../../types/settings';
+import { langs } from '../../../reducers/languages';
+
+const langOptions: LangOption[] = [];
+
+Object.keys(langs).forEach(function(key, index) {
+  langOptions.push({
+    value: key,
+    label: langs[key],
+  });
+});
 
 type Props = {
   busy: boolean,
   disabled: boolean,
   errors: string[],
   onChange: (event: SyntheticInputEvent) => void,
+  onSelectChange: (selOption: LangOption) => void,
   onSubmit: (event: SyntheticInputEvent) => void,
   success: boolean,
   values: SettingsState,
@@ -30,7 +41,7 @@ export class Form extends Component<Props> {
   props: Props;
 
   render() {
-    const { busy, disabled, errors, onChange, onSubmit, values } = this.props;
+    const { busy, disabled, errors, onChange, onSelectChange, onSubmit, values } = this.props;
 
     return (
       <FormElement onSubmit={onSubmit}>
@@ -46,7 +57,17 @@ export class Form extends Component<Props> {
               <Translation name="LabelLanguage" ns="SettingsLayout" />
             </Label>
             <Field>
-              <Select id="lang" name="lang" onChange={onChange} options={langs} value={values.lang} />
+              <Select
+                className="AppSelect"
+                classNamePrefix="AppSelect__"
+                id="lang"
+                name="lang"
+                onChange={onSelectChange}
+                options={langOptions}
+                value={langOptions.find(opt => {
+                  return opt.value === values.lang;
+                })}
+              />
             </Field>
           </FieldWrap>
         </fieldset>

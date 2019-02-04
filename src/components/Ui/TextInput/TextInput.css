@@ -16,6 +16,7 @@
 
 .TextInput:focus {
   box-shadow: var(--focus);
+  border-color: var(--col-lighten-2);
 }
 
 /* Error */

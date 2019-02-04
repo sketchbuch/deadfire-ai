@@ -2,12 +2,13 @@
 
 import { langs } from '../reducers/languages';
 
-/**
- * Language type def.
- */
-
 export type Lang = {
   key: string,
+  label: string,
+};
+
+export type LangOption = {
+  value: string,
   label: string,
 };
 
